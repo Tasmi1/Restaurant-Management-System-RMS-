@@ -124,6 +124,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\Booking.cs" />
+    <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\DishCategory.cs" />
+    <Compile Include="Model\DishSubCategory.cs" />
+    <Compile Include="Model\InventoryProduct.cs" />
+    <Compile Include="Model\Menu.cs" />
+    <Compile Include="Model\Order.cs" />
+    <Compile Include="Model\OrderItems.cs" />
+    <Compile Include="Model\Payment.cs" />
+    <Compile Include="Model\PurchaseProduct.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserType.cs" />
+    <Compile Include="Model\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
