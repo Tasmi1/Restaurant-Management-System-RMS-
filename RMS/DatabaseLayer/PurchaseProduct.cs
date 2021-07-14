@@ -14,6 +14,12 @@ namespace DatabaseLayer
     
     public partial class PurchaseProduct
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PurchaseProduct()
+        {
+            this.ProductQuantities = new HashSet<ProductQuantity>();
+        }
+    
         public System.Guid PurchaseProductID { get; set; }
         public System.Guid InventoryProductID { get; set; }
         public System.Guid VendorID { get; set; }
@@ -21,6 +27,8 @@ namespace DatabaseLayer
         public string Price { get; set; }
     
         public virtual InventoryProduct InventoryProduct { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductQuantity> ProductQuantities { get; set; }
         public virtual Vendor Vendor { get; set; }
     }
 }

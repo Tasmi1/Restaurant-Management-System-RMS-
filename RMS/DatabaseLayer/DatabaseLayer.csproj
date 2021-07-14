@@ -95,6 +95,9 @@
     <Compile Include="Payment.cs">
       <DependentUpon>Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductQuantity.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PurchaseProduct.cs">
       <DependentUpon>Entity.tt</DependentUpon>
