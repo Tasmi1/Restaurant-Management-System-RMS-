@@ -50,17 +50,67 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Booking.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Category.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Customer.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DishCategory.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DishSubCategory.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Entity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Entity.edmx</DependentUpon>
     </Compile>
+    <Compile Include="InventoryProduct.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Menu.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Order.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderItem.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Payment.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseProduct.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserType.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vendor.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Entity.edmx">
@@ -79,6 +129,12 @@
     <Content Include="Entity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Entity.Context.cs</LastGenOutput>
+      <DependentUpon>Entity.edmx</DependentUpon>
+    </Content>
+    <Content Include="Entity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Entity.edmx</DependentUpon>
+      <LastGenOutput>Entity.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
