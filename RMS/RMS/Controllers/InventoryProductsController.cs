@@ -31,10 +31,30 @@ namespace RMS.Controllers
             return View(query.ToList());
         }
 
+        // GET: InventoryProducts/Create
+        public ActionResult Create()
+        {
+            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName");
+            return View();
+        }
 
+        // POST: InventoryProducts/Create       
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "InventoryProductID,ProductsName,ManufactureDate,ExpDate,Description,CategoryID")] InventoryProduct inventoryProduct)
+        {
+            if (ModelState.IsValid)
+            {
+                inventoryProduct.InventoryProductID = Guid.NewGuid();
+                db.InventoryProducts.Add(inventoryProduct);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
+            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", inventoryProduct.CategoryID);
+            return View(inventoryProduct);
+        }
 
-       
         protected override void Dispose(bool disposing)
         {
             if (disposing)
