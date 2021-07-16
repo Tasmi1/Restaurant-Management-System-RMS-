@@ -26,8 +26,10 @@ namespace DatabaseLayer
         public System.DateTime ExpDate { get; set; }
         public string Description { get; set; }
         public System.Guid CategoryID { get; set; }
+        public Nullable<System.Guid> ProductQuantityID { get; set; }
     
         public virtual Category Category { get; set; }
+        public virtual ProductQuantity ProductQuantity { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchaseProduct> PurchaseProducts { get; set; }
     }
