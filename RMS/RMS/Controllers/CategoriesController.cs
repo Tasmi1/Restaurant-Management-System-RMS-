@@ -21,6 +21,28 @@ namespace RMS.Controllers
         }
 
 
+        // GET: Categories/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Categories/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "CategoryID,CategoryName")] Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                category.CategoryID = Guid.NewGuid();
+                db.Categories.Add(category);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(category);
+        }
+
 
         protected override void Dispose(bool disposing)
         {
