@@ -14,7 +14,13 @@ namespace RMS.Controllers
     {
         private ResturantManagementDBEntities db = new ResturantManagementDBEntities();
 
-       
+        // GET: Categories
+        public ActionResult Index()
+        {
+            return View(db.Categories.ToList());
+        }
+
+
 
         protected override void Dispose(bool disposing)
         {
