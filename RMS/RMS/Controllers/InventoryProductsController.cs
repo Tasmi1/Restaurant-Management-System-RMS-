@@ -55,6 +55,38 @@ namespace RMS.Controllers
             return View(inventoryProduct);
         }
 
+        // GET: InventoryProducts/Edit/5
+        public ActionResult Edit(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            InventoryProduct inventoryProduct = db.InventoryProducts.Find(id);
+            if (inventoryProduct == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", inventoryProduct.CategoryID);
+            return View(inventoryProduct);
+        }
+
+        // POST: InventoryProducts/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "InventoryProductID,ProductsName,ManufactureDate,ExpDate,Description,CategoryID")] InventoryProduct inventoryProduct)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(inventoryProduct).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", inventoryProduct.CategoryID);
+            return View(inventoryProduct);
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
