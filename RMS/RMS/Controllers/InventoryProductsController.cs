@@ -19,14 +19,17 @@ namespace RMS.Controllers
         {          
             var query = (from Ip in db.InventoryProducts
                          join C in db.Categories on Ip.CategoryID equals C.CategoryID
+                         join Pq in db.ProductQuantities on Ip.ProductQuantityID equals Pq.ProductQuantityID
                          select new
                          {
                              Ip.InventoryProductID,
                              Ip.ProductsName,
                              C.CategoryName,
+                             Pq.Quantity,
                              Ip.ManufactureDate,
                              Ip.ExpDate,
                              Ip.Description
+                             
                          });
             return View(query.ToList());
         }
