@@ -13,6 +13,8 @@ namespace RMS.Model
         [Required(ErrorMessage = "Customer Name is required")]
         public string CustomerName { get; set; }
         public string Address { get; set; }
+        [Required(ErrorMessage = "Contact is required")]
+        [MinLength(10, ErrorMessage = "Number should be of 10 digits")]
         public string Contact { get; set; }
     }
 }
