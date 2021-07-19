@@ -4,12 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace RMS.Model
+namespace RMS.Model.viewModes
 {
-    public class Customer
+    public class CustomerDTOs
     {
-        [Key]
-        public int CustomerID { get; set; }
+        public Guid CustomerID { get; set; }
         [Required(ErrorMessage = "Customer Name is required")]
         public string CustomerName { get; set; }
         public string Address { get; set; }

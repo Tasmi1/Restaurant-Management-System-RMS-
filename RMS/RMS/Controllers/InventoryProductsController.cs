@@ -17,18 +17,18 @@ namespace RMS.Controllers
         // GET: InventoryProducts
         public ActionResult Index()
         {          
-            var query = (from Ip in db.InventoryProducts
-                         join C in db.Categories on Ip.CategoryID equals C.CategoryID
-                         join Pq in db.ProductQuantities on Ip.ProductQuantityID equals Pq.ProductQuantityID
+            var query = (from ip in db.InventoryProducts
+                         join c in db.Categories on ip.CategoryID equals c.CategoryID
+                         join pq in db.ProductQuantities on ip.ProductQuantityID equals pq.ProductQuantityID
                          select new
                          {
-                             Ip.InventoryProductID,
-                             Ip.ProductsName,
-                             C.CategoryName,
-                             Pq.Quantity,
-                             Ip.ManufactureDate,
-                             Ip.ExpDate,
-                             Ip.Description
+                             ip.InventoryProductID,
+                             ip.ProductsName,
+                             c.CategoryName,
+                             pq.Quantity,
+                             ip.ManufactureDate,
+                             ip.ExpDate,
+                             ip.Description
                              
                          });
             return View(query.ToList());

@@ -1,0 +1,25 @@
+﻿@model RMS.Model.viewModes.CustomerDTOs
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+<form method="post">
+    <table class="table">
+        <tr>
+            <td>Customer Name</td>
+            <td>@Html.TextBoxFor(x => x.CustomerName)</td>
+        </tr>
+        <tr>
+            <td>Contact</td>
+            <td>@Html.TextBoxFor(x => x.Contact)</td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>@Html.TextBoxFor(x => x.Address)</td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit"  value="Create"/></td>          
+        </tr>
+    </table>
+</form>
