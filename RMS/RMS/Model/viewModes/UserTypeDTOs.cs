@@ -13,5 +13,6 @@ namespace RMS.Model.viewModes
 
         [StringLength(95, ErrorMessage = "User Type Length should be between 3 to 9", MinimumLength = 3)]
         public string Type { get; set; }
+
     }
 }
