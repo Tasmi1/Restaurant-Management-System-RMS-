@@ -17,7 +17,7 @@ namespace RMS.Model.Services
             {
                 using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
                 {
-                    Customer customer = new Customer();
+                    DatabaseLayer.Customer customer = new DatabaseLayer.Customer();
                     customer.CustomerID = Guid.NewGuid();
                     customer = converter.ConverToEntity(model, customer);
                   
@@ -40,7 +40,7 @@ namespace RMS.Model.Services
                 using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
                 {
 
-                    Customer customer = db.Customers.FirstOrDefault(c => c.CustomerID == model.CustomerID);
+                    DatabaseLayer.Customer customer = db.Customers.FirstOrDefault(c => c.CustomerID == model.CustomerID);
                     if (customer != null)
                     {
                         customer = converter.ConverToEntity(model, customer);                      
@@ -65,7 +65,7 @@ namespace RMS.Model.Services
                 using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
                 {
 
-                    Customer customer = db.Customers.FirstOrDefault(c => c.CustomerID == customerId);
+                    DatabaseLayer.Customer customer = db.Customers.FirstOrDefault(c => c.CustomerID == customerId);
                     if (customer != null)
                     {
                         model = converter.ConvertToModel(customer);

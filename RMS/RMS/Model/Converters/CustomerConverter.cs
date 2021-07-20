@@ -9,14 +9,14 @@ namespace RMS.Model.Converters
 {
     public class CustomerConverter
     {
-        public Customer ConverToEntity(CustomerDTOs model, Customer customer)
+        public DatabaseLayer.Customer ConverToEntity(CustomerDTOs model, DatabaseLayer.Customer customer)
         {
             customer.CustomerName = model.CustomerName;
             customer.Address = model.Address;
             customer.Contact = model.Contact;
             return customer;
         }
-        public CustomerDTOs ConvertToModel(Customer model)
+        public CustomerDTOs ConvertToModel(DatabaseLayer.Customer model)
         {
             CustomerDTOs customer = new CustomerDTOs();
             customer.CustomerID = model.CustomerID;
