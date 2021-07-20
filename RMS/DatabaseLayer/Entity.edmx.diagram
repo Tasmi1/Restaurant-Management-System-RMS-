@@ -13,8 +13,8 @@
         <EntityTypeShape EntityType="ResturantManagementDBModel.InventoryProduct" Width="1.5" PointX="12" PointY="1" />
         <EntityTypeShape EntityType="ResturantManagementDBModel.Menu" Width="1.5" PointX="3" PointY="5.25" />
         <EntityTypeShape EntityType="ResturantManagementDBModel.Order" Width="1.5" PointX="5.25" PointY="4.875" />
-        <EntityTypeShape EntityType="ResturantManagementDBModel.OrderItem" Width="1.5" PointX="7.5" PointY="3.75" />
-        <EntityTypeShape EntityType="ResturantManagementDBModel.Payment" Width="1.5" PointX="7.5" PointY="6.625" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.OrderItem" Width="1.5" PointX="7.5" PointY="6.625" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.Payment" Width="1.5" PointX="7.5" PointY="3.75" />
         <EntityTypeShape EntityType="ResturantManagementDBModel.ProductQuantity" Width="1.5" PointX="9.75" PointY="5.625" />
         <EntityTypeShape EntityType="ResturantManagementDBModel.PurchaseProduct" Width="1.5" PointX="14.25" PointY="1.25" />
         <EntityTypeShape EntityType="ResturantManagementDBModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" />

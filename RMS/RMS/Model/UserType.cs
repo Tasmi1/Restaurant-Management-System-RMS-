@@ -10,7 +10,7 @@ namespace RMS.Model
     {
         [Key]
         public int UserTypeID { get; set; }
-        //[Required(ErrorMessage = "User Tyoe is required")]
-        //public int UserType { get; set; }
+        [Required(ErrorMessage = "User Tyoe is required")]
+        public string Type { get; set; }
     }
 }

@@ -144,7 +144,7 @@
             <PropertyRef Name="UserTypeID" />
           </Key>
           <Property Name="UserTypeID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="UserType" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Vendor">
           <Key>
@@ -597,7 +597,7 @@
             <PropertyRef Name="UserTypeID" />
           </Key>
           <Property Name="UserTypeID" Type="Guid" Nullable="false" />
-          <Property Name="UserType1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Users" Relationship="ResturantManagementDBModel.FK_User_UserType" FromRole="UserType" ToRole="User" />
         </EntityType>
         <EntityType Name="Vendor">
@@ -912,7 +912,7 @@
           <EntitySetMapping Name="UserTypes">
             <EntityTypeMapping TypeName="ResturantManagementDBModel.UserType">
               <MappingFragment StoreEntitySet="UserType">
-                <ScalarProperty Name="UserType1" ColumnName="UserType" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
               </MappingFragment>
             </EntityTypeMapping>
