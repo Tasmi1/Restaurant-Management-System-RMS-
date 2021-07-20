@@ -16,8 +16,10 @@ namespace RMS.Model
         [Required(ErrorMessage = "Last Name is required")]
         public int LName { get; set; }
         [Required(ErrorMessage = "Phone Number is required")]
+        [MinLength(10, ErrorMessage ="Number should be of 10 digits")]
         public int PhoneNumber { get; set; }
         [Required(ErrorMessage = "Email is required")]
+        [EmailAddress]
         public int Email { get; set; }
         [Required(ErrorMessage = "User Name is required")]
         public int UserName { get; set; }
