@@ -6,7 +6,7 @@ using System.Web;
 
 namespace RMS.Model
 {
-    public class Customer1
+    public class Customer
     {
         [Key]
         public int CustomerID { get; set; }
