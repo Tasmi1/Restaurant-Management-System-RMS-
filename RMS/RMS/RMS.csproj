@@ -150,6 +150,7 @@
     <Compile Include="Model\UserType.cs" />
     <Compile Include="Model\Vendor.cs" />
     <Compile Include="Model\viewModes\CustomerDTOs.cs" />
+    <Compile Include="Model\viewModes\UserTypeDTOs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
