@@ -14,10 +14,18 @@ namespace DatabaseLayer
     
     public partial class DishSubCategory
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DishSubCategory()
+        {
+            this.Menus = new HashSet<Menu>();
+        }
+    
         public System.Guid SubCategoryID { get; set; }
         public string SubCategoryName { get; set; }
         public System.Guid DishCategoryID { get; set; }
     
         public virtual DishCategory DishCategory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Menu> Menus { get; set; }
     }
 }
