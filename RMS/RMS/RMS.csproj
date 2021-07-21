@@ -129,6 +129,7 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\DishCategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoryProductsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -475,6 +476,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Categories\" />
+    <Folder Include="Views\DishCategory\" />
     <Folder Include="Views\InventoryProducts\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
