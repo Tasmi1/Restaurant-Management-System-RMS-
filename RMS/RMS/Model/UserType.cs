@@ -10,7 +10,9 @@ namespace RMS.Model
     {
         [Key]
         public int UserTypeID { get; set; }
-        //[Required(ErrorMessage = "User Tyoe is required")]
-        //public int UserType { get; set; }
+        [Required(ErrorMessage = "User Type is required")]
+
+        [StringLength(95, ErrorMessage = "User Type Should be between 3 to 9", MinimumLength = 3)]
+        public string Type { get; set; }
     }
 }
