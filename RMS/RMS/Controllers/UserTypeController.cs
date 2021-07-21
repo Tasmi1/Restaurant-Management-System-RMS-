@@ -1,4 +1,5 @@
-﻿using RMS.Model.Services;
+﻿using DatabaseLayer;
+using RMS.Model.Services;
 using RMS.Model.viewModes;
 using System;
 using System.Collections.Generic;
@@ -59,5 +60,21 @@ namespace RMS.Controllers
             UserTypeDTOs model = userTypeService.GetById(id);
             return View(model);
         }
+
+       
+        public ActionResult Delete(Guid id)
+        {
+
+            ResturantManagementDBEntities db = new ResturantManagementDBEntities();
+            {
+                var model = db.UserTypes.Find(id);
+                db.UserTypes.Remove(model);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+
+        }
+
     }
 }
