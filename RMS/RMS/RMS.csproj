@@ -460,6 +460,7 @@
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Category\Create.cshtml" />
     <Content Include="Views\UserType\Index.cshtml" />
+    <Content Include="Views\UserType\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
