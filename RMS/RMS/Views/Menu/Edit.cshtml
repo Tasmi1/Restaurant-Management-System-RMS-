@@ -1,0 +1,25 @@
+﻿@model RMS.Model.viewModes.MenuDTOs
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Edit</h2>
+<form method="post">
+    @Html.HiddenFor(x => x.MenuID)
+    @Html.HiddenFor(x => x.DishCategoryID)
+    <table class="table">
+        <tr>
+            <td>Menu Name</td>
+            <td>@Html.TextBoxFor(x => x.MenuName)</td>
+        </tr>
+        <tr>
+            <td>Menu Price</td>
+            <td>@Html.TextBoxFor(x => x.MenuPrice)</td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Save" /></td>
+        </tr>
+    </table>
+
+</form>
+
