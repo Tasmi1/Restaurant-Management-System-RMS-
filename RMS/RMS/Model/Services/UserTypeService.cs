@@ -39,7 +39,7 @@ namespace RMS.Model.Services
             {
                 using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
                 {
-                    DatabaseLayer.UserType userType = new DatabaseLayer.UserType();
+                    DatabaseLayer.UserType userType = db.UserTypes.FirstOrDefault(c => c.UserTypeID == model.UserTypeID);
                     if (userType != null)
                     {
                         userType = userTypeConverter.ConverToEntity(model, userType);
@@ -100,5 +100,21 @@ namespace RMS.Model.Services
             }
 
         }
-    }
+        public bool Delete(Guid userTypeId)
+        {           
+           
+                using (var db = new ResturantManagementDBEntities())
+                {
+
+                var userType = db.UserTypes.FirstOrDefault(x => x.UserTypeID == userTypeId);
+                    if (userType != null)
+                    {
+                        db.UserTypes.Remove(userType);
+                        db.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+            }
+        }
 }
