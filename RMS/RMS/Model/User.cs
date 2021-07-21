@@ -12,9 +12,9 @@ namespace RMS.Model
         [Key]
         public int UserId { get; set; }
         [Required(ErrorMessage = "First Name is required")]
-        public int FName { get; set; }
+        public int FirstName { get; set; }
         [Required(ErrorMessage = "Last Name is required")]
-        public int LName { get; set; }
+        public int LastName { get; set; }
         [Required(ErrorMessage = "Phone Number is required")]
         [MinLength(10, ErrorMessage ="Number should be of 10 digits")]
         public int PhoneNumber { get; set; }
