@@ -53,5 +53,11 @@ namespace RMS.Controllers
             }
             return View(model);
         }
+
+        public ActionResult Details(Guid id)
+        {
+            UserTypeDTOs model = userTypeService.GetById(id);
+            return View(model);
+        }
     }
 }
