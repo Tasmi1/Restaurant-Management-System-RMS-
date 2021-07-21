@@ -142,7 +142,6 @@
     <Compile Include="Model\Converters\UserConverter.cs" />
     <Compile Include="Model\Converters\UserTypeConverter.cs" />
     <Compile Include="Model\Customer.cs" />
-    <Compile Include="Model\DishCategory.cs" />
     <Compile Include="Model\DishSubCategory.cs" />
     <Compile Include="Model\InventoryProduct.cs" />
     <Compile Include="Model\Menu.cs" />
@@ -158,6 +157,7 @@
     <Compile Include="Model\Vendor.cs" />
     <Compile Include="Model\viewModes\CategoryDTOs.cs" />
     <Compile Include="Model\viewModes\CustomerDTOs.cs" />
+    <Compile Include="Model\viewModes\DishCategoryDTOs.cs" />
     <Compile Include="Model\viewModes\UserDTOs.cs" />
     <Compile Include="Model\viewModes\UserTypeDTOs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
