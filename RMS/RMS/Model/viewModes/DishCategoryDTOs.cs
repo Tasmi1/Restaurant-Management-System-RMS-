@@ -8,7 +8,7 @@ namespace RMS.Model.viewModes
 {
     public class DishCategoryDTOs
     {
-        public int DishCategoryID { get; set; }
+        public Guid DishCategoryID { get; set; }
         [Required(ErrorMessage = "Dish Category Name is required")]
         [StringLength(95, ErrorMessage = "Dish Category  Length should be between 3 to 95", MinimumLength = 3)]
         public string DishCategoryName { get; set; }

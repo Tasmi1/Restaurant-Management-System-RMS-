@@ -139,6 +139,7 @@
     <Compile Include="Model\Booking.cs" />
     <Compile Include="Model\Converters\CategoryConverter.cs" />
     <Compile Include="Model\Converters\CustomerConverter.cs" />
+    <Compile Include="Model\Converters\DishCategoryConverter.cs" />
     <Compile Include="Model\Converters\UserConverter.cs" />
     <Compile Include="Model\Converters\UserTypeConverter.cs" />
     <Compile Include="Model\Customer.cs" />
