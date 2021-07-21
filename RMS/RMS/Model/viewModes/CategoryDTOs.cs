@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace RMS.Model
+namespace RMS.Model.viewModes
 {
-    public class Category
+    public class CategoryDTOs
     {
-        [Key]
-        public int CategoryID { get; set; }
+        public Guid CategoryID { get; set; }
         [Required(ErrorMessage = "Category Name is required")]
         public string CategoryName { get; set; }
+
     }
 }
