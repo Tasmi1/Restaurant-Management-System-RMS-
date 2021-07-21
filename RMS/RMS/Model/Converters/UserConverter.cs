@@ -1,4 +1,5 @@
-﻿using RMS.Model.viewModes;
+﻿using DatabaseLayer;
+using RMS.Model.viewModes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace RMS.Model.Converters
     {
         public User ConverToEntity(UserDTOs model, User user)
         {
-            user.FirstName = model.FirstName;
+            user.FristName = model.FirstName;
             user.LastName = model.LastName;
             user.PhoneNumber = model.PhoneNumber;
             user.Email = model.Email;
@@ -18,13 +19,14 @@ namespace RMS.Model.Converters
             user.Password = model.Password;
             user.Address = model.Address;
             user.UserTypeID = model.UserTypeID;
+
             return user;
         }
-        public UserDTOs ConvertToModel(UserDTOs model)
+        public UserDTOs ConvertToModel(DatabaseLayer.User model)
         {
             UserDTOs user = new UserDTOs();
             user.UserId = model.UserId;
-            user.FirstName = model.FirstName;
+            user.FirstName = model.FristName;
             user.LastName = model.LastName;
             user.PhoneNumber = model.PhoneNumber;
             user.Email = model.Email;
@@ -32,8 +34,9 @@ namespace RMS.Model.Converters
             user.Password = model.Password;
             user.Address = model.Address;
             user.UserTypeID = model.UserTypeID;
+
             return user;
         }
-    
+
     }
 }
