@@ -484,6 +484,7 @@
     <Content Include="Views\DishCategory\Create.cshtml" />
     <Content Include="Views\DishCategory\Edit.cshtml" />
     <Content Include="Views\DishCategory\Details.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
