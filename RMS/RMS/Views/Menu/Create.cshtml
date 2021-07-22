@@ -1,0 +1,26 @@
+﻿@model RMS.Model.viewModes.MenuDTOs
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+<form method="post">
+    <table class="table">
+        <tr>
+            <td>Menu Name</td>
+            <td>@Html.TextBoxFor(x => x.MenuName)@*, @placeholder = "Enter Menu Name", @required = "required"*@</td>
+            @*@Html.ValidationMessageFor(model => model.MenuName, "", new { @class = "text-danger" })*@
+
+        </tr>
+        <tr>
+            <td>Menu Price</td>
+            <td>@Html.TextBoxFor(x => x.MenuPrice)</td>
+            @*@Html.ValidationMessageFor(model => model.MenuPrice, "", new { @class = "text-danger" })*@
+
+        </tr>
+
+        <tr>
+            <td colspan="2"><input type="submit" value="Create" /></td>
+        </tr>
+    </table>
+</form>

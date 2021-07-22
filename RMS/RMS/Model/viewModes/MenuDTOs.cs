@@ -4,16 +4,15 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace RMS.Model
+namespace RMS.Model.viewModes
 {
-    public class Menu
+    public class MenuDTOs
     {
-        [Key]
-        public int MenuID { get; set; }
+        public Guid MenuID { get; set; }
         [Required(ErrorMessage = "Menu Name is required")]
         public string MenuName { get; set; }
-        [Required(ErrorMessage = "Menu Name is required")]
+        [Required(ErrorMessage = "Menu Price is required")]
         public string MenuPrice { get; set; }
-        public int DishCategoryID { get; set; }
+        public Guid DishCategoryID { get; set; }
     }
 }

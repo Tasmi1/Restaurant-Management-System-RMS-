@@ -1,0 +1,35 @@
+﻿@model List<RMS.Model.viewModes.CategoryDTOs>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="card-header pb-0">
+    <h2>Category Table</h2>
+</div>
+
+<div class="row">
+    <a href="/category/create">Create</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Category Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>@category.CategoryName</td>
+                <td>
+                    <ul>
+                        <li><a href="/Category/Details/@category.CategoryID">Details</a> </li>
+                        <li><a href="/Category/Edit/@category.CategoryID">Edit</a></li>
+                        <li><a href="/Category/Delete/@category.CategoryID">Delete</a></li>
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
