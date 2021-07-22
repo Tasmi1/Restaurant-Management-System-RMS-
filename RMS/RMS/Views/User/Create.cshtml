@@ -9,62 +9,111 @@
     <table class="table">
         <tr>
             <td>First name</td>
-            <td>@Html.TextBoxFor(x => x.FirstName)
-            @Html.ValidationMessageFor(x=>x.FirstName)
-            </td>
-        </tr>
-        <tr>
-            <td>LAst name</td>
             <td>
-                @Html.TextBoxFor(x => x.LastName)
-                        @Html.ValidationMessageFor(x => x.LastName)
-                    </td>
-        </tr>
-        <tr>
-            <td>Phone Number</td>
-            <td>
-                @Html.TextBoxFor(x => x.PhoneNumber)
-                        @Html.ValidationMessageFor(x => x.PhoneNumber)
-                    </td>
-        </tr>
-        <tr>
-            <td>Email</td>
-            <td>
-                @Html.TextBoxFor(x => x.Email)
-                        @Html.ValidationMessageFor(x => x.Email)
-                    </td>
-        </tr>
-        <tr>
-            <td>Username</td>
-            <td>
-                @Html.TextBoxFor(x => x.UserName)
-                        @Html.ValidationMessageFor(x => x.UserName)
-                    </td>
-        </tr>
-        <tr>
-            <td>password</td>
-            <td>
-                @Html.TextBoxFor(x => x.Password)
-                        @Html.ValidationMessageFor(x => x.Password)
-                    </td>
-        </tr>
-        <tr>
-            <td>Address</td>
-            <td>
-                @Html.TextBoxFor(x => x.Address)
-                        @Html.ValidationMessageFor(x => x.Address)
-                    </td>
-        </tr>
-        <tr>
-            <td>USerType</td>
-            <td>
-                @Html.DropDownListFor(x => x.UserTypeID, new SelectList(Model.UserTypes, "Id", "Name"))
-                        @Html.ValidationMessageFor(x => x.UserTypeID)
-                    </td>
-           
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Create" /></td>
-        </tr>
-    </table>
+                @Html.TextBoxFor(x => x.FirstName)
+            @Html.ValidationMessageFor(x => x.FirstName)
+        </td>
+    </tr>
+    <tr>
+        <td>LAst name</td>
+        <td>
+            @Html.TextBoxFor(x => x.LastName)
+            @Html.ValidationMessageFor(x => x.LastName)
+        </td>
+    </tr>
+    <tr>
+        <td>Phone Number</td>
+        <td>
+            @Html.TextBoxFor(x => x.PhoneNumber)
+            @Html.ValidationMessageFor(x => x.PhoneNumber)
+        </td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td>
+            @Html.TextBoxFor(x => x.Email)
+            @Html.ValidationMessageFor(x => x.Email)
+        </td>
+    </tr>
+    <tr>
+        <td>Username</td>
+        <td>
+            @Html.TextBoxFor(x => x.UserName)
+            @Html.ValidationMessageFor(x => x.UserName)
+        </td>
+    </tr>
+    <tr>
+        <td>password</td>
+        <td>
+            @Html.TextBoxFor(x => x.Password)
+            @Html.ValidationMessageFor(x => x.Password)
+        </td>
+    </tr>
+    <tr>
+        <td>Address</td>
+        <td>
+            @Html.TextBoxFor(x => x.Address)
+            @Html.ValidationMessageFor(x => x.Address)
+        </td>
+    </tr>
+    <tr>
+        <td>USerType</td>
+        <td>
+            @Html.DropDownListFor(x => x.UserTypeID, new SelectList(Model.UserTypes, "Id", "Name"))
+            @Html.ValidationMessageFor(x => x.UserTypeID)
+        </td>
+
+    </tr>
+    <tr>
+        <td colspan="2"><input type="submit" value="Create" /></td>
+    </tr>
+</table>
 </form>
+
+
+<div class="container" style="margin-top: 2%;">
+    <div class=" mx-auto">
+        <div class="card">
+            <div class="card-header text-center pt-4">
+                <span>
+                    <a href="/UserType" style=" float:left;">
+                        <i class="fa fa-arrow-left" style="font-size:27px;"></i>
+                    </a>
+                </span>
+                <samp style="font-size: 30px; font-weight: bold; color:black;">Create New User </samp>
+            </div>
+            <div class="card-body">
+                <form method="post">               
+                    <div class="form-group ">
+                        <div class="row">
+                            <div class="col">
+                                <label for="firstName">First Name </label>
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(x => x.FirstName, "", new { @class = "form-control", @placeholder = "Enter Fisrt Name" })
+                            </div>
+                            <div class="col">
+                                <label for="firstName">First Name </label>
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(x => x.LastName, "", new { @class = "form-control", @placeholder = "Enter LastName Type" })
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label style="font-weight: bold;font-size: 1.3em;">Type</label>   <br />
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(x => x.FirstName, "", new { @class = "form-control", @placeholder = "Enter User Type" })
+                        </div>
+
+                        <div class="mb-3">
+                            <label style="font-weight: bold;font-size: 1.3em;">Type</label>   <br />
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(x => x.FirstName, "", new { @class = "form-control", @placeholder = "Enter User Type" })
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" value="Create" class="btn bg-gradient-primary mt-4 " style=" display: block; margin-left: auto; margin-right: auto; width: 50%; " />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
