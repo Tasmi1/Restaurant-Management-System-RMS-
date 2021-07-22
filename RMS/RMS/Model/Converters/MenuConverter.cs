@@ -20,7 +20,7 @@ namespace RMS.Model.Converters
             menu.MenuID = model.MenuID;
             menu.MenuName = model.MenuName;
             menu.MenuPrice = model.MenuPrice;
-            //menu.DishCategoryID = (Guid)model.DishCategoryID;
+            //menu.SubCategoryID = (Guid)model.SubCategoryID;
 
             return menu;
         }
