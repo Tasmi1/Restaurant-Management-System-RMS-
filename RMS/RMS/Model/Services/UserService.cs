@@ -1,6 +1,7 @@
 ﻿using DatabaseLayer;
 using RMS.Model.Converters;
 using RMS.Model.viewModes;
+using RMS.Model.viewModes.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,33 @@ namespace RMS.Model.Services
     public class UserService
     {
         private readonly UserConverter userConverter = new UserConverter();
+        public UserDTOs CreateSelectList(UserDTOs model)
+        {
+            model.UserTypes = GetUserTypes();
+            return model;
+        }
 
+        public List<BaseGuidSelect> GetUserTypes()
+        {          
+            using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+            {
+                return db.UserTypes.Select(u => 
+                new BaseGuidSelect 
+                { 
+                    Id = u.UserTypeID,
+                    Name = u.Type 
+                }).ToList();
+
+            }
+        }
+
+        public bool UserNameValidation(string username)
+        {
+            using(ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+            {
+                return db.Users.Any(u => u.UserName.Equals(username));
+            }
+        }
         public bool Create(UserDTOs model)
         {
             try
@@ -86,10 +113,11 @@ namespace RMS.Model.Services
             {
                 using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
                 {
+                                    
                     var dbUser = db.Users.ToList();
                     foreach (var user in dbUser)
                     {
-
+                        
                         users.Add(userConverter.ConvertToModel(user));
                     }
                     return users;

@@ -158,6 +158,7 @@
     <Compile Include="Model\Services\UserTypeService.cs" />
     <Compile Include="Model\UserType.cs" />
     <Compile Include="Model\Vendor.cs" />
+    <Compile Include="Model\viewModes\Base\BaseSelectList.cs" />
     <Compile Include="Model\viewModes\CategoryDTOs.cs" />
     <Compile Include="Model\viewModes\CustomerDTOs.cs" />
     <Compile Include="Model\viewModes\DishCategoryDTOs.cs" />
@@ -471,6 +472,8 @@
     <Content Include="Views\UserType\Edit.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Category\Edit.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -478,7 +481,6 @@
     <Folder Include="Views\Categories\" />
     <Folder Include="Views\DishCategory\" />
     <Folder Include="Views\InventoryProducts\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

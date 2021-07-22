@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RMS.Model.viewModes.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,6 +9,10 @@ namespace RMS.Model.viewModes
 {
     public class UserDTOs
     {
+        public UserDTOs()
+        {
+            UserTypes = new List<BaseGuidSelect>();
+        }
         public Guid UserId { get; set; }
         [StringLength(50, ErrorMessage = "First Name Length should be between 3 to 50", MinimumLength = 3)]
         [Required(ErrorMessage = "First Name is required")]
@@ -30,6 +35,10 @@ namespace RMS.Model.viewModes
         [StringLength(50, ErrorMessage = "Address Length should be between 3 to 50", MinimumLength = 3)]
         public string Address { get; set; }
         public Guid UserTypeID { get; set; }
+
+        public List<BaseGuidSelect> UserTypes { get; set; }
+
+        public string UserType { get; set; }
 
     }
 }

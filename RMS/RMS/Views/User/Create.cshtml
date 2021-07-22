@@ -1,0 +1,70 @@
+﻿@model RMS.Model.viewModes.UserDTOs
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+<form method="post">
+    <table class="table">
+        <tr>
+            <td>First name</td>
+            <td>@Html.TextBoxFor(x => x.FirstName)
+            @Html.ValidationMessageFor(x=>x.FirstName)
+            </td>
+        </tr>
+        <tr>
+            <td>LAst name</td>
+            <td>
+                @Html.TextBoxFor(x => x.LastName)
+                        @Html.ValidationMessageFor(x => x.LastName)
+                    </td>
+        </tr>
+        <tr>
+            <td>Phone Number</td>
+            <td>
+                @Html.TextBoxFor(x => x.PhoneNumber)
+                        @Html.ValidationMessageFor(x => x.PhoneNumber)
+                    </td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>
+                @Html.TextBoxFor(x => x.Email)
+                        @Html.ValidationMessageFor(x => x.Email)
+                    </td>
+        </tr>
+        <tr>
+            <td>Username</td>
+            <td>
+                @Html.TextBoxFor(x => x.UserName)
+                        @Html.ValidationMessageFor(x => x.UserName)
+                    </td>
+        </tr>
+        <tr>
+            <td>password</td>
+            <td>
+                @Html.TextBoxFor(x => x.Password)
+                        @Html.ValidationMessageFor(x => x.Password)
+                    </td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>
+                @Html.TextBoxFor(x => x.Address)
+                        @Html.ValidationMessageFor(x => x.Address)
+                    </td>
+        </tr>
+        <tr>
+            <td>USerType</td>
+            <td>
+                @Html.DropDownListFor(x => x.UserTypeID, new SelectList(Model.UserTypes, "Id", "Name"))
+                        @Html.ValidationMessageFor(x => x.UserTypeID)
+                    </td>
+           
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Create" /></td>
+        </tr>
+    </table>
+</form>

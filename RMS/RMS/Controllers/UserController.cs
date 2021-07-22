@@ -21,6 +21,7 @@ namespace RMS.Controllers
         public ActionResult Create()
         {
             UserDTOs model = new UserDTOs();
+            userService.CreateSelectList(model);
             return View(model);
         }
         [HttpPost]
@@ -28,18 +29,30 @@ namespace RMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool result = userService.Create(model);
-                if (result == true)
+                if (!userService.UserNameValidation(model.UserName))
                 {
-                    return RedirectToAction("Index");
+                    bool result = userService.Create(model);
+                    if (result == true)
+                    {
+
+                        return RedirectToAction("Index");
+                    }
                 }
+                else
+                {
+                    ModelState.AddModelError("UserName", "Duplicate User Name!");
+                }
+               
+            
             }
+            userService.CreateSelectList(model);
             return View(model);
         }
 
         public ActionResult Edit(Guid id)
         {
             UserDTOs model = userService.GetById(id);
+            userService.CreateSelectList(model);
             return View(model);
         }
         [HttpPost]
@@ -54,6 +67,7 @@ namespace RMS.Controllers
                 }
 
             }
+            userService.CreateSelectList(model);
             return View(model);
         }
 
