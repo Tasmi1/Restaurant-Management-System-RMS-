@@ -68,8 +68,8 @@ namespace RMS.Controllers
 
             ResturantManagementDBEntities db = new ResturantManagementDBEntities();
             {
-                var model = db.UserTypes.Find(id);
-                db.UserTypes.Remove(model);
+                var model = db.DishCategories.Find(id);
+                db.DishCategories.Remove(model);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
