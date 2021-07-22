@@ -9,25 +9,26 @@ using System.Web.Mvc;
 
 namespace RMS.Controllers
 {
-    public class UserTypeController : Controller
+    public class UserController : Controller
     {
-        private readonly UserTypeService userTypeService = new UserTypeService();
+        private readonly UserService userService = new UserService();
+        // GET: User
         public ActionResult Index()
         {
-            var userType = userTypeService.GetAll();
-            return View(userType);
+            var user = userService.GetAll();
+            return View(user);
         }
         public ActionResult Create()
         {
-            UserTypeDTOs model = new UserTypeDTOs();
+            UserDTOs model = new UserDTOs();
             return View(model);
         }
         [HttpPost]
-        public ActionResult Create(UserTypeDTOs model)
+        public ActionResult Create(UserDTOs model)
         {
             if (ModelState.IsValid)
             {
-                bool result = userTypeService.Create(model);
+                bool result = userService.Create(model);
                 if (result == true)
                 {
                     return RedirectToAction("Index");
@@ -35,17 +36,18 @@ namespace RMS.Controllers
             }
             return View(model);
         }
+
         public ActionResult Edit(Guid id)
         {
-            UserTypeDTOs model = userTypeService.GetById(id);
+            UserDTOs model = userService.GetById(id);
             return View(model);
         }
         [HttpPost]
-        public ActionResult Edit(UserTypeDTOs model)
+        public ActionResult Edit(UserDTOs model)
         {
             if (ModelState.IsValid)
             {
-                bool result = userTypeService.Update(model);
+                bool result = userService.Update(model);
                 if (result)
                 {
                     return RedirectToAction("Index");
@@ -57,22 +59,21 @@ namespace RMS.Controllers
 
         public ActionResult Details(Guid id)
         {
-            UserTypeDTOs model = userTypeService.GetById(id);
+            UserDTOs model = userService.GetById(id);
             return View(model);
         }
 
-       
+
         public ActionResult Delete(Guid id)
         {
 
             ResturantManagementDBEntities db = new ResturantManagementDBEntities();
             {
-                var model = db.UserTypes.Find(id);
-                db.UserTypes.Remove(model);
+                var model = db.Users.Find(id);
+                db.Users.Remove(model);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
         }
-
     }
 }

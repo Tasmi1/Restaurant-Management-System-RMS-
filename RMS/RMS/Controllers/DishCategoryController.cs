@@ -9,25 +9,26 @@ using System.Web.Mvc;
 
 namespace RMS.Controllers
 {
-    public class UserTypeController : Controller
+    public class DishCategoryController : Controller
     {
-        private readonly UserTypeService userTypeService = new UserTypeService();
+        // GET: DishCategory
+        private readonly DishCategoryService dishCategoryService = new DishCategoryService();
         public ActionResult Index()
         {
-            var userType = userTypeService.GetAll();
-            return View(userType);
+            var dishCategories = dishCategoryService.GetAll();
+            return View(dishCategories);
         }
         public ActionResult Create()
         {
-            UserTypeDTOs model = new UserTypeDTOs();
+            DishCategoryDTOs model = new DishCategoryDTOs();
             return View(model);
         }
         [HttpPost]
-        public ActionResult Create(UserTypeDTOs model)
+        public ActionResult Create(DishCategoryDTOs model)
         {
             if (ModelState.IsValid)
             {
-                bool result = userTypeService.Create(model);
+                bool result = dishCategoryService.Create(model);
                 if (result == true)
                 {
                     return RedirectToAction("Index");
@@ -37,15 +38,15 @@ namespace RMS.Controllers
         }
         public ActionResult Edit(Guid id)
         {
-            UserTypeDTOs model = userTypeService.GetById(id);
+            DishCategoryDTOs model = dishCategoryService.GetById(id);
             return View(model);
         }
         [HttpPost]
-        public ActionResult Edit(UserTypeDTOs model)
+        public ActionResult Edit(DishCategoryDTOs model)
         {
             if (ModelState.IsValid)
             {
-                bool result = userTypeService.Update(model);
+                bool result = dishCategoryService.Update(model);
                 if (result)
                 {
                     return RedirectToAction("Index");
@@ -57,11 +58,11 @@ namespace RMS.Controllers
 
         public ActionResult Details(Guid id)
         {
-            UserTypeDTOs model = userTypeService.GetById(id);
+            DishCategoryDTOs model = dishCategoryService.GetById(id);
             return View(model);
         }
 
-       
+
         public ActionResult Delete(Guid id)
         {
 
@@ -73,6 +74,5 @@ namespace RMS.Controllers
                 return RedirectToAction("Index");
             }
         }
-
     }
 }

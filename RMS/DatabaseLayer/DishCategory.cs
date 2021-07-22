@@ -18,7 +18,6 @@ namespace DatabaseLayer
         public DishCategory()
         {
             this.DishSubCategories = new HashSet<DishSubCategory>();
-            this.Menus = new HashSet<Menu>();
         }
     
         public System.Guid DishCategoryID { get; set; }
@@ -26,7 +25,5 @@ namespace DatabaseLayer
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DishSubCategory> DishSubCategories { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Menu> Menus { get; set; }
     }
 }

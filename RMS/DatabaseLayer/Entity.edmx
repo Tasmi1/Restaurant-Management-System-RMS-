@@ -65,7 +65,7 @@
           <Property Name="MenuID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="MenuName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="MenuPrice" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="DishCategoryID" Type="uniqueidentifier" />
+          <Property Name="SubCategoryID" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -204,15 +204,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Menu_DishCategory">
-          <End Role="DishCategory" Type="Self.DishCategory" Multiplicity="0..1" />
+        <Association Name="FK_Menu_DishSubCategory">
+          <End Role="DishSubCategory" Type="Self.DishSubCategory" Multiplicity="1" />
           <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DishCategory">
-              <PropertyRef Name="DishCategoryID" />
+            <Principal Role="DishSubCategory">
+              <PropertyRef Name="SubCategoryID" />
             </Principal>
             <Dependent Role="Menu">
-              <PropertyRef Name="DishCategoryID" />
+              <PropertyRef Name="SubCategoryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -333,8 +333,8 @@
             <End Role="ProductQuantity" EntitySet="ProductQuantity" />
             <End Role="InventoryProduct" EntitySet="InventoryProduct" />
           </AssociationSet>
-          <AssociationSet Name="FK_Menu_DishCategory" Association="Self.FK_Menu_DishCategory">
-            <End Role="DishCategory" EntitySet="DishCategory" />
+          <AssociationSet Name="FK_Menu_DishSubCategory" Association="Self.FK_Menu_DishSubCategory">
+            <End Role="DishSubCategory" EntitySet="DishSubCategory" />
             <End Role="Menu" EntitySet="Menu" />
           </AssociationSet>
           <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
@@ -403,8 +403,8 @@
             <End Role="DishCategory" EntitySet="DishCategories" />
             <End Role="DishSubCategory" EntitySet="DishSubCategories" />
           </AssociationSet>
-          <AssociationSet Name="FK_Menu_DishCategory" Association="ResturantManagementDBModel.FK_Menu_DishCategory">
-            <End Role="DishCategory" EntitySet="DishCategories" />
+          <AssociationSet Name="FK_Menu_DishSubCategory" Association="ResturantManagementDBModel.FK_Menu_DishSubCategory">
+            <End Role="DishSubCategory" EntitySet="DishSubCategories" />
             <End Role="Menu" EntitySet="Menus" />
           </AssociationSet>
           <AssociationSet Name="FK_InventoryProduct_ProductQuantity" Association="ResturantManagementDBModel.FK_InventoryProduct_ProductQuantity">
@@ -473,7 +473,6 @@
           <Property Name="DishCategoryID" Type="Guid" Nullable="false" />
           <Property Name="DishCategoryName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DishSubCategories" Relationship="ResturantManagementDBModel.FK_DishSubCategory_DishCategory" FromRole="DishCategory" ToRole="DishSubCategory" />
-          <NavigationProperty Name="Menus" Relationship="ResturantManagementDBModel.FK_Menu_DishCategory" FromRole="DishCategory" ToRole="Menu" />
         </EntityType>
         <EntityType Name="DishSubCategory">
           <Key>
@@ -483,6 +482,7 @@
           <Property Name="SubCategoryName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="DishCategoryID" Type="Guid" Nullable="false" />
           <NavigationProperty Name="DishCategory" Relationship="ResturantManagementDBModel.FK_DishSubCategory_DishCategory" FromRole="DishSubCategory" ToRole="DishCategory" />
+          <NavigationProperty Name="Menus" Relationship="ResturantManagementDBModel.FK_Menu_DishSubCategory" FromRole="DishSubCategory" ToRole="Menu" />
         </EntityType>
         <EntityType Name="InventoryProduct">
           <Key>
@@ -506,8 +506,8 @@
           <Property Name="MenuID" Type="Guid" Nullable="false" />
           <Property Name="MenuName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="MenuPrice" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DishCategoryID" Type="Guid" />
-          <NavigationProperty Name="DishCategory" Relationship="ResturantManagementDBModel.FK_Menu_DishCategory" FromRole="Menu" ToRole="DishCategory" />
+          <Property Name="SubCategoryID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="DishSubCategory" Relationship="ResturantManagementDBModel.FK_Menu_DishSubCategory" FromRole="Menu" ToRole="DishSubCategory" />
           <NavigationProperty Name="Orders" Relationship="ResturantManagementDBModel.FK_Order_Menu" FromRole="Menu" ToRole="Order" />
         </EntityType>
         <EntityType Name="Order">
@@ -659,15 +659,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Menu_DishCategory">
-          <End Type="ResturantManagementDBModel.DishCategory" Role="DishCategory" Multiplicity="0..1" />
+        <Association Name="FK_Menu_DishSubCategory">
+          <End Type="ResturantManagementDBModel.DishSubCategory" Role="DishSubCategory" Multiplicity="1" />
           <End Type="ResturantManagementDBModel.Menu" Role="Menu" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DishCategory">
-              <PropertyRef Name="DishCategoryID" />
+            <Principal Role="DishSubCategory">
+              <PropertyRef Name="SubCategoryID" />
             </Principal>
             <Dependent Role="Menu">
-              <PropertyRef Name="DishCategoryID" />
+              <PropertyRef Name="SubCategoryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -823,7 +823,7 @@
           <EntitySetMapping Name="Menus">
             <EntityTypeMapping TypeName="ResturantManagementDBModel.Menu">
               <MappingFragment StoreEntitySet="Menu">
-                <ScalarProperty Name="DishCategoryID" ColumnName="DishCategoryID" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
                 <ScalarProperty Name="MenuPrice" ColumnName="MenuPrice" />
                 <ScalarProperty Name="MenuName" ColumnName="MenuName" />
                 <ScalarProperty Name="MenuID" ColumnName="MenuID" />
