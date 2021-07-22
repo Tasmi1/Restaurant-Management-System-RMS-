@@ -18,6 +18,8 @@ namespace RMS.Model.viewModes
         [Required(ErrorMessage = "Menu Name is required")]
         public string MenuName { get; set; }
         [Required(ErrorMessage = "Menu Price is required")]
+        [StringLength(50, MinimumLength = 5)]
+
         public string MenuPrice { get; set; }
         public Guid SubCategoryID { get; set; }
 
