@@ -480,12 +480,12 @@
     <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\DishCategory\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Categories\" />
-    <Folder Include="Views\DishCategory\" />
     <Folder Include="Views\InventoryProducts\" />
   </ItemGroup>
   <ItemGroup>
