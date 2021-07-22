@@ -1,0 +1,35 @@
+﻿@model List<RMS.Model.viewModes.MenuDTOs>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Menu</h2>
+<div class="row">
+    <a href="/menu/create">Create</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Menu Name</th>
+            <th>Menu Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var menu in Model)
+        {
+            <tr>
+                <td>@menu.MenuName</td>
+                <td>@menu.MenuPrice</td>
+                <td>
+                    <ul>
+                        <li><a href="/Menu/Details/@menu.MenuID">Details</a> </li>
+                        <li><a href="/Menu/Edit/@menu.MenuID">Edit</a></li>
+                        <li><a href="/Menu/Delete/@menu.MenuID">Delete</a></li>
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
