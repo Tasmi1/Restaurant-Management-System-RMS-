@@ -19389,13 +19389,13 @@ fieldset:disabled .btn {
 }
 
     .card .card-header {
-        padding: 1.5rem 7.5rem 1.5rem 7.5rem;
+        padding: 1rem;
     }
 
 
     .card .card-body {
         font-family: "Open Sans";
-        padding: 1.5rem 7.5rem 1.5rem 7.5rem;
+        padding: 1.5rem 3.0rem 1.5rem 3.0rem;
     }
 
 
