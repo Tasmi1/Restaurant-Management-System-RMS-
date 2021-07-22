@@ -1,4 +1,5 @@
-﻿using RMS.Model.Services;
+﻿using DatabaseLayer;
+using RMS.Model.Services;
 using RMS.Model.viewModes;
 using System;
 using System.Collections.Generic;
@@ -58,6 +59,24 @@ namespace RMS.Controllers
 
             }
             return View(model);
+        }
+        public ActionResult Details(Guid id)
+        {
+            MenuDTOs model = menuServie.GetById(id);
+            return View(model);
+        }
+
+
+        public ActionResult Delete(Guid id)
+        {
+
+            ResturantManagementDBEntities db = new ResturantManagementDBEntities();
+            {
+                var model = db.Menus.Find(id);
+                db.Menus.Remove(model);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
     }
 }
