@@ -33,6 +33,14 @@ namespace RMS.Model.Services
 
         }
 
+        public bool CategoryNameValidation(string categoryname)
+        {
+            using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+            {
+                return db.Categories.Any(u => u.CategoryName.Equals(categoryname));
+            }
+        }
+
         public bool Update(CategoryDTOs model)
         {
             try

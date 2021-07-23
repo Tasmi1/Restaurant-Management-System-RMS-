@@ -11,10 +11,10 @@ namespace RMS.Controllers
 {
     public class MenuController : Controller
     {
-        private readonly MenuService menuServie = new MenuService();
+        private readonly MenuService menuService = new MenuService();
         public ActionResult Index()
         {
-            var menus = menuServie.GetAll();
+            var menus = menuService.GetAll();
             return View(menus);
         }
 
@@ -28,21 +28,31 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Create(MenuDTOs model)
         {
+
             if (ModelState.IsValid)
             {
-                bool result = menuServie.Create(model);
-                if (result)
+                if (!menuService.MenuNameValidation(model.MenuName))
                 {
-                    return RedirectToAction("Index");
+                    bool result = menuService.Create(model);
+                    if (result)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("MenuName", "Duplicate Menu Name!");
                 }
 
             }
+            menuService.CreateSelectList(model);
             return View(model);
         }
 
         public ActionResult Edit(Guid id)
         {
-            MenuDTOs model = menuServie.GetById(id);
+            MenuDTOs model = menuService.GetById(id);
+            menuService.CreateSelectList(model);
             return View(model);
         }
 
@@ -51,18 +61,19 @@ namespace RMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool result = menuServie.Update(model);
+                bool result = menuService.Update(model);
                 if (result)
                 {
                     return RedirectToAction("Index");
                 }
 
             }
+            menuService.CreateSelectList(model);
             return View(model);
         }
         public ActionResult Details(Guid id)
         {
-            MenuDTOs model = menuServie.GetById(id);
+            MenuDTOs model = menuService.GetById(id);
             return View(model);
         }
 

@@ -1,6 +1,7 @@
 ﻿using DatabaseLayer;
 using RMS.Model.Converters;
 using RMS.Model.viewModes;
+using RMS.Model.viewModes.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,34 @@ namespace RMS.Model.Services
     public class MenuService
     {
         private readonly MenuConverter converter = new MenuConverter();
+
+        public MenuDTOs CreateSelectList(MenuDTOs model)
+        {
+            model.DishSubCategories = GetDishSubCategories();
+            return model;
+        }
+
+        public List<BaseGuidSelect> GetDishSubCategories()
+        {
+            using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+            {
+                return db.DishSubCategories.Select(u =>
+                new BaseGuidSelect
+                {
+                    Id = u.SubCategoryID,
+                    Name = u.SubCategoryName
+                }).ToList();
+
+            }
+        }
+
+        public bool MenuNameValidation(string menuname)
+        {
+            using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+            {
+                return db.Menus.Any(u => u.MenuName.Equals(menuname));
+            }
+        }
         public bool Create(MenuDTOs model)
         {
             try
@@ -102,6 +131,23 @@ namespace RMS.Model.Services
                 throw;
             }
 
+        }
+
+        public bool Delete(Guid menuId)
+        {
+
+            using (var db = new ResturantManagementDBEntities())
+            {
+
+                var menu = db.Menus.FirstOrDefault(x => x.MenuID == menuId);
+                if (menu != null)
+                {
+                    db.Menus.Remove(menu);
+                    db.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
         }
 
     }
