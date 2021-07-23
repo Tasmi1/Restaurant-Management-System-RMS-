@@ -480,6 +480,10 @@
     <Content Include="Views\DishCategory\Details.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\DishSubCategory\Index.cshtml" />
+    <Content Include="Views\DishSubCategory\Create.cshtml" />
+    <Content Include="Views\DishSubCategory\Edit.cshtml" />
+    <Content Include="Views\DishSubCategory\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

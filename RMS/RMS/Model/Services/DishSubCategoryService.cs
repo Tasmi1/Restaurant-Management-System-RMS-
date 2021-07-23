@@ -1,6 +1,7 @@
 ﻿using DatabaseLayer;
 using RMS.Model.Converters;
 using RMS.Model.viewModes;
+using RMS.Model.viewModes.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,29 @@ namespace RMS.Model.Services
     {
 
         private readonly DishSubCategoryConverter converter = new DishSubCategoryConverter();
+
+        public DishSubCategoryDTOs CreateSelectList( DishSubCategoryDTOs dishSub)
+        {
+            dishSub.DishCategorys = GetDishCategory();
+            return dishSub;
+        }
+
+        public List<BaseGuidSelect> GetDishCategory()
+        {
+            using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+            {
+                return db.DishCategories.Select(c =>
+
+               new BaseGuidSelect
+               {
+                   Id = c.DishCategoryID,
+                   Name = c.DishCategoryName
+               }).ToList();
+            }
+
+
+        }
+
 
         public bool Create(DishSubCategoryDTOs dishSub)
         {
@@ -28,7 +52,7 @@ namespace RMS.Model.Services
                     return true;
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 throw;
             }
