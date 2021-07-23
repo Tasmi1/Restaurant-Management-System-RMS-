@@ -12,6 +12,7 @@ namespace RMS.Model.Converters
         {
             menu.MenuName = model.MenuName;
             menu.MenuPrice = model.MenuPrice;
+            menu.SubCategoryID = model.SubCategoryID;
             return menu;
         }
         public MenuDTOs ConvertToModel(DatabaseLayer.Menu model)
@@ -20,7 +21,7 @@ namespace RMS.Model.Converters
             menu.MenuID = model.MenuID;
             menu.MenuName = model.MenuName;
             menu.MenuPrice = model.MenuPrice;
-            //menu.SubCategoryID = (Guid)model.SubCategoryID;
+            menu.SubCategoryID = model.SubCategoryID;
 
             return menu;
         }
