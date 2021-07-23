@@ -1,0 +1,35 @@
+﻿@model List<RMS.Model.viewModes.CustomerDTOs>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Customer</h2>
+<div class="row">
+    <a href="/customer/create">Create</a>
+</div>
+<table  class="table">
+    <thead>
+        <tr>
+            <th>Customer Name</th>
+            <th>Contact</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var customer in Model)
+        {
+        <tr>
+            <td>@customer.CustomerName</td>
+            <td>@customer.Contact</td>
+            <td>
+                <ul>
+                    <li><a href="/Customer/Details/@customer.CustomerID">Details</a> </li>
+                    <li><a href="/Customer/Edit/@customer.CustomerID">Edit</a></li>
+                    <li><a href="/Customer/Delete/@customer.CustomerID">Delete</a></li>
+                </ul>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
