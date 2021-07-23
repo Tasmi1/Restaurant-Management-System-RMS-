@@ -9,70 +9,77 @@ using System.Web.Mvc;
 
 namespace RMS.Controllers
 {
-    public class DishCategoryController : Controller
+    public class DishSubCategoryController : Controller
     {
-        // GET: DishCategory
-        private readonly DishCategoryService dishCategoryService = new DishCategoryService();
+
+        private readonly DishSubCategoryService dishSubCategoryService = new DishSubCategoryService();
+        // GET: DishSubCategory
         public ActionResult Index()
         {
-            var dishCategories = dishCategoryService.GetAll();
-            return View(dishCategories);
+            var dishSubCategories = dishSubCategoryService.GetAll();
+            return View(dishSubCategories);
         }
         public ActionResult Create()
         {
-            DishCategoryDTOs model = new DishCategoryDTOs();
+            DishSubCategoryDTOs model = new DishSubCategoryDTOs();
+            dishSubCategoryService.CreateSelectList(model);
             return View(model);
         }
+
         [HttpPost]
-        public ActionResult Create(DishCategoryDTOs model)
+        public ActionResult Create(DishSubCategoryDTOs dishsub)
         {
             if (ModelState.IsValid)
             {
-                bool result = dishCategoryService.Create(model);
+                bool result = dishSubCategoryService.Create(dishsub);
                 if (result == true)
                 {
                     return RedirectToAction("Index");
                 }
             }
-            return View(model);
+            dishSubCategoryService.CreateSelectList(dishsub);
+            return View(dishsub);
         }
+
         public ActionResult Edit(Guid id)
         {
-            DishCategoryDTOs model = dishCategoryService.GetById(id);
+            DishSubCategoryDTOs model = dishSubCategoryService.GetById(id);
             return View(model);
         }
         [HttpPost]
-        public ActionResult Edit(DishCategoryDTOs model)
+        public ActionResult Edit(DishSubCategoryDTOs model)
         {
             if (ModelState.IsValid)
             {
-                bool result = dishCategoryService.Update(model);
+                bool result = dishSubCategoryService.Update(model);
                 if (result)
                 {
                     return RedirectToAction("Index");
                 }
 
             }
+            dishSubCategoryService.CreateSelectList(model);
             return View(model);
         }
+
 
         public ActionResult Details(Guid id)
         {
-            DishCategoryDTOs model = dishCategoryService.GetById(id);
+            DishSubCategoryDTOs model = dishSubCategoryService.GetById(id);
             return View(model);
         }
-
 
         public ActionResult Delete(Guid id)
         {
 
             ResturantManagementDBEntities db = new ResturantManagementDBEntities();
             {
-                var model = db.DishCategories.Find(id);
-                db.DishCategories.Remove(model);
+                var dishsub = db.UserTypes.Find(id);
+                db.UserTypes.Remove(dishsub);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
         }
+
     }
 }

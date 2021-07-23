@@ -129,6 +129,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DishCategoryController.cs" />
+    <Compile Include="Controllers\DishSubCategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoryProductsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -137,31 +138,24 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Model\Booking.cs" />
     <Compile Include="Model\Converters\CategoryConverter.cs" />
     <Compile Include="Model\Converters\CustomerConverter.cs" />
     <Compile Include="Model\Converters\DishCategoryConverter.cs" />
+    <Compile Include="Model\Converters\DishSubCategoryConverter.cs" />
     <Compile Include="Model\Converters\UserConverter.cs" />
     <Compile Include="Model\Converters\MenuConverter.cs" />
     <Compile Include="Model\Converters\UserTypeConverter.cs" />
-    <Compile Include="Model\Customer.cs" />
-    <Compile Include="Model\DishSubCategory.cs" />
-    <Compile Include="Model\InventoryProduct.cs" />
-    <Compile Include="Model\Order.cs" />
-    <Compile Include="Model\OrderItems.cs" />
-    <Compile Include="Model\Payment.cs" />
-    <Compile Include="Model\PurchaseProduct.cs" />
     <Compile Include="Model\Services\CategoryService.cs" />
     <Compile Include="Model\Services\CustomerService.cs" />
     <Compile Include="Model\Services\DishCategoryService.cs" />
+    <Compile Include="Model\Services\DishSubCategoryService.cs" />
     <Compile Include="Model\Services\UserService.cs" />
     <Compile Include="Model\Services\MenuService.cs" />
     <Compile Include="Model\Services\UserTypeService.cs" />
-    <Compile Include="Model\UserType.cs" />
-    <Compile Include="Model\Vendor.cs" />
     <Compile Include="Model\viewModes\Base\BaseSelectList.cs" />
     <Compile Include="Model\viewModes\CategoryDTOs.cs" />
     <Compile Include="Model\viewModes\CustomerDTOs.cs" />
+    <Compile Include="Model\viewModes\DishSubCategoryDTOs.cs" />
     <Compile Include="Model\viewModes\MenuDTOs.cs" />
     <Compile Include="Model\viewModes\DishCategoryDTOs.cs" />
     <Compile Include="Model\viewModes\UserDTOs.cs" />
@@ -480,13 +474,25 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Views\Category\Details.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Menu\Details.cshtml" />
+=======
+    <Content Include="Views\DishCategory\Index.cshtml" />
+    <Content Include="Views\DishCategory\Create.cshtml" />
+    <Content Include="Views\DishCategory\Edit.cshtml" />
+    <Content Include="Views\DishCategory\Details.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\DishSubCategory\Index.cshtml" />
+    <Content Include="Views\DishSubCategory\Create.cshtml" />
+    <Content Include="Views\DishSubCategory\Edit.cshtml" />
+    <Content Include="Views\DishSubCategory\Details.cshtml" />
+>>>>>>> 55802fe763d04a09e33a05e991d09724d7c26f99
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Categories\" />
-    <Folder Include="Views\DishCategory\" />
     <Folder Include="Views\InventoryProducts\" />
   </ItemGroup>
   <ItemGroup>
