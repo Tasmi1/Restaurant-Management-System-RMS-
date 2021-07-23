@@ -27,12 +27,21 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Create(CategoryDTOs model)
         {
+
             if (ModelState.IsValid)
             {
-                bool result = categoryServie.Create(model);
-                if (result)
+                if (!categoryServie.CategoryNameValidation(model.CategoryName))
                 {
-                    return RedirectToAction("Index");
+
+                    bool result = categoryServie.Create(model);
+                    if (result)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("CategoryName", "Duplicate Category Name!");
                 }
 
             }
