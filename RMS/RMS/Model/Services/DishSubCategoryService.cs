@@ -19,7 +19,6 @@ namespace RMS.Model.Services
             dishSub.DishCategorys = GetDishCategory();
             return dishSub;
         }
-
         public List<BaseGuidSelect> GetDishCategory()
         {
             using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
@@ -32,11 +31,7 @@ namespace RMS.Model.Services
                    Name = c.DishCategoryName
                }).ToList();
             }
-
-
         }
-
-
         public bool Create(DishSubCategoryDTOs dishSub)
         {
             try
@@ -57,16 +52,13 @@ namespace RMS.Model.Services
                 throw;
             }
         }
-
-        
-
         public bool Update(DishSubCategoryDTOs dishSub)
         {
             try
             {
                 using(ResturantManagementDBEntities db = new ResturantManagementDBEntities())
                 {
-                    DishSubCategory dishSubCategory = db.DishSubCategories.FirstOrDefault(dsc => dsc.SubCategoryID == dishSub.SubCategoryId);
+                    DatabaseLayer.DishSubCategory dishSubCategory = db.DishSubCategories.FirstOrDefault(dsc => dsc.SubCategoryID == dishSub.SubCategoryId);
                     if(dishSubCategory != null)
                     {
                         dishSubCategory = converter.ConvertToEntity(dishSub, dishSubCategory);
@@ -82,7 +74,6 @@ namespace RMS.Model.Services
                 throw;
             }
         }
-
         public DishSubCategoryDTOs GetById(Guid dishSubCategoryId)
         {
             DishSubCategoryDTOs model = new DishSubCategoryDTOs();
@@ -90,7 +81,6 @@ namespace RMS.Model.Services
             {
                 using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
                 {
-
                     DishSubCategory dishSubCategory = db.DishSubCategories.FirstOrDefault(c => c.SubCategoryID == dishSubCategoryId);
                     if (dishSubCategory != null)
                     {
@@ -104,7 +94,6 @@ namespace RMS.Model.Services
             {
                 throw;
             }
-
         }
         public List<DishSubCategoryDTOs> GetAll()
         {

@@ -4,42 +4,92 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.SubCategoryId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SubCategoryName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DishCategoryId)
-        </th>
-        <th></th>
-    </tr>
+<div class="col-12">
+    <div class="card mb-4">
+        <div class="card-header pb-0">
+            <h4 class="text-center">Dish Sub Category  </h4>
+            <a type="button" class="btn btn-primary" href="/DishSubCategory/Create">
+                Create
+            </a>
+        </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SubCategoryId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SubCategoryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DishCategoryId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+        <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                    <thead>
+                        <tr style="font-size:13px;">
+                            <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Sub Category Type</th>
+                            <th class="text-secondary opacity-7"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var dishSubCategory in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="d-flex px-2 py-1">
 
-</table>
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h6 class="mb-0 text-sm">@dishSubCategory.SubCategoryName</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="align-middle">
+
+                                    <a style="float:right;" class="btn btn-link text-danger text-gradient px-3 mb-0" href="/DishCategory/Delete/@dishSubCategory.SubCategoryId"><i class="far fa-trash-alt me-2"></i>Delete</a>
+                                    <a style="float:right;" class="btn btn-link text-dark px-3 mb-0" href="/DishCategory/Edit/@dishSubCategory.SubCategoryId"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
+                                    <a style="float:right;" class="btn btn-link text-dark px-3 mb-0" href="/DishCategory/Details/@dishSubCategory.SubCategoryId"><i class="fas fa-file-alt text-dark me-2" aria-hidden="true"></i>Details</a>
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+   @* <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SubCategoryId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubCategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DishCategoryId)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubCategoryId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubCategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DishCategoryId)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+
+    </table>
+*@

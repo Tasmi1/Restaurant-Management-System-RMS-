@@ -44,6 +44,7 @@ namespace RMS.Controllers
         public ActionResult Edit(Guid id)
         {
             DishSubCategoryDTOs model = dishSubCategoryService.GetById(id);
+            dishSubCategoryService.CreateSelectList(model);
             return View(model);
         }
         [HttpPost]
