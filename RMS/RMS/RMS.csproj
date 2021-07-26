@@ -474,20 +474,11 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Views\Category\Details.cshtml" />
-<<<<<<< HEAD
-    <Content Include="Views\Menu\Details.cshtml" />
-=======
-    <Content Include="Views\DishCategory\Index.cshtml" />
-    <Content Include="Views\DishCategory\Create.cshtml" />
-    <Content Include="Views\DishCategory\Edit.cshtml" />
-    <Content Include="Views\DishCategory\Details.cshtml" />
-    <Content Include="Views\User\Edit.cshtml" />
-    <Content Include="Views\User\Details.cshtml" />
-    <Content Include="Views\DishSubCategory\Index.cshtml" />
     <Content Include="Views\DishSubCategory\Create.cshtml" />
-    <Content Include="Views\DishSubCategory\Edit.cshtml" />
     <Content Include="Views\DishSubCategory\Details.cshtml" />
->>>>>>> 55802fe763d04a09e33a05e991d09724d7c26f99
+    <Content Include="Views\DishSubCategory\Edit.cshtml" />
+    <Content Include="Views\DishSubCategory\Index.cshtml" />
+    <Content Include="Views\Menu\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
