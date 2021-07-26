@@ -17,11 +17,12 @@ namespace RMS.Controllers
         public ActionResult Index()
         {
             var dishSubCategories = dishSubCategoryService.GetAll();
-            return View();
+            return View(dishSubCategories);
         }
         public ActionResult Create()
         {
             DishSubCategoryDTOs model = new DishSubCategoryDTOs();
+            dishSubCategoryService.CreateSelectList(model);
             return View(model);
         }
 
@@ -36,8 +37,31 @@ namespace RMS.Controllers
                     return RedirectToAction("Index");
                 }
             }
+            dishSubCategoryService.CreateSelectList(dishsub);
             return View(dishsub);
         }
+
+        public ActionResult Edit(Guid id)
+        {
+            DishSubCategoryDTOs model = dishSubCategoryService.GetById(id);
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult Edit(DishSubCategoryDTOs model)
+        {
+            if (ModelState.IsValid)
+            {
+                bool result = dishSubCategoryService.Update(model);
+                if (result)
+                {
+                    return RedirectToAction("Index");
+                }
+
+            }
+            dishSubCategoryService.CreateSelectList(model);
+            return View(model);
+        }
+
 
         public ActionResult Details(Guid id)
         {
