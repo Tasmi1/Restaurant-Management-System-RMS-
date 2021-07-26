@@ -474,6 +474,11 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Views\Category\Details.cshtml" />
+    <Content Include="Views\DishSubCategory\Create.cshtml" />
+    <Content Include="Views\DishSubCategory\Details.cshtml" />
+    <Content Include="Views\DishSubCategory\Edit.cshtml" />
+    <Content Include="Views\DishSubCategory\Index.cshtml" />
+    <Content Include="Views\Menu\Details.cshtml" />
 
   </ItemGroup>
   <ItemGroup>
