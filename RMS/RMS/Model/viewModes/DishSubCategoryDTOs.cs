@@ -13,8 +13,6 @@ namespace RMS.Model.viewModes
         {
             DishCategorys = new List<BaseGuidSelect>();
         }
-           
-
         public Guid SubCategoryId { get; set; }
 
         [Required (ErrorMessage="Sub Category name is required")]

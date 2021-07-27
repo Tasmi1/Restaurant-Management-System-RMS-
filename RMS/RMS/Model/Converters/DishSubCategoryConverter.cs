@@ -12,6 +12,7 @@ namespace RMS.Model.Converters
         public DishSubCategory ConvertToEntity(DishSubCategoryDTOs dishSub, DishSubCategory dishSubCategory)
         {
             dishSubCategory.SubCategoryName = dishSub.SubCategoryName;
+            dishSubCategory.DishCategoryID = dishSub.DishCategoryId;
             return dishSubCategory;
 
         }
@@ -22,7 +23,7 @@ namespace RMS.Model.Converters
             dishSubCategory.SubCategoryId = dishSub.SubCategoryID;
             dishSubCategory.SubCategoryName = dishSub.SubCategoryName;
 
-
+            dishSubCategory.DishCategoryId = dishSub.DishCategoryID;
             return dishSubCategory;
 
 

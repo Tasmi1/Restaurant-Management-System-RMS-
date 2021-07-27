@@ -44,6 +44,7 @@ namespace RMS.Controllers
         public ActionResult Edit(Guid id)
         {
             DishSubCategoryDTOs model = dishSubCategoryService.GetById(id);
+            dishSubCategoryService.CreateSelectList(model);
             return View(model);
         }
         [HttpPost]
@@ -74,8 +75,8 @@ namespace RMS.Controllers
 
             ResturantManagementDBEntities db = new ResturantManagementDBEntities();
             {
-                var dishsub = db.UserTypes.Find(id);
-                db.UserTypes.Remove(dishsub);
+                var dishsub = db.DishSubCategories.Find(id);
+                db.DishSubCategories.Remove(dishsub);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
