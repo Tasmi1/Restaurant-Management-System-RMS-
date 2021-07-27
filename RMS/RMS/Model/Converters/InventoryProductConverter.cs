@@ -16,7 +16,6 @@ namespace RMS.Model.Converters
             inventoryProduct.ExpDate = model.ExpDate;
             inventoryProduct.Description = model.Description;
             inventoryProduct.CategoryID = model.CategoryID;
-            inventoryProduct.ProductQuantityID = model.ProductQuantityID;
             return inventoryProduct;
         }
         public InventoryProductDTOs ConvertToModel(DatabaseLayer.InventoryProduct model)
@@ -28,7 +27,6 @@ namespace RMS.Model.Converters
             inventoryProduct.ExpDate = model.ExpDate;
             inventoryProduct.Description = model.Description;
             inventoryProduct.CategoryID = model.CategoryID;
-            inventoryProduct.ProductQuantityID = model.ProductQuantityID;
             return inventoryProduct;
         }
 
