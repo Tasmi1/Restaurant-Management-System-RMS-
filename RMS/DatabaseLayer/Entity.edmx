@@ -56,7 +56,6 @@
           <Property Name="ExpDate" Type="date" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="CategoryID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ProductQuantityID" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="Menu">
           <Key>
@@ -104,6 +103,7 @@
           </Key>
           <Property Name="ProductQuantityID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="InventoryProductID" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="PurchaseProduct">
           <Key>
@@ -192,18 +192,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_InventoryProduct_ProductQuantity">
-          <End Role="ProductQuantity" Type="Self.ProductQuantity" Multiplicity="0..1" />
-          <End Role="InventoryProduct" Type="Self.InventoryProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductQuantity">
-              <PropertyRef Name="ProductQuantityID" />
-            </Principal>
-            <Dependent Role="InventoryProduct">
-              <PropertyRef Name="ProductQuantityID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Menu_DishSubCategory">
           <End Role="DishSubCategory" Type="Self.DishSubCategory" Multiplicity="1" />
           <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
@@ -261,6 +249,18 @@
             </Principal>
             <Dependent Role="Payment">
               <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductQuantity_InventoryProduct">
+          <End Role="InventoryProduct" Type="Self.InventoryProduct" Multiplicity="1" />
+          <End Role="ProductQuantity" Type="Self.ProductQuantity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InventoryProduct">
+              <PropertyRef Name="InventoryProductID" />
+            </Principal>
+            <Dependent Role="ProductQuantity">
+              <PropertyRef Name="InventoryProductID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -329,10 +329,6 @@
             <End Role="Category" EntitySet="Category" />
             <End Role="InventoryProduct" EntitySet="InventoryProduct" />
           </AssociationSet>
-          <AssociationSet Name="FK_InventoryProduct_ProductQuantity" Association="Self.FK_InventoryProduct_ProductQuantity">
-            <End Role="ProductQuantity" EntitySet="ProductQuantity" />
-            <End Role="InventoryProduct" EntitySet="InventoryProduct" />
-          </AssociationSet>
           <AssociationSet Name="FK_Menu_DishSubCategory" Association="Self.FK_Menu_DishSubCategory">
             <End Role="DishSubCategory" EntitySet="DishSubCategory" />
             <End Role="Menu" EntitySet="Menu" />
@@ -352,6 +348,10 @@
           <AssociationSet Name="FK_Payment_Order" Association="Self.FK_Payment_Order">
             <End Role="Order" EntitySet="Order" />
             <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductQuantity_InventoryProduct" Association="Self.FK_ProductQuantity_InventoryProduct">
+            <End Role="InventoryProduct" EntitySet="InventoryProduct" />
+            <End Role="ProductQuantity" EntitySet="ProductQuantity" />
           </AssociationSet>
           <AssociationSet Name="FK_PurchaseProduct_InventoryProduct" Association="Self.FK_PurchaseProduct_InventoryProduct">
             <End Role="InventoryProduct" EntitySet="InventoryProduct" />
@@ -407,9 +407,9 @@
             <End Role="DishSubCategory" EntitySet="DishSubCategories" />
             <End Role="Menu" EntitySet="Menus" />
           </AssociationSet>
-          <AssociationSet Name="FK_InventoryProduct_ProductQuantity" Association="ResturantManagementDBModel.FK_InventoryProduct_ProductQuantity">
-            <End Role="ProductQuantity" EntitySet="ProductQuantities" />
+          <AssociationSet Name="FK_ProductQuantity_InventoryProduct" Association="ResturantManagementDBModel.FK_ProductQuantity_InventoryProduct">
             <End Role="InventoryProduct" EntitySet="InventoryProducts" />
+            <End Role="ProductQuantity" EntitySet="ProductQuantities" />
           </AssociationSet>
           <AssociationSet Name="FK_PurchaseProduct_InventoryProduct" Association="ResturantManagementDBModel.FK_PurchaseProduct_InventoryProduct">
             <End Role="InventoryProduct" EntitySet="InventoryProducts" />
@@ -494,9 +494,8 @@
           <Property Name="ExpDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="CategoryID" Type="Guid" Nullable="false" />
-          <Property Name="ProductQuantityID" Type="Guid" />
           <NavigationProperty Name="Category" Relationship="ResturantManagementDBModel.FK_InventoryProduct_Category" FromRole="InventoryProduct" ToRole="Category" />
-          <NavigationProperty Name="ProductQuantity" Relationship="ResturantManagementDBModel.FK_InventoryProduct_ProductQuantity" FromRole="InventoryProduct" ToRole="ProductQuantity" />
+          <NavigationProperty Name="ProductQuantities" Relationship="ResturantManagementDBModel.FK_ProductQuantity_InventoryProduct" FromRole="InventoryProduct" ToRole="ProductQuantity" />
           <NavigationProperty Name="PurchaseProducts" Relationship="ResturantManagementDBModel.FK_PurchaseProduct_InventoryProduct" FromRole="InventoryProduct" ToRole="PurchaseProduct" />
         </EntityType>
         <EntityType Name="Menu">
@@ -553,7 +552,8 @@
           </Key>
           <Property Name="ProductQuantityID" Type="Guid" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="InventoryProducts" Relationship="ResturantManagementDBModel.FK_InventoryProduct_ProductQuantity" FromRole="ProductQuantity" ToRole="InventoryProduct" />
+          <Property Name="InventoryProductID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="InventoryProduct" Relationship="ResturantManagementDBModel.FK_ProductQuantity_InventoryProduct" FromRole="ProductQuantity" ToRole="InventoryProduct" />
         </EntityType>
         <EntityType Name="PurchaseProduct">
           <Key>
@@ -671,15 +671,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_InventoryProduct_ProductQuantity">
-          <End Type="ResturantManagementDBModel.ProductQuantity" Role="ProductQuantity" Multiplicity="0..1" />
-          <End Type="ResturantManagementDBModel.InventoryProduct" Role="InventoryProduct" Multiplicity="*" />
+        <Association Name="FK_ProductQuantity_InventoryProduct">
+          <End Type="ResturantManagementDBModel.InventoryProduct" Role="InventoryProduct" Multiplicity="1" />
+          <End Type="ResturantManagementDBModel.ProductQuantity" Role="ProductQuantity" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ProductQuantity">
-              <PropertyRef Name="ProductQuantityID" />
+            <Principal Role="InventoryProduct">
+              <PropertyRef Name="InventoryProductID" />
             </Principal>
-            <Dependent Role="InventoryProduct">
-              <PropertyRef Name="ProductQuantityID" />
+            <Dependent Role="ProductQuantity">
+              <PropertyRef Name="InventoryProductID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -810,7 +810,6 @@
           <EntitySetMapping Name="InventoryProducts">
             <EntityTypeMapping TypeName="ResturantManagementDBModel.InventoryProduct">
               <MappingFragment StoreEntitySet="InventoryProduct">
-                <ScalarProperty Name="ProductQuantityID" ColumnName="ProductQuantityID" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ExpDate" ColumnName="ExpDate" />
@@ -867,6 +866,7 @@
           <EntitySetMapping Name="ProductQuantities">
             <EntityTypeMapping TypeName="ResturantManagementDBModel.ProductQuantity">
               <MappingFragment StoreEntitySet="ProductQuantity">
+                <ScalarProperty Name="InventoryProductID" ColumnName="InventoryProductID" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="ProductQuantityID" ColumnName="ProductQuantityID" />
               </MappingFragment>
