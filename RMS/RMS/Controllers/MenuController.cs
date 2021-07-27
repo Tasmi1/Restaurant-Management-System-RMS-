@@ -22,6 +22,7 @@ namespace RMS.Controllers
         {
 
             MenuDTOs model = new MenuDTOs();
+            menuService.CreateSelectList(model);
             return View(model);
         }
 

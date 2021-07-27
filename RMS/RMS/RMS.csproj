@@ -472,6 +472,7 @@
     <Content Include="Views\Menu\Edit.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\SubCategory\Index.cshtml" />
     <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Views\Category\Details.cshtml" />
 
@@ -486,12 +487,14 @@
     <Content Include="Views\DishSubCategory\Create.cshtml" />
     <Content Include="Views\DishSubCategory\Edit.cshtml" />
     <Content Include="Views\DishSubCategory\Details.cshtml" />
-
+>>>>>>> 55802fe763d04a09e33a05e991d09724d7c26f99
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Categories\" />
+    <Folder Include="Views\DishCategory\" />
+    <Folder Include="Views\DishSubCategory\" />
     <Folder Include="Views\InventoryProducts\" />
   </ItemGroup>
   <ItemGroup>
