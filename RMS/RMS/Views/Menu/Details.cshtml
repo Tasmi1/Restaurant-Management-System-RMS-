@@ -1,0 +1,65 @@
+﻿@model RMS.Model.viewModes.MenuDTOs
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="container" style="margin-top: 2%;">
+    <div class=" mx-auto">
+        <div class="card">
+            <div class="card-header text-center pt-4">
+                <span>
+                    <a href="/Menu" style=" float:left;">
+                        <i class="fa fa-arrow-left" style="font-size:27px;"></i>
+                    </a>
+                </span>
+                <samp style="font-size: 20px; font-weight: bold; color:black;">Menu Details</samp>
+            </div>
+            <div class="card-body">
+                <dl>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MenuID)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.MenuID)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MenuName)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.MenuName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MenuPrice)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.MenuPrice)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SubCategoryID)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.SubCategoryID)
+                    </dd>
+                </dl>
+
+                <div>
+                    <spam class="btn bg-gradient-primary" style="color:white;">@Html.ActionLink("Edit", "Edit", new { id = Model.MenuID })</spam>
+                    @*@Html.ActionLink("Delete", "Delete", new { id = Model.CategoryID })*@
+                    <spam class="btn bg-gradient-primary" style="color:white;">@Html.ActionLink("Delete", "Delete", new { id = Model.MenuID })</spam>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        </div>
+
+    </div>

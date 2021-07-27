@@ -1,25 +1,54 @@
 ﻿@model RMS.Model.viewModes.MenuDTOs
+
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
-<form method="post">
-    @Html.HiddenFor(x => x.MenuID)
-    @Html.HiddenFor(x => x.DishCategoryID)
-    <table class="table">
-        <tr>
-            <td>Menu Name</td>
-            <td>@Html.TextBoxFor(x => x.MenuName)</td>
-        </tr>
-        <tr>
-            <td>Menu Price</td>
-            <td>@Html.TextBoxFor(x => x.MenuPrice)</td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Save" /></td>
-        </tr>
-    </table>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(x => x.MenuID);
 
-</form>
+<div class="form-horizontal">
 
+    <span>
+        <a href="/Menu" style=" float:left;">
+            <i class="fa fa-arrow-left" style="font-size:25px;"></i>
+        </a>
+    </span>
+    <span style="font-size: 25px; font-weight: bold; color:black;"><p>Edit Menu</p></span>
+    <hr />
+
+
+    <div class="form-group">
+
+        <label style="font-weight: bold;font-size: 1.3em;">Menu Name</label>   <br />
+        @Html.ValidationMessageFor(model => model.MenuName, "", new { @class = "text-danger" })
+        @Html.TextBoxFor(x => x.MenuName, "", new { @class = "form-control", @placeholder = "Enter Menu Name" })
+
+    </div>
+
+    <div class="form-group">
+
+        <label style="font-weight: bold;font-size: 1.3em;">Menu Price</label>   <br />
+        @Html.ValidationMessageFor(model => model.MenuPrice, "", new { @class = "text-danger" })
+        @Html.TextBoxFor(x => x.MenuPrice, "", new { @class = "form-control", @placeholder = "Enter Menu Price" })
+
+    </div>
+
+    <div class="mb-3">
+
+        <label style="font-weight: bold;font-size: 1.3em;">Sub Category</label>   <br />
+        @Html.ValidationMessageFor(model => model.SubCategoryID, "", new { @class = "text-danger" })
+        @Html.DropDownListFor(x => x.SubCategoryID, new SelectList(Model.DishSubCategories, "Id", "Name"), new { @class = "form-control form-control-lg ", required = "required" })
+
+
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-12">
+            <input type="submit" value="Save" class="btn bg-gradient-primary mt-4 " style=" display: block; margin-left: auto; margin-right: auto; width: 40%; " />
+
+        </div>
+    </div>
+</div>
+}

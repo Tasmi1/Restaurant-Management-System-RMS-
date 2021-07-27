@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RMS.Model.viewModes.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,6 +9,11 @@ namespace RMS.Model.viewModes
 {
     public class DishSubCategoryDTOs
     {
+        public DishSubCategoryDTOs()
+        {
+            DishCategorys = new List<BaseGuidSelect>();
+        }
+           
 
         public Guid SubCategoryId { get; set; }
 
@@ -17,6 +23,12 @@ namespace RMS.Model.viewModes
 
         public Guid DishCategoryId { get; set; }
 
-        
+        public List<BaseGuidSelect> DishCategorys { get; set; }
+
+        public string DishCategory { get; set; }
+
+     
+
+
     }
 }
