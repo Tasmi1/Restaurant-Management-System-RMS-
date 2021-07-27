@@ -14,16 +14,10 @@ namespace DatabaseLayer
     
     public partial class ProductQuantity
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ProductQuantity()
-        {
-            this.InventoryProducts = new HashSet<InventoryProduct>();
-        }
-    
         public System.Guid ProductQuantityID { get; set; }
         public int Quantity { get; set; }
+        public System.Guid InventoryProductID { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InventoryProduct> InventoryProducts { get; set; }
+        public virtual InventoryProduct InventoryProduct { get; set; }
     }
 }
