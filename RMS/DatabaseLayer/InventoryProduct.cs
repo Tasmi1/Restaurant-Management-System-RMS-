@@ -26,7 +26,7 @@ namespace DatabaseLayer
         public System.DateTime ExpDate { get; set; }
         public string Description { get; set; }
         public System.Guid CategoryID { get; set; }
-        public Nullable<System.Guid> ProductQuantityID { get; set; }
+        public System.Guid ProductQuantityID { get; set; }
     
         public virtual Category Category { get; set; }
         public virtual ProductQuantity ProductQuantity { get; set; }
