@@ -39,20 +39,28 @@ namespace RMS.Model.Services
                 return db.Users.Any(u => u.UserName.Equals(username));
             }
         }
-        public bool Create(UserDTOs model)
+        public bool Create(UserDTOs model, string ConfirmPassword)
         {
             try
             {
                 using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
                 {
 
-                    DatabaseLayer.User user = new DatabaseLayer.User();
-                    user.UserId = Guid.NewGuid();
-                    user = userConverter.ConverToEntity(model, user);
-
-                    db.Users.Add(user);
-                    db.SaveChanges();
-                    return true;
+                   
+                    if(model.Password == ConfirmPassword)
+                    {
+                        DatabaseLayer.User user = new DatabaseLayer.User();
+                        user.UserId = Guid.NewGuid();
+                        user = userConverter.ConverToEntity(model, user);
+                        db.Users.Add(user);
+                        db.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    
                 }
             }
             catch (Exception ex)
