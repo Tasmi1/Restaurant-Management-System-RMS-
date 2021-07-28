@@ -103,7 +103,25 @@ namespace RMS.Controllers
             Session["Address"] = string.Empty;
             Session["UserTypeID"] = string.Empty;
             Session["UserType"] = string.Empty;
+        }
 
+        public ActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Login(string password, string email)
+        {
+
+            bool result = userService.Login( password, email);
+            if (result)
+            {
+                return RedirectToAction("Index");
+            }
+
+
+
+            return View("Index");
         }
     }
 }
