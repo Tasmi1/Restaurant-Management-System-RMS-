@@ -131,9 +131,7 @@ namespace RMS.Controllers
             return View(model);
         }
 
-            }
-        }
-
+            
 
         public void Logout()
         {
@@ -153,6 +151,7 @@ namespace RMS.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Login(string password, string email)
         {

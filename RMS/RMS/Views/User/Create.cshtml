@@ -67,7 +67,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label style="font-weight: bold;font-size: 1.3em;">Email</label>   <br />
+                            <label style="font-weight: bold;font-size: 1.3em;">User Type</label>   <br />
                             @Html.ValidationMessageFor(model => model.UserTypeID, "", new { @class = "text-danger" })
                             @Html.DropDownListFor(x => x.UserTypeID, new SelectList(Model.UserTypes, "Id", "Name"), new { @class = "form-control form-control-lg ", required = "required" })
 
