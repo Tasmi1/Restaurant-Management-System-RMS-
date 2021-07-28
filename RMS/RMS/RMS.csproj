@@ -493,15 +493,12 @@
     <Content Include="Views\DishSubCategory\Create.cshtml" />
     <Content Include="Views\DishSubCategory\Edit.cshtml" />
     <Content Include="Views\DishSubCategory\Details.cshtml" />
-
     <Content Include="Views\Customer\Details.cshtml" />
-
     <Content Include="Views\SubCategory\Index.cshtml" />
     <Content Include="Views\InventoryProduct\Create.cshtml" />
     <Content Include="Views\InventoryProduct\Details.cshtml" />
     <Content Include="Views\InventoryProduct\Edit.cshtml" />
     <Content Include="Views\InventoryProduct\Index.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
