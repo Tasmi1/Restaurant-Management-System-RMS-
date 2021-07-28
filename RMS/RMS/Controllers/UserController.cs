@@ -120,12 +120,15 @@ namespace RMS.Controllers
             }
             else
             {
-                ViewBag.message = "Password Change Successfully!!!!";
+                ViewBag.message = "Either Email or Password does't match";
             }
 
+            if (result == false)
+            {
+                ViewBag.message = "Either Email or Password does't match";
+            }
 
-
-            return View("Index");
+            return View();
         }
     }
 }
