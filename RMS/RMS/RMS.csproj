@@ -477,6 +477,12 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Views\Category\Details.cshtml" />
+    <!--<Content Include="Views\DishSubCategory\Create.cshtml" />
+    <Content Include="Views\DishSubCategory\Details.cshtml" />
+    <Content Include="Views\DishSubCategory\Edit.cshtml" />
+    <Content Include="Views\DishSubCategory\Index.cshtml" />-->
+    <Content Include="Views\Menu\Details.cshtml" />
+    <Content Include="Views\Menu\Details.cshtml" />
     <Content Include="Views\DishCategory\Index.cshtml" />
     <Content Include="Views\DishCategory\Create.cshtml" />
     <Content Include="Views\DishCategory\Edit.cshtml" />
@@ -487,7 +493,15 @@
     <Content Include="Views\DishSubCategory\Create.cshtml" />
     <Content Include="Views\DishSubCategory\Edit.cshtml" />
     <Content Include="Views\DishSubCategory\Details.cshtml" />
+<<<<<<<<< Temporary merge branch 1
     <Content Include="Views\Customer\Details.cshtml" />
+=========
+    <Content Include="Views\SubCategory\Index.cshtml" />
+    <Content Include="Views\InventoryProduct\Create.cshtml" />
+    <Content Include="Views\InventoryProduct\Details.cshtml" />
+    <Content Include="Views\InventoryProduct\Edit.cshtml" />
+    <Content Include="Views\InventoryProduct\Index.cshtml" />
+>>>>>>>>> Temporary merge branch 2
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
