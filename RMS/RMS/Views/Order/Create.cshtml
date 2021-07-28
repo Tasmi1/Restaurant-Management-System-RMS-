@@ -1,0 +1,60 @@
+﻿@model RMS.Model.viewModes.OrderDTOs
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+<div class="container" style="margin-top: 2%;">
+    <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+        <div class="card">
+            <div class="card-header text-center pt-4">
+                <span>
+                    <a href="/Order" style=" float:left;">
+                        <i class="fa fa-arrow-left" style="font-size:27px;"></i>
+                    </a>
+                </span>
+                <samp style="font-size: 20px; font-weight: bold; color:black;">Order</samp>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="mb-3">
+
+                        <label style="font-weight: bold;font-size: 1.3em;">Order Time</label>   <br />
+                        @Html.ValidationMessageFor(model => model.OrderTime, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(x => x.OrderTime, "", new { @class = "form-control", @placeholder = "Enter Order Time" })
+
+                    </div>
+                    <div class="mb-3">
+
+                        <label style="font-weight: bold;font-size: 1.3em;">Order Date</label>   <br />
+                        @Html.ValidationMessageFor(model => model.OrderDate, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(x => x.OrderDate, "", new { @class = "form-control", @placeholder = "Enter Order Date" })
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label style="font-weight: bold;font-size: 1.3em;">Customer</label>   <br />
+                        @Html.ValidationMessageFor(model => model.CustomerID, "", new { @class = "text-danger" })
+                        @Html.DropDownListFor(x => x.CustomerID, new SelectList(Model.Customers, "Id", "Name"), new { @class = "form-control form-control-lg ", required = "required" })
+
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label style="font-weight: bold;font-size: 1.3em;">Menu</label>   <br />
+                        @Html.ValidationMessageFor(model => model.MenuID, "", new { @class = "text-danger" })
+                        @Html.DropDownListFor(x => x.MenuID, new SelectList(Model.Menus, "Id", "Name"), new { @class = "form-control form-control-lg ", required = "required" })
+
+
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" class="btn bg-gradient-primary mt-4 w-100" value="Create" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

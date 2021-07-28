@@ -9,5 +9,6 @@ namespace RMS.Model.viewModes.Base
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public TimeSpan OrderTime {get; set;}
     }
 }

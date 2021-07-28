@@ -9,48 +9,56 @@ using System.Web;
 
 namespace RMS.Model.Services
 {
-    public class UserService
+    public class OrderService
     {
-        private readonly UserConverter userConverter = new UserConverter();
-        public UserDTOs CreateSelectList(UserDTOs model)
+        private readonly OrderConverter converter = new OrderConverter();
+
+        public OrderDTOs CreateSelectList(OrderDTOs model)
         {
-            model.UserTypes = GetUserTypes();
+            model.Customers = GetCustomers();
+            model.Menus = GetMenus();
             return model;
         }
 
-        public List<BaseGuidSelect> GetUserTypes()
-        {          
+        public List<BaseGuidSelect> GetCustomers()
+        {
             using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
             {
-                return db.UserTypes.Select(u => 
-                new BaseGuidSelect 
-                { 
-                    Id = u.UserTypeID,
-                    Name = u.Type 
+                return db.Customers.Select(u =>
+                new BaseGuidSelect
+                {
+                    Id = u.CustomerID,
+                    Name = u.CustomerName
                 }).ToList();
 
             }
         }
 
-        public bool UserNameValidation(string username)
+        public List<BaseGuidSelect> GetMenus()
         {
-            using(ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+            using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
             {
-                return db.Users.Any(u => u.UserName.Equals(username));
+                return db.Menus.Select(u =>
+                new BaseGuidSelect
+                {
+                    Id = u.MenuID,
+                    Name = u.MenuName
+                }).ToList();
+
             }
         }
-        public bool Create(UserDTOs model)
+
+        public bool Create(OrderDTOs model)
         {
             try
             {
                 using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
                 {
+                    DatabaseLayer.Order order = new DatabaseLayer.Order();
+                    order.OrderID = Guid.NewGuid();
+                    order = converter.ConvertToEntity(model, order);
 
-                    DatabaseLayer.User user = new DatabaseLayer.User();
-                    user.UserId = Guid.NewGuid();
-                    user = userConverter.ConverToEntity(model, user);
-
-                    db.Users.Add(user);
+                    db.Orders.Add(order);
                     db.SaveChanges();
                     return true;
                 }
@@ -61,16 +69,18 @@ namespace RMS.Model.Services
             }
 
         }
-        public bool Update(UserDTOs model)
+
+        public bool Update(OrderDTOs model)
         {
             try
             {
                 using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
                 {
-                    DatabaseLayer.User user = db.Users.FirstOrDefault(c => c.UserId == model.UserId);
-                    if (user != null)
+
+                    DatabaseLayer.Order order = db.Orders.FirstOrDefault(c => c.OrderID == model.OrderID);
+                    if (order != null)
                     {
-                        user = userConverter.ConverToEntity(model, user);
+                        order = converter.ConvertToEntity(model, order);
                         db.SaveChanges();
                         return true;
                     }
@@ -81,24 +91,25 @@ namespace RMS.Model.Services
             {
                 throw;
             }
+
         }
 
-
-        public UserDTOs GetById(Guid userId)
+        public OrderDTOs GetById(Guid orderId)
         {
-            UserDTOs model = new UserDTOs();
+            OrderDTOs model = new OrderDTOs();
             try
             {
                 using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
                 {
-                    DatabaseLayer.User user = db.Users.FirstOrDefault(c => c.UserId == userId);
-                   if (user != null)
+
+                    DatabaseLayer.Order order = db.Orders.FirstOrDefault(c => c.OrderID == orderId);
+                    if (order != null)
                     {
-                        model = userConverter.ConvertToModel(user);
+                        model = converter.ConvertToModel(order);
+
                     }
                     return model;
                 }
-
             }
             catch (Exception ex)
             {
@@ -106,21 +117,22 @@ namespace RMS.Model.Services
             }
 
         }
-        public List<UserDTOs> GetAll()
+
+        public List<OrderDTOs> GetAll()
         {
-            List<UserDTOs> users = new List<UserDTOs>();
+            List<OrderDTOs> orders = new List<OrderDTOs>();
             try
             {
                 using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
                 {
-                                    
-                    var dbUser = db.Users.ToList();
-                    foreach (var user in dbUser)
+
+                    var dbOrders = db.Orders.ToList();
+                    foreach (var order in dbOrders)
                     {
-                        
-                        users.Add(userConverter.ConvertToModel(user));
+                        orders.Add(converter.ConvertToModel(order));
+
                     }
-                    return users;
+                    return orders;
                 }
             }
             catch (Exception ex)
@@ -129,23 +141,22 @@ namespace RMS.Model.Services
             }
 
         }
-        public bool Delete(Guid userId)
+
+        public bool Delete(Guid orderId)
         {
 
             using (var db = new ResturantManagementDBEntities())
             {
 
-                var user = db.Users.FirstOrDefault(x => x.UserId == userId);
-                if (user != null)
+                var order = db.Orders.FirstOrDefault(x => x.OrderID == orderId);
+                if (order != null)
                 {
-                    db.Users.Remove(user);
+                    db.Orders.Remove(order);
                     db.SaveChanges();
                     return true;
                 }
                 return false;
             }
         }
-
     }
-
 }
