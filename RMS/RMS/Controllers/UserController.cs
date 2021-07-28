@@ -118,6 +118,10 @@ namespace RMS.Controllers
             {
                 return RedirectToAction("Index");
             }
+            else
+            {
+                ViewBag.message = "Password Change Successfully!!!!";
+            }
 
 
 
