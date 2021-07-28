@@ -1,4 +1,5 @@
-﻿using RMS.Model.Services;
+﻿using DatabaseLayer;
+using RMS.Model.Services;
 using RMS.Model.viewModes;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,10 @@ namespace RMS.Controllers
 {
     public class CustomerController : Controller
     {
-       private readonly CustomerService customerServie = new CustomerService();
+       private readonly CustomerService customerService = new CustomerService();
         public ActionResult Index()
         {
-            var customers = customerServie.GetAll();
+            var customers = customerService.GetAll();
             return View(customers);
         }
 
@@ -28,7 +29,7 @@ namespace RMS.Controllers
         {
             if (ModelState.IsValid)
             {
-              bool result =  customerServie.Create(model);
+              bool result =  customerService.Create(model);
                 if (result)
                 {
                     return RedirectToAction("Index");
@@ -40,7 +41,7 @@ namespace RMS.Controllers
 
         public ActionResult Edit(Guid id)
         {
-            CustomerDTOs model = customerServie.GetById(id);
+            CustomerDTOs model = customerService.GetById(id);
             return View(model);
         }
 
@@ -49,7 +50,7 @@ namespace RMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool result = customerServie.Update(model);
+                bool result = customerService.Update(model);
                 if (result)
                 {
                     return RedirectToAction("Index");
@@ -58,5 +59,23 @@ namespace RMS.Controllers
             }
             return View(model);
         }
+
+        public ActionResult Details(Guid Id)
+        {
+            CustomerDTOs model = customerService.GetById(Id);
+            return View(model);
+        }
+
+        public ActionResult Delete(Guid Id)
+        {
+            using(ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+            {
+                var model = db.Customers.Find(Id);
+                db.Customers.Remove(model);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+        }
+
     }
 }
