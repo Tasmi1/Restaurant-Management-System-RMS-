@@ -42,8 +42,8 @@ namespace RMS.Controllers
                 {
                     ModelState.AddModelError("UserName", "Duplicate User Name!");
                 }
-               
-            
+
+
             }
             userService.CreateSelectList(model);
             return View(model);
@@ -88,6 +88,22 @@ namespace RMS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+        }
+
+
+        public void Logout()
+        {
+            Session["UserId"] = string.Empty;
+            Session["FirstName"] = string.Empty;
+            Session["LastName"] = string.Empty;
+            Session["PhoneNumber"] = string.Empty;
+            Session["Email"] = string.Empty;
+            Session["UserName"] = string.Empty;
+            Session["Password"] = string.Empty;
+            Session["Address"] = string.Empty;
+            Session["UserTypeID"] = string.Empty;
+            Session["UserType"] = string.Empty;
+
         }
     }
 }
