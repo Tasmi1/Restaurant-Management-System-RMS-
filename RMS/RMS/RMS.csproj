@@ -131,7 +131,7 @@
     <Compile Include="Controllers\DishCategoryController.cs" />
     <Compile Include="Controllers\DishSubCategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\InventoryProductsController.cs" />
+    <Compile Include="Controllers\InventoryProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\UserTypeController.cs" />
@@ -142,6 +142,7 @@
     <Compile Include="Model\Converters\CustomerConverter.cs" />
     <Compile Include="Model\Converters\DishCategoryConverter.cs" />
     <Compile Include="Model\Converters\DishSubCategoryConverter.cs" />
+    <Compile Include="Model\Converters\InventoryProductConverter.cs" />
     <Compile Include="Model\Converters\UserConverter.cs" />
     <Compile Include="Model\Converters\MenuConverter.cs" />
     <Compile Include="Model\Converters\UserTypeConverter.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="Model\Services\CustomerService.cs" />
     <Compile Include="Model\Services\DishCategoryService.cs" />
     <Compile Include="Model\Services\DishSubCategoryService.cs" />
+    <Compile Include="Model\Services\InventoryProductService.cs" />
     <Compile Include="Model\Services\UserService.cs" />
     <Compile Include="Model\Services\MenuService.cs" />
     <Compile Include="Model\Services\UserTypeService.cs" />
@@ -158,6 +160,7 @@
     <Compile Include="Model\viewModes\DishSubCategoryDTOs.cs" />
     <Compile Include="Model\viewModes\MenuDTOs.cs" />
     <Compile Include="Model\viewModes\DishCategoryDTOs.cs" />
+    <Compile Include="Model\viewModes\InventoryProductDTOs.cs" />
     <Compile Include="Model\viewModes\UserDTOs.cs" />
     <Compile Include="Model\viewModes\UserTypeDTOs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -484,7 +487,7 @@
     <Content Include="Views\DishSubCategory\Create.cshtml" />
     <Content Include="Views\DishSubCategory\Edit.cshtml" />
     <Content Include="Views\DishSubCategory\Details.cshtml" />
-    <Content Include="Views\Customer\Details.cshtml" />
+>>>>>>> 55802fe763d04a09e33a05e991d09724d7c26f99
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -510,6 +513,9 @@
       <Project>{686baef8-3131-4ce4-8853-bc5f878d895d}</Project>
       <Name>DatabaseLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
