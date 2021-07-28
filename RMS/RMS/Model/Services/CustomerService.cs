@@ -11,6 +11,9 @@ namespace RMS.Model.Services
     public class CustomerService
     {
         private readonly CustomerConverter converter = new CustomerConverter();
+        
+
+       
         public bool Create(CustomerDTOs model)
         {
             try
@@ -103,5 +106,23 @@ namespace RMS.Model.Services
             }
 
         }
+
+        public bool Delete(Guid customerId)
+        {
+            using (var db = new ResturantManagementDBEntities())
+            {
+                var customer = db.Customers.FirstOrDefault(x => x.CustomerID == customerId);
+                if(customer != null)
+                {
+                    db.Customers.Remove(customer);
+                    db.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+        }
+
+
+       
     }
 }
