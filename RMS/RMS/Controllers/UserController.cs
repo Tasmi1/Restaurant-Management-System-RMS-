@@ -47,8 +47,8 @@ namespace RMS.Controllers
                 {
                     ModelState.AddModelError("UserName", "Duplicate User Name!");
                 }
-               
-            
+
+
             }
             userService.CreateSelectList(model);
             return View(model);
@@ -131,5 +131,48 @@ namespace RMS.Controllers
             return View(model);
         }
 
+            }
+        }
+
+
+        public void Logout()
+        {
+            Session["UserId"] = string.Empty;
+            Session["FirstName"] = string.Empty;
+            Session["LastName"] = string.Empty;
+            Session["PhoneNumber"] = string.Empty;
+            Session["Email"] = string.Empty;
+            Session["UserName"] = string.Empty;
+            Session["Password"] = string.Empty;
+            Session["Address"] = string.Empty;
+            Session["UserTypeID"] = string.Empty;
+            Session["UserType"] = string.Empty;
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Login(string password, string email)
+        {
+
+            bool result = userService.Login( password, email);
+            if (result)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.message = "Either Email or Password does't match";
+            }
+
+            if (result == false)
+            {
+                ViewBag.message = "Either Email or Password does't match";
+            }
+
+            return View();
+        }
     }
 }
