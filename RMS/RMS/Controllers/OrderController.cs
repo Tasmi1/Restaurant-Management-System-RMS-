@@ -9,73 +9,70 @@ using System.Web.Mvc;
 
 namespace RMS.Controllers
 {
-    public class CustomerController : Controller
+    public class OrderController: Controller
     {
-       private readonly CustomerService customerService = new CustomerService();
+        public readonly OrderService orderService = new OrderService();
         public ActionResult Index()
         {
-            var customers = customerService.GetAll();
-            return View(customers);
+            var orders = orderService.GetAll();
+            return View(orders);
         }
-
         public ActionResult Create()
         {
-            CustomerDTOs model = new CustomerDTOs();
+            OrderDTOs model = new OrderDTOs();
+            orderService.CreateSelectList(model);
             return View(model);
         }
-
         [HttpPost]
-        public ActionResult Create(CustomerDTOs model)
+        public ActionResult Create(OrderDTOs model)
         {
+           
             if (ModelState.IsValid)
             {
-              bool result =  customerService.Create(model);
+                bool result = orderService.Create(model);
                 if (result)
                 {
                     return RedirectToAction("Index");
                 }
-
             }
             return View(model);
         }
-
         public ActionResult Edit(Guid id)
         {
-            CustomerDTOs model = customerService.GetById(id);
+            OrderDTOs model = orderService.GetById(id);
+            orderService.CreateSelectList(model);
             return View(model);
         }
-
         [HttpPost]
-        public ActionResult Edit(CustomerDTOs model)
+        public ActionResult Edit(OrderDTOs model)
         {
             if (ModelState.IsValid)
             {
-                bool result = customerService.Update(model);
+                bool result = orderService.Update(model);
                 if (result)
                 {
                     return RedirectToAction("Index");
                 }
-
             }
             return View(model);
         }
 
-        public ActionResult Details(Guid Id)
+        public ActionResult Details(Guid id)
         {
-            CustomerDTOs model = customerService.GetById(Id);
+            OrderDTOs model = orderService.GetById(id);
             return View(model);
         }
 
-        public ActionResult Delete(Guid Id)
+        public ActionResult Delete(Guid id)
         {
-            using(ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+
+            ResturantManagementDBEntities db = new ResturantManagementDBEntities();
             {
-                var model = db.Customers.Find(Id);
-                db.Customers.Remove(model);
+                var model = db.Orders.Find(id);
+                db.Orders.Remove(model);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
         }
-
     }
 }

@@ -132,6 +132,7 @@
     <Compile Include="Controllers\DishSubCategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoryProductController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\UserTypeController.cs" />
@@ -143,6 +144,7 @@
     <Compile Include="Model\Converters\DishCategoryConverter.cs" />
     <Compile Include="Model\Converters\DishSubCategoryConverter.cs" />
     <Compile Include="Model\Converters\InventoryProductConverter.cs" />
+    <Compile Include="Model\Converters\OrderConverter.cs" />
     <Compile Include="Model\Converters\UserConverter.cs" />
     <Compile Include="Model\Converters\MenuConverter.cs" />
     <Compile Include="Model\Converters\UserTypeConverter.cs" />
@@ -151,6 +153,7 @@
     <Compile Include="Model\Services\DishCategoryService.cs" />
     <Compile Include="Model\Services\DishSubCategoryService.cs" />
     <Compile Include="Model\Services\InventoryProductService.cs" />
+    <Compile Include="Model\Services\OrderService.cs" />
     <Compile Include="Model\Services\UserService.cs" />
     <Compile Include="Model\Services\MenuService.cs" />
     <Compile Include="Model\Services\UserTypeService.cs" />
@@ -161,6 +164,7 @@
     <Compile Include="Model\viewModes\MenuDTOs.cs" />
     <Compile Include="Model\viewModes\DishCategoryDTOs.cs" />
     <Compile Include="Model\viewModes\InventoryProductDTOs.cs" />
+    <Compile Include="Model\viewModes\OrderDTOs.cs" />
     <Compile Include="Model\viewModes\UserDTOs.cs" />
     <Compile Include="Model\viewModes\UserTypeDTOs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -587,7 +591,6 @@
     <Content Include="Views\Menu\Edit.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\SubCategory\Index.cshtml" />
     <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Views\Category\Details.cshtml" />
     <!--<Content Include="Views\DishSubCategory\Create.cshtml" />
@@ -606,12 +609,14 @@
     <Content Include="Views\DishSubCategory\Create.cshtml" />
     <Content Include="Views\DishSubCategory\Edit.cshtml" />
     <Content Include="Views\DishSubCategory\Details.cshtml" />
+    <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\SubCategory\Index.cshtml" />
     <Content Include="Views\InventoryProduct\Create.cshtml" />
     <Content Include="Views\InventoryProduct\Details.cshtml" />
     <Content Include="Views\InventoryProduct\Edit.cshtml" />
     <Content Include="Views\InventoryProduct\Index.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\Order\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
