@@ -19,14 +19,14 @@ namespace RMS.Model.Services
         }
 
         public List<BaseGuidSelect> GetUserTypes()
-        {          
+        {
             using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
             {
-                return db.UserTypes.Select(u => 
-                new BaseGuidSelect 
-                { 
+                return db.UserTypes.Select(u =>
+                new BaseGuidSelect
+                {
                     Id = u.UserTypeID,
-                    Name = u.Type 
+                    Name = u.Type
                 }).ToList();
 
             }
@@ -34,7 +34,7 @@ namespace RMS.Model.Services
 
         public bool UserNameValidation(string username)
         {
-            using(ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+            using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
             {
                 return db.Users.Any(u => u.UserName.Equals(username));
             }
@@ -92,7 +92,7 @@ namespace RMS.Model.Services
                 using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
                 {
                     DatabaseLayer.User user = db.Users.FirstOrDefault(c => c.UserId == userId);
-                   if (user != null)
+                    if (user != null)
                     {
                         model = userConverter.ConvertToModel(user);
                     }
@@ -113,11 +113,11 @@ namespace RMS.Model.Services
             {
                 using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
                 {
-                                    
+
                     var dbUser = db.Users.ToList();
                     foreach (var user in dbUser)
                     {
-                        
+
                         users.Add(userConverter.ConvertToModel(user));
                     }
                     return users;
@@ -145,6 +145,32 @@ namespace RMS.Model.Services
                 return false;
             }
         }
-    }
 
+
+        public bool Login(string password, string email )
+        {
+            try
+            {
+                using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+                {
+                    DatabaseLayer.User user = db.Users.Where(u => u.Email == email && u.Password == password).FirstOrDefault();
+                    if (user != null)
+                    {
+                        return true;
+                    }
+                    else { return false; }
+                    
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+
+        }
+
+
+    }
 }
