@@ -615,11 +615,9 @@
     <Content Include="Views\InventoryProduct\Details.cshtml" />
     <Content Include="Views\InventoryProduct\Edit.cshtml" />
     <Content Include="Views\InventoryProduct\Index.cshtml" />
-<<<<<<< HEAD
-=======
+
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Order\Create.cshtml" />
->>>>>>> bee70d93f4f6db4c5220bd6d106f07799956baa6
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
