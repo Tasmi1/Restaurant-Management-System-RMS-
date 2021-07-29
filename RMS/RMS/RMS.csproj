@@ -617,6 +617,7 @@
     <Content Include="Views\InventoryProduct\Index.cshtml" />
 
     <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\Order\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>

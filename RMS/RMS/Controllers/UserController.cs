@@ -25,17 +25,22 @@ namespace RMS.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult Create(UserDTOs model)
+        public ActionResult Create(UserDTOs model, string ConfirmPassword)
         {
             if (ModelState.IsValid)
             {
                 if (!userService.UserNameValidation(model.UserName))
                 {
-                    bool result = userService.Create(model);
+                    bool result = userService.Create(model, ConfirmPassword);
                     if (result == true)
                     {
 
                         return RedirectToAction("Index");
+                    }
+                    if (result == false)
+                    {
+                        ViewBag.Message = "Your password and Confirm Password doesn't match";
+                       
                     }
                 }
                 else
@@ -90,6 +95,43 @@ namespace RMS.Controllers
             }
         }
 
+        public ActionResult Register()
+        {
+            UserDTOs model = new UserDTOs();
+            userService.CreateSelectList(model);
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult Register(UserDTOs model, string ConfirmPassword)
+        {
+            if (ModelState.IsValid)
+            {
+                if (!userService.UserNameValidation(model.UserName))
+                {
+                    bool result = userService.Create(model, ConfirmPassword);
+                    if (result == true)
+                    {
+
+                        return RedirectToAction("Index");
+                    }
+                    if (result == false)
+                    {
+                        ViewBag.Message = "Your password and Confirm Password doesn't match";
+
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("UserName", "Duplicate User Name!");
+                }
+
+
+            }
+            userService.CreateSelectList(model);
+            return View(model);
+        }
+
+            
 
         public void Logout()
         {
@@ -109,6 +151,7 @@ namespace RMS.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Login(string password, string email)
         {
