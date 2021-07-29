@@ -11,6 +11,13 @@ namespace RMS.Model.Services
     public class UserTypeService
     {
         private readonly UserTypeConverter userTypeConverter = new UserTypeConverter();
+        public bool UserTypeValidation(string type)
+        {
+            using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+            {
+                return db.UserTypes.Any(u => u.Type.Equals(type));
+            }
+        }
 
         public bool Create(UserTypeDTOs model)
         {
