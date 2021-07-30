@@ -1,0 +1,56 @@
+﻿@model IEnumerable<RMS.Model.viewModes.CustomerOrder>
+
+
+@{
+    ViewBag.Title = "Details";
+}
+<p>
+    <label>Customer:@Model.FirstOrDefault().CustomerName</label></br>
+    <label>ContactNumber:@Model.FirstOrDefault().Contact</label></br>
+    <label>OrderTime:@Model.FirstOrDefault().OrderTime</label></br>
+    <label>OrderDate:@Model.FirstOrDefault().OrderDate</label></br>
+    <label>SubTotal:@Model.FirstOrDefault().SubTotal</label></br>
+</p>
+
+<h2>Details</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th> Sub Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelitem => item.MenuName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.Quantity)
+                </td>
+                <td>
+                    @(item.Price*item.Quantity)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
