@@ -11,7 +11,6 @@ using System.Web.Mvc;
 namespace RMS.Controllers
 {
 
-    [Authorize]
     public class OrderController: Controller
     {
         private ResturantManagementDBEntities db = new ResturantManagementDBEntities();
