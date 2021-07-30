@@ -31,17 +31,34 @@ namespace RMS.Controllers
             {
                 if (!userService.UserNameValidation(model.UserName))
                 {
-                    bool result = userService.Create(model, ConfirmPassword);
-                    if (result == true)
+                    if (!userService.EmailValidation(model.Email))
                     {
+                        if (!userService.PhoneNoValidation(model.PhoneNumber))
+                        {
+                            bool result = userService.Create(model, ConfirmPassword);
+                            if (result == true)
+                            {
 
-                        return RedirectToAction("Index");
+                                return RedirectToAction("Index");
+                            }
+                            if (result == false)
+                            {
+                                ViewBag.Message = "Your password and Confirm Password doesn't match";
+
+                            }
+
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("PhoneNumber", "This Phone Number is already used");
+                        }
+
                     }
-                    if (result == false)
+                    else
                     {
-                        ViewBag.Message = "Your password and Confirm Password doesn't match";
-                       
+                        ModelState.AddModelError("Email", "This email is already used");
                     }
+
                 }
                 else
                 {
