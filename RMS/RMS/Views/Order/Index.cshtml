@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RMS.Model.viewModes.CustomerOrder>
+﻿@model IEnumerable<RMS.Model.viewModes.OrderDTOs>
 
 @{
     ViewBag.Title = "Index";
@@ -21,12 +21,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.OrderDate)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.CustomerName)
-            </th>
-            <th>
+            </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.SubTotal)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -43,12 +43,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.OrderDate)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.CustomerName)
-                </td>
-                <td>
+                </td>*@
+                @*<td>
                     @Html.DisplayFor(modelItem => item.SubTotal)
-                </td>
+                </td>*@
                 <td>
                     <a asp-route-id="@item.OrderID" asp-action="Details">Bill</a>
                     @*   @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

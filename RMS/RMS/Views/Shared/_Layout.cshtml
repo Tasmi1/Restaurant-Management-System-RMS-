@@ -199,7 +199,7 @@
     <script src="~/Content/dashboard/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="~/Content/dashboard/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="~/Content/dashboard/js/plugins/chartjs.min.js"></script>
-
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -213,6 +213,8 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
   
     <script src="../Das/assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+    @RenderSection("script",false)
+
 </body>
 
 </html>

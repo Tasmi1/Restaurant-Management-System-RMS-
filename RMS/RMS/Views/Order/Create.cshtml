@@ -1,8 +1,10 @@
-﻿@model RMS.Model.viewModes.OrderDTOs
-@{
-    ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿
+
+@model RMS.Model.viewModes.OrderDTOs
+    @{ 
+        ViewBag.Title = "Create";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 
 
 <div class="container" style="margin-top: 2%;">
@@ -30,23 +32,20 @@
                         <input class="form-control datepicker" type="date" data-val="true" data-val-required="The Order Date field is required." id="OrderDate" name="OrderDate" placeholder="dd/mm/yyy" />
                         <span class="text-danger field-validation-valid" data-valmsg-for="OrderDate" data-valmsg-replace="true"></span>
                     </div>
-                    <div class="mb-3">
-
-                        <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.CustomerId"></select>
-                        <span asp-validation-for="CustomerId" class="text-danger"></span>
-                    </div>
 
                     <div class="mb-3">
-                        <select asp-for="MenuID" class="form-control" asp-items="ViewBag.MenuID"></select>
-                        <span asp-validation-for="MenuID" class="text-danger"></span>
-                    </div>
+                        <label style="font-weight: bold;font-size: 1.3em;">Customer</label>   <br />
+                        @Html.ValidationMessageFor(model => model.CustomerID, "", new { @class = "text-danger" })
+                        @Html.DropDownListFor(x => x.CustomerID, new SelectList(Model.Customers, "Id", "Name"), new { @class = "form-control form-control-lg ", required = "required" })
 
-                    <div>Add Orders</div>
+                    </div>
+                
+
+
                     <div><a class="btn btn-primary" href="#" id="addNew">Add New Orders</a></div>
                     <table class="table table-bordered" id="dataTable" border="0" cellpadding="0" cellspacing="0">
                         <tr>
-                            <th>DishCategory</th>
-                            <th>DishSubCategory</th>
+                            <th>Menu</th>
                             <th>Quantity</th>
                             <th>Price</th>
                             <th>Sub Total</th>
@@ -58,7 +57,9 @@
                             {
                                 <tr style=" border:1px solid black">
                                     <td>
-                                        <select asp-for="OrderItems[j].DishCategoryID" class="form-control" id="dd1Order">
+                                        <select asp-for="OrderItems[j].MenuID" class="form-control" id="dd1Order">
+                                           
+
                                             @foreach (var order in Model.DDItems)
                                             {
                                                 <option data-id="@order.Price" value="@order.Id">@order.Name</option>
@@ -96,19 +97,19 @@
 </div>
 
 
-@*@section script
+@section script
 {
 
-    <script language="javascript">
-        $(document).ready(function (e) {
-
+    <script type="text/javascript">
+        $(document).ready(function (e) {           
             //Add new row
             $("#addNew").click(function (e) {
                 e.preventDefault();
-                var $tableBody = $("dataTable");
+                var $tableBody = $("#dataTable");
                 var $trLast = $tableBody.find("tr:last");
                 var $trNew = $trLast.clone();
-                var suffix = $trNew.find(':input:first').attr('name').match(/\d+/);
+                debugger
+                var suffix = $trNew.find(':input:first').attr('id').match(/\d+/);
                 $trNew.find("td:last").html('<a href="#" class="btn btn-danger remove">Remove</a>');
                 $.each($trNew.find(':input'), function (i, val) {
                     // Replaced Name
@@ -149,4 +150,4 @@
 
         });
     </script>
-}*@
+}

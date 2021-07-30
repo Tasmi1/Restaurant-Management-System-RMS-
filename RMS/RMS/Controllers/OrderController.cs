@@ -11,10 +11,6 @@ using System.Web.Mvc;
 namespace RMS.Controllers
 {
 
-<<<<<<< HEAD
-    
-=======
->>>>>>> 7e6a73fa3ca21bf228742170ebfacf13f4702175
     public class OrderController: Controller
     {
         private ResturantManagementDBEntities db = new ResturantManagementDBEntities();
@@ -28,14 +24,17 @@ namespace RMS.Controllers
         public ActionResult Create()
         {
             ViewBag.CustomerId = new SelectList(db.Customers.ToList(), "CustomerID", "CustomerName");
-            var order = db.Orders.Include(m => m.Menu).ToList().Select(m => new DropDownOrder { Id = m.Menu.MenuID, Name = m.Menu.MenuName, Price = m.Menu.MenuPrice }).ToList();
+            var menus = db.Menus.ToList().Select(m => new DropDownOrder { Id = m.MenuID, Name = m.MenuName, Price = m.MenuPrice }).ToList();
             List<OrderItems> orderItems = new List<OrderItems>() { new OrderItems { Quantity = 0, SubTotal = 0, MenuID = db.Menus.FirstOrDefault().MenuID } };
             OrderDTOs orderDTOs = new OrderDTOs
             {
-                DDItems = order,
+                DDItems = menus,
                 OrderItems = orderItems
             };
+
+            orderService.CreateSelectList(orderDTOs);
             return View(orderDTOs);
+
         }
         [HttpPost]
         public ActionResult Create(OrderDTOs model)
@@ -76,7 +75,10 @@ namespace RMS.Controllers
                     Menu menu = db.Menus.FirstOrDefault(m => m.MenuID == items.MenuID);
                     db.SaveChanges();
                 }
+
+                orderService.CreateSelectList(model);
                 return RedirectToAction("Index");
+
                                
 
             }
