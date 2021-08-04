@@ -50,12 +50,12 @@
                         <span class="nav-link-text ms-1">Dashboard</span>
                     </a>
                 </li>
-                @{ if (Session["UserTypeID"] != null)
+                @*@{ if (Session["UserTypeID"] != null)
                     {
                         var usertype = Convert.ToString(Session["UserTypeID"]);
                        
                         if (usertype == "djhjdk")
-                        {
+                        {*@
 
                             <li class="nav-item">
                                 <a class="nav-link  active" href="">
@@ -145,8 +145,8 @@
                                     <span class="nav-link-text ms-1">User</span>
                                 </a>
                             </li>
-                            }
-                        } }
+                            @*}
+                        } }*@
 
                         </ul>
         </div>
