@@ -12,14 +12,15 @@ namespace DatabaseLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class Payment
+    public partial class Invoice
     {
-        public System.Guid PaymentId { get; set; }
-        public System.Guid OrderID { get; set; }
-        public string VAT { get; set; }
-        public string ServiceTAX { get; set; }
-        public string Total { get; set; }
+        public System.Guid InvoiveID { get; set; }
+        public Nullable<bool> Satuts { get; set; }
+        public Nullable<decimal> VAT { get; set; }
+        public Nullable<decimal> ServiceTax { get; set; }
+        public decimal Total { get; set; }
+        public int CartDetailID { get; set; }
     
-        public virtual Order Order { get; set; }
+        public virtual CartDetail CartDetail { get; set; }
     }
 }

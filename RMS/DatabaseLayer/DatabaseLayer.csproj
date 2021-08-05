@@ -53,6 +53,9 @@
     <Compile Include="Booking.cs">
       <DependentUpon>Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="CartDetail.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Category.cs">
       <DependentUpon>Entity.tt</DependentUpon>
     </Compile>
@@ -83,16 +86,19 @@
     <Compile Include="InventoryProduct.cs">
       <DependentUpon>Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Invoice.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Menu.cs">
       <DependentUpon>Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="Order.cs">
       <DependentUpon>Entity.tt</DependentUpon>
     </Compile>
-    <Compile Include="OrderItem.cs">
+    <Compile Include="OrderCart.cs">
       <DependentUpon>Entity.tt</DependentUpon>
     </Compile>
-    <Compile Include="Payment.cs">
+    <Compile Include="OrderItem.cs">
       <DependentUpon>Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductQuantity.cs">
