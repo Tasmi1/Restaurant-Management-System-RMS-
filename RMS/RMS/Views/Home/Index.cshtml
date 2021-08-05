@@ -2,7 +2,8 @@
     ViewBag.Title = "Home Page";
 }
 
-
+<script src="~/Scripts/chart/exporting.js"></script>
+<script src="~/Scripts/chart/highcharts.js"></script>
 <div class="col-12">
     <div class="card mb-4">
         <div class="card-header pb-0">
@@ -98,11 +99,67 @@
                     </div>
                 </div>
 
-                
+
             </div>
+            <div class="row">
+                <div class="jumbotron">
+                    <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                </div>
 
-
+            </div>
         </div>
     </div>
 </div>
 
+<script>
+
+
+    $(document).ready(function () {
+        $.getJSON("/Home/GetDate", function (data) {
+
+            Highcharts.chart('container', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: 'User Ratio'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Brands',
+                    colorByPoint: true,
+                    data: [{
+                        name: 'Admin',
+                        y: data.Admin
+                    }, {
+                        name: 'Waiter',
+                        y: data.Waiter
+                    }, {
+                        name: 'KtichenStaff',
+                        y: data.KtichenStaff
+                    }]
+                }]
+            });
+        });
+    });
+
+
+</script>
