@@ -1,8 +1,10 @@
-﻿using System;
+﻿using DatabaseLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
 
 namespace RMS.Controllers
 {
@@ -10,21 +12,40 @@ namespace RMS.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+            {
+                 ViewBag.countUser = db.Users.Count();
+                 ViewBag.countCustomer = db.Customers.Count();
+                 ViewBag.totalOrder = db.Orders.Count();
+                 ViewBag.Date = db.Orders.Where(x => x.OrderDate == DateTime.Today).Count();
+
+                return View();
+                
+            }
         }
 
-        public ActionResult About()
+        public ActionResult GetDate()
         {
-            ViewBag.Message = "Your application description page.";
+            using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+            {
+                int admin = db.Users.Where(x => x.UserType.Type == "Admin").Count();
+                int waiter = db.Users.Where(x => x.UserType.Type == "Waiter").Count();
+                int ktichenStaff = db.Users.Where(x => x.UserType.Type == "Ktichen Staff").Count();
+                Ratio obj = new Ratio();
+                obj.Admin = admin;
+                obj.Waiter = waiter;
+                obj.KtichenStaff = ktichenStaff;
+                return Json(obj, JsonRequestBehavior.AllowGet);
 
-            return View();
+            }
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
-            return View();
+        public class Ratio
+        {
+            public int Admin { get; set; }
+            public int Waiter { get; set; }
+            public int KtichenStaff { get; set; }
         }
     }
 }
