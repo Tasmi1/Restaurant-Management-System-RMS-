@@ -219,9 +219,6 @@
     <Content Include="Content\dashboard\js\core\popper.min.js" />
     <Content Include="Content\dashboard\js\plugins\bootstrap-notify.js" />
     <Content Include="Content\dashboard\js\plugins\Chart.extension.js" />
-    <Content Include="Content\dashboard\js\plugins\chartjs.min.js" />
-    <Content Include="Content\dashboard\js\plugins\choices.min.js" />
-    <Content Include="Content\dashboard\js\plugins\fullcalendar.min.js" />
     <Content Include="Content\dashboard\js\plugins\perfect-scrollbar.min.js" />
     <Content Include="Content\dashboard\js\plugins\smooth-scrollbar.min.js" />
     <Content Include="Content\dashboard\js\soft-ui-dashboard.js" />

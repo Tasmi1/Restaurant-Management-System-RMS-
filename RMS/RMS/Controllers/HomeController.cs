@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DatabaseLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,16 @@ namespace RMS.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+            {
+                 ViewBag.countUser = db.Users.Count();
+                 ViewBag.countCustomer = db.Customers.Count();
+                 ViewBag.totalOrder = db.Orders.Count();
+                 ViewBag.Date = db.Orders.Where(x => x.OrderDate == DateTime.Today).Count();
+
+                return View();
+                
+            }
         }
 
         public ActionResult About()
