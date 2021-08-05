@@ -12,21 +12,26 @@ namespace DatabaseLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class Menu
+    public partial class CartDetail
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Menu()
+        public CartDetail()
         {
-            this.CartDetails = new HashSet<CartDetail>();
+            this.Invoices = new HashSet<Invoice>();
         }
     
+        public decimal Quantity { get; set; }
+        public decimal Price { get; set; }
+        public decimal Total { get; set; }
+        public int CartDetailID { get; set; }
+        public int OrderCartID { get; set; }
         public System.Guid MenuID { get; set; }
-        public string MenuName { get; set; }
-        public string MenuPrice { get; set; }
-        public System.Guid SubCategoryID { get; set; }
+        public System.Guid CustomerID { get; set; }
     
+        public virtual Customer Customer { get; set; }
+        public virtual Menu Menu { get; set; }
+        public virtual OrderCart OrderCart { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CartDetail> CartDetails { get; set; }
-        public virtual DishSubCategory DishSubCategory { get; set; }
+        public virtual ICollection<Invoice> Invoices { get; set; }
     }
 }

@@ -12,21 +12,20 @@ namespace DatabaseLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class Menu
+    public partial class OrderCart
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Menu()
+        public OrderCart()
         {
             this.CartDetails = new HashSet<CartDetail>();
         }
     
-        public System.Guid MenuID { get; set; }
-        public string MenuName { get; set; }
-        public string MenuPrice { get; set; }
-        public System.Guid SubCategoryID { get; set; }
+        public System.DateTime OrderDate { get; set; }
+        public string OrderNumber { get; set; }
+        public int OrderCartID { get; set; }
+        public Nullable<bool> OrderStatus { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CartDetail> CartDetails { get; set; }
-        public virtual DishSubCategory DishSubCategory { get; set; }
     }
 }
