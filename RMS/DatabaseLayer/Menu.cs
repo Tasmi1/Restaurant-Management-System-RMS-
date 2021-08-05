@@ -24,6 +24,7 @@ namespace DatabaseLayer
         public string MenuName { get; set; }
         public string MenuPrice { get; set; }
         public System.Guid SubCategoryID { get; set; }
+        public string ImagePath { get; set; }
     
         public virtual DishSubCategory DishSubCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

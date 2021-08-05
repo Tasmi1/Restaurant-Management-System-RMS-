@@ -37,9 +37,10 @@ namespace DatabaseLayer
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<ProductQuantity> ProductQuantities { get; set; }
         public virtual DbSet<PurchaseProduct> PurchaseProducts { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserType> UserTypes { get; set; }
         public virtual DbSet<Vendor> Vendors { get; set; }
+        public virtual DbSet<CartDetail> CartDetails { get; set; }
+        public virtual DbSet<OrderCart> OrderCarts { get; set; }
     }
 }

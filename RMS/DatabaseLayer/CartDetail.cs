@@ -12,12 +12,13 @@ namespace DatabaseLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagram
+    public partial class CartDetail
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int CartDetailId { get; set; }
+        public int OrderCartId { get; set; }
+        public string MenuId { get; set; }
+        public decimal Quantity { get; set; }
+        public decimal Price { get; set; }
+        public decimal Total { get; set; }
     }
 }
