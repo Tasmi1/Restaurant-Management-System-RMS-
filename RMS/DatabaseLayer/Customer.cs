@@ -18,7 +18,7 @@ namespace DatabaseLayer
         public Customer()
         {
             this.Bookings = new HashSet<Booking>();
-            this.Orders = new HashSet<Order>();
+            this.CartDetails = new HashSet<CartDetail>();
         }
     
         public System.Guid CustomerID { get; set; }
@@ -29,6 +29,6 @@ namespace DatabaseLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Booking> Bookings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<CartDetail> CartDetails { get; set; }
     }
 }

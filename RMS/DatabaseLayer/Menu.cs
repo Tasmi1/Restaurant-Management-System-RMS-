@@ -17,7 +17,7 @@ namespace DatabaseLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Menu()
         {
-            this.Orders = new HashSet<Order>();
+            this.CartDetails = new HashSet<CartDetail>();
         }
     
         public System.Guid MenuID { get; set; }
@@ -25,8 +25,8 @@ namespace DatabaseLayer
         public string MenuPrice { get; set; }
         public System.Guid SubCategoryID { get; set; }
     
-        public virtual DishSubCategory DishSubCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<CartDetail> CartDetails { get; set; }
+        public virtual DishSubCategory DishSubCategory { get; set; }
     }
 }

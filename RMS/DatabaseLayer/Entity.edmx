@@ -15,6 +15,18 @@
           <Property Name="Description" Type="nvarchar" MaxLength="200" />
           <Property Name="CustomerID" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
+        <EntityType Name="CartDetails">
+          <Key>
+            <PropertyRef Name="CartDetailID" />
+          </Key>
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CartDetailID" Type="int" Nullable="false" />
+          <Property Name="OrderCartID" Type="int" Nullable="false" />
+          <Property Name="MenuID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CustomerID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryID" />
@@ -57,6 +69,17 @@
           <Property Name="Description" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="CategoryID" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="InvoiveID" />
+          </Key>
+          <Property Name="InvoiveID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Satuts" Type="bit" />
+          <Property Name="VAT" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ServiceTax" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CartDetailID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Menu">
           <Key>
             <PropertyRef Name="MenuID" />
@@ -77,6 +100,15 @@
           <Property Name="CustomerID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="MenuID" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
+        <EntityType Name="OrderCart">
+          <Key>
+            <PropertyRef Name="OrderCartID" />
+          </Key>
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="OrderNumber" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="OrderCartID" Type="int" Nullable="false" />
+          <Property Name="OrderStatus" Type="bit" />
+        </EntityType>
         <EntityType Name="OrderItems">
           <Key>
             <PropertyRef Name="ItemID" />
@@ -86,16 +118,6 @@
           <Property Name="Quantity" Type="int" />
           <Property Name="Price" Type="nvarchar" MaxLength="100" />
           <Property Name="Description" Type="nvarchar" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="Payment">
-          <Key>
-            <PropertyRef Name="PaymentId" />
-          </Key>
-          <Property Name="PaymentId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="OrderID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="VAT" Type="nvarchar" MaxLength="50" />
-          <Property Name="ServiceTAX" Type="nvarchar" MaxLength="50" />
-          <Property Name="Total" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductQuantity">
           <Key>
@@ -168,6 +190,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CartDetails_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="CartDetails" Type="Self.CartDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="CartDetails">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CartDetails_Menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="CartDetails" Type="Self.CartDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="MenuID" />
+            </Principal>
+            <Dependent Role="CartDetails">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CartDetails_OrderCart">
+          <End Role="OrderCart" Type="Self.OrderCart" Multiplicity="1" />
+          <End Role="CartDetails" Type="Self.CartDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderCart">
+              <PropertyRef Name="OrderCartID" />
+            </Principal>
+            <Dependent Role="CartDetails">
+              <PropertyRef Name="OrderCartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DishSubCategory_DishCategory">
           <End Role="DishCategory" Type="Self.DishCategory" Multiplicity="1" />
           <End Role="DishSubCategory" Type="Self.DishSubCategory" Multiplicity="*" />
@@ -192,6 +250,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Invoice_CartDetails">
+          <End Role="CartDetails" Type="Self.CartDetails" Multiplicity="1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CartDetails">
+              <PropertyRef Name="CartDetailID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="CartDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Menu_DishSubCategory">
           <End Role="DishSubCategory" Type="Self.DishSubCategory" Multiplicity="1" />
           <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
@@ -204,30 +274,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Order_Customer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="CustomerID" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="CustomerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Order_Menu">
-          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Menu">
-              <PropertyRef Name="MenuID" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="MenuID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_OrderItems_Order">
           <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
           <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
@@ -236,18 +282,6 @@
               <PropertyRef Name="OrderID" />
             </Principal>
             <Dependent Role="OrderItems">
-              <PropertyRef Name="OrderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Payment_Order">
-          <End Role="Order" Type="Self.Order" Multiplicity="1" />
-          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Order">
-              <PropertyRef Name="OrderID" />
-            </Principal>
-            <Dependent Role="Payment">
               <PropertyRef Name="OrderID" />
             </Dependent>
           </ReferentialConstraint>
@@ -302,15 +336,17 @@
         </Association>
         <EntityContainer Name="ResturantManagementDBModelStoreContainer">
           <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CartDetails" EntityType="Self.CartDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DishCategory" EntityType="Self.DishCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DishSubCategory" EntityType="Self.DishSubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InventoryProduct" EntityType="Self.InventoryProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderCart" EntityType="Self.OrderCart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderItems" EntityType="Self.OrderItems" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductQuantity" EntityType="Self.ProductQuantity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PurchaseProduct" EntityType="Self.PurchaseProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -321,6 +357,18 @@
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
+          <AssociationSet Name="FK_CartDetails_Customer" Association="Self.FK_CartDetails_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="CartDetails" EntitySet="CartDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CartDetails_Menu" Association="Self.FK_CartDetails_Menu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="CartDetails" EntitySet="CartDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CartDetails_OrderCart" Association="Self.FK_CartDetails_OrderCart">
+            <End Role="OrderCart" EntitySet="OrderCart" />
+            <End Role="CartDetails" EntitySet="CartDetails" />
+          </AssociationSet>
           <AssociationSet Name="FK_DishSubCategory_DishCategory" Association="Self.FK_DishSubCategory_DishCategory">
             <End Role="DishCategory" EntitySet="DishCategory" />
             <End Role="DishSubCategory" EntitySet="DishSubCategory" />
@@ -329,25 +377,17 @@
             <End Role="Category" EntitySet="Category" />
             <End Role="InventoryProduct" EntitySet="InventoryProduct" />
           </AssociationSet>
+          <AssociationSet Name="FK_Invoice_CartDetails" Association="Self.FK_Invoice_CartDetails">
+            <End Role="CartDetails" EntitySet="CartDetails" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
           <AssociationSet Name="FK_Menu_DishSubCategory" Association="Self.FK_Menu_DishSubCategory">
             <End Role="DishSubCategory" EntitySet="DishSubCategory" />
             <End Role="Menu" EntitySet="Menu" />
           </AssociationSet>
-          <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
-            <End Role="Customer" EntitySet="Customer" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Menu" Association="Self.FK_Order_Menu">
-            <End Role="Menu" EntitySet="Menu" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
           <AssociationSet Name="FK_OrderItems_Order" Association="Self.FK_OrderItems_Order">
             <End Role="Order" EntitySet="Order" />
             <End Role="OrderItems" EntitySet="OrderItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Payment_Order" Association="Self.FK_Payment_Order">
-            <End Role="Order" EntitySet="Order" />
-            <End Role="Payment" EntitySet="Payment" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductQuantity_InventoryProduct" Association="Self.FK_ProductQuantity_InventoryProduct">
             <End Role="InventoryProduct" EntitySet="InventoryProduct" />
@@ -372,15 +412,17 @@
       <Schema Namespace="ResturantManagementDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ResturantManagementDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Bookings" EntityType="ResturantManagementDBModel.Booking" />
+          <EntitySet Name="CartDetails" EntityType="ResturantManagementDBModel.CartDetail" />
           <EntitySet Name="Categories" EntityType="ResturantManagementDBModel.Category" />
           <EntitySet Name="Customers" EntityType="ResturantManagementDBModel.Customer" />
           <EntitySet Name="DishCategories" EntityType="ResturantManagementDBModel.DishCategory" />
           <EntitySet Name="DishSubCategories" EntityType="ResturantManagementDBModel.DishSubCategory" />
           <EntitySet Name="InventoryProducts" EntityType="ResturantManagementDBModel.InventoryProduct" />
+          <EntitySet Name="Invoices" EntityType="ResturantManagementDBModel.Invoice" />
           <EntitySet Name="Menus" EntityType="ResturantManagementDBModel.Menu" />
           <EntitySet Name="Orders" EntityType="ResturantManagementDBModel.Order" />
+          <EntitySet Name="OrderCarts" EntityType="ResturantManagementDBModel.OrderCart" />
           <EntitySet Name="OrderItems" EntityType="ResturantManagementDBModel.OrderItem" />
-          <EntitySet Name="Payments" EntityType="ResturantManagementDBModel.Payment" />
           <EntitySet Name="ProductQuantities" EntityType="ResturantManagementDBModel.ProductQuantity" />
           <EntitySet Name="PurchaseProducts" EntityType="ResturantManagementDBModel.PurchaseProduct" />
           <EntitySet Name="sysdiagrams" EntityType="ResturantManagementDBModel.sysdiagram" />
@@ -391,13 +433,25 @@
             <End Role="Customer" EntitySet="Customers" />
             <End Role="Booking" EntitySet="Bookings" />
           </AssociationSet>
+          <AssociationSet Name="FK_CartDetails_Customer" Association="ResturantManagementDBModel.FK_CartDetails_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="CartDetail" EntitySet="CartDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CartDetails_Menu" Association="ResturantManagementDBModel.FK_CartDetails_Menu">
+            <End Role="Menu" EntitySet="Menus" />
+            <End Role="CartDetail" EntitySet="CartDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CartDetails_OrderCart" Association="ResturantManagementDBModel.FK_CartDetails_OrderCart">
+            <End Role="OrderCart" EntitySet="OrderCarts" />
+            <End Role="CartDetail" EntitySet="CartDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_CartDetails" Association="ResturantManagementDBModel.FK_Invoice_CartDetails">
+            <End Role="CartDetail" EntitySet="CartDetails" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
           <AssociationSet Name="FK_InventoryProduct_Category" Association="ResturantManagementDBModel.FK_InventoryProduct_Category">
             <End Role="Category" EntitySet="Categories" />
             <End Role="InventoryProduct" EntitySet="InventoryProducts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Customer" Association="ResturantManagementDBModel.FK_Order_Customer">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_DishSubCategory_DishCategory" Association="ResturantManagementDBModel.FK_DishSubCategory_DishCategory">
             <End Role="DishCategory" EntitySet="DishCategories" />
@@ -415,17 +469,9 @@
             <End Role="InventoryProduct" EntitySet="InventoryProducts" />
             <End Role="PurchaseProduct" EntitySet="PurchaseProducts" />
           </AssociationSet>
-          <AssociationSet Name="FK_Order_Menu" Association="ResturantManagementDBModel.FK_Order_Menu">
-            <End Role="Menu" EntitySet="Menus" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
           <AssociationSet Name="FK_OrderItems_Order" Association="ResturantManagementDBModel.FK_OrderItems_Order">
             <End Role="Order" EntitySet="Orders" />
             <End Role="OrderItem" EntitySet="OrderItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Payment_Order" Association="ResturantManagementDBModel.FK_Payment_Order">
-            <End Role="Order" EntitySet="Orders" />
-            <End Role="Payment" EntitySet="Payments" />
           </AssociationSet>
           <AssociationSet Name="FK_PurchaseProduct_Vendor" Association="ResturantManagementDBModel.FK_PurchaseProduct_Vendor">
             <End Role="Vendor" EntitySet="Vendors" />
@@ -447,6 +493,22 @@
           <Property Name="CustomerID" Type="Guid" Nullable="false" />
           <NavigationProperty Name="Customer" Relationship="ResturantManagementDBModel.FK_Booking_Customer" FromRole="Booking" ToRole="Customer" />
         </EntityType>
+        <EntityType Name="CartDetail">
+          <Key>
+            <PropertyRef Name="CartDetailID" />
+          </Key>
+          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Total" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="CartDetailID" Type="Int32" Nullable="false" />
+          <Property Name="OrderCartID" Type="Int32" Nullable="false" />
+          <Property Name="MenuID" Type="Guid" Nullable="false" />
+          <Property Name="CustomerID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="ResturantManagementDBModel.FK_CartDetails_Customer" FromRole="CartDetail" ToRole="Customer" />
+          <NavigationProperty Name="Menu" Relationship="ResturantManagementDBModel.FK_CartDetails_Menu" FromRole="CartDetail" ToRole="Menu" />
+          <NavigationProperty Name="OrderCart" Relationship="ResturantManagementDBModel.FK_CartDetails_OrderCart" FromRole="CartDetail" ToRole="OrderCart" />
+          <NavigationProperty Name="Invoices" Relationship="ResturantManagementDBModel.FK_Invoice_CartDetails" FromRole="CartDetail" ToRole="Invoice" />
+        </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryID" />
@@ -464,7 +526,7 @@
           <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Contact" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Bookings" Relationship="ResturantManagementDBModel.FK_Booking_Customer" FromRole="Customer" ToRole="Booking" />
-          <NavigationProperty Name="Orders" Relationship="ResturantManagementDBModel.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
+          <NavigationProperty Name="CartDetails" Relationship="ResturantManagementDBModel.FK_CartDetails_Customer" FromRole="Customer" ToRole="CartDetail" />
         </EntityType>
         <EntityType Name="DishCategory">
           <Key>
@@ -498,6 +560,18 @@
           <NavigationProperty Name="ProductQuantities" Relationship="ResturantManagementDBModel.FK_ProductQuantity_InventoryProduct" FromRole="InventoryProduct" ToRole="ProductQuantity" />
           <NavigationProperty Name="PurchaseProducts" Relationship="ResturantManagementDBModel.FK_PurchaseProduct_InventoryProduct" FromRole="InventoryProduct" ToRole="PurchaseProduct" />
         </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="InvoiveID" />
+          </Key>
+          <Property Name="InvoiveID" Type="Guid" Nullable="false" />
+          <Property Name="Satuts" Type="Boolean" />
+          <Property Name="VAT" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ServiceTax" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Total" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="CartDetailID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CartDetail" Relationship="ResturantManagementDBModel.FK_Invoice_CartDetails" FromRole="Invoice" ToRole="CartDetail" />
+        </EntityType>
         <EntityType Name="Menu">
           <Key>
             <PropertyRef Name="MenuID" />
@@ -506,8 +580,8 @@
           <Property Name="MenuName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="MenuPrice" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SubCategoryID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="CartDetails" Relationship="ResturantManagementDBModel.FK_CartDetails_Menu" FromRole="Menu" ToRole="CartDetail" />
           <NavigationProperty Name="DishSubCategory" Relationship="ResturantManagementDBModel.FK_Menu_DishSubCategory" FromRole="Menu" ToRole="DishSubCategory" />
-          <NavigationProperty Name="Orders" Relationship="ResturantManagementDBModel.FK_Order_Menu" FromRole="Menu" ToRole="Order" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -519,10 +593,17 @@
           <Property Name="Total" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CustomerID" Type="Guid" Nullable="false" />
           <Property Name="MenuID" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="Customer" Relationship="ResturantManagementDBModel.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
-          <NavigationProperty Name="Menu" Relationship="ResturantManagementDBModel.FK_Order_Menu" FromRole="Order" ToRole="Menu" />
           <NavigationProperty Name="OrderItems" Relationship="ResturantManagementDBModel.FK_OrderItems_Order" FromRole="Order" ToRole="OrderItem" />
-          <NavigationProperty Name="Payments" Relationship="ResturantManagementDBModel.FK_Payment_Order" FromRole="Order" ToRole="Payment" />
+        </EntityType>
+        <EntityType Name="OrderCart">
+          <Key>
+            <PropertyRef Name="OrderCartID" />
+          </Key>
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OrderNumber" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="OrderCartID" Type="Int32" Nullable="false" />
+          <Property Name="OrderStatus" Type="Boolean" />
+          <NavigationProperty Name="CartDetails" Relationship="ResturantManagementDBModel.FK_CartDetails_OrderCart" FromRole="OrderCart" ToRole="CartDetail" />
         </EntityType>
         <EntityType Name="OrderItem">
           <Key>
@@ -534,17 +615,6 @@
           <Property Name="Price" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Order" Relationship="ResturantManagementDBModel.FK_OrderItems_Order" FromRole="OrderItem" ToRole="Order" />
-        </EntityType>
-        <EntityType Name="Payment">
-          <Key>
-            <PropertyRef Name="PaymentId" />
-          </Key>
-          <Property Name="PaymentId" Type="Guid" Nullable="false" />
-          <Property Name="OrderID" Type="Guid" Nullable="false" />
-          <Property Name="VAT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ServiceTAX" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Total" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Order" Relationship="ResturantManagementDBModel.FK_Payment_Order" FromRole="Payment" ToRole="Order" />
         </EntityType>
         <EntityType Name="ProductQuantity">
           <Key>
@@ -623,6 +693,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CartDetails_Customer">
+          <End Type="ResturantManagementDBModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="ResturantManagementDBModel.CartDetail" Role="CartDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="CartDetail">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CartDetails_Menu">
+          <End Type="ResturantManagementDBModel.Menu" Role="Menu" Multiplicity="1" />
+          <End Type="ResturantManagementDBModel.CartDetail" Role="CartDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="MenuID" />
+            </Principal>
+            <Dependent Role="CartDetail">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CartDetails_OrderCart">
+          <End Type="ResturantManagementDBModel.OrderCart" Role="OrderCart" Multiplicity="1" />
+          <End Type="ResturantManagementDBModel.CartDetail" Role="CartDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderCart">
+              <PropertyRef Name="OrderCartID" />
+            </Principal>
+            <Dependent Role="CartDetail">
+              <PropertyRef Name="OrderCartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_CartDetails">
+          <End Type="ResturantManagementDBModel.CartDetail" Role="CartDetail" Multiplicity="1" />
+          <End Type="ResturantManagementDBModel.Invoice" Role="Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CartDetail">
+              <PropertyRef Name="CartDetailID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="CartDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_InventoryProduct_Category">
           <End Type="ResturantManagementDBModel.Category" Role="Category" Multiplicity="1" />
           <End Type="ResturantManagementDBModel.InventoryProduct" Role="InventoryProduct" Multiplicity="*" />
@@ -632,18 +750,6 @@
             </Principal>
             <Dependent Role="InventoryProduct">
               <PropertyRef Name="CategoryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Order_Customer">
-          <End Type="ResturantManagementDBModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="ResturantManagementDBModel.Order" Role="Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="CustomerID" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="CustomerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -695,18 +801,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Order_Menu">
-          <End Type="ResturantManagementDBModel.Menu" Role="Menu" Multiplicity="1" />
-          <End Type="ResturantManagementDBModel.Order" Role="Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Menu">
-              <PropertyRef Name="MenuID" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="MenuID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_OrderItems_Order">
           <End Type="ResturantManagementDBModel.Order" Role="Order" Multiplicity="0..1" />
           <End Type="ResturantManagementDBModel.OrderItem" Role="OrderItem" Multiplicity="*" />
@@ -715,18 +809,6 @@
               <PropertyRef Name="OrderID" />
             </Principal>
             <Dependent Role="OrderItem">
-              <PropertyRef Name="OrderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Payment_Order">
-          <End Type="ResturantManagementDBModel.Order" Role="Order" Multiplicity="1" />
-          <End Type="ResturantManagementDBModel.Payment" Role="Payment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Order">
-              <PropertyRef Name="OrderID" />
-            </Principal>
-            <Dependent Role="Payment">
               <PropertyRef Name="OrderID" />
             </Dependent>
           </ReferentialConstraint>
@@ -769,6 +851,19 @@
                 <ScalarProperty Name="TableNumber" ColumnName="TableNumber" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CartDetails">
+            <EntityTypeMapping TypeName="ResturantManagementDBModel.CartDetail">
+              <MappingFragment StoreEntitySet="CartDetails">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="OrderCartID" ColumnName="OrderCartID" />
+                <ScalarProperty Name="CartDetailID" ColumnName="CartDetailID" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -819,6 +914,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="ResturantManagementDBModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="CartDetailID" ColumnName="CartDetailID" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="ServiceTax" ColumnName="ServiceTax" />
+                <ScalarProperty Name="VAT" ColumnName="VAT" />
+                <ScalarProperty Name="Satuts" ColumnName="Satuts" />
+                <ScalarProperty Name="InvoiveID" ColumnName="InvoiveID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Menus">
             <EntityTypeMapping TypeName="ResturantManagementDBModel.Menu">
               <MappingFragment StoreEntitySet="Menu">
@@ -841,6 +948,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="OrderCarts">
+            <EntityTypeMapping TypeName="ResturantManagementDBModel.OrderCart">
+              <MappingFragment StoreEntitySet="OrderCart">
+                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+                <ScalarProperty Name="OrderCartID" ColumnName="OrderCartID" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="OrderItems">
             <EntityTypeMapping TypeName="ResturantManagementDBModel.OrderItem">
               <MappingFragment StoreEntitySet="OrderItems">
@@ -849,17 +966,6 @@
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="ItemID" ColumnName="ItemID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Payments">
-            <EntityTypeMapping TypeName="ResturantManagementDBModel.Payment">
-              <MappingFragment StoreEntitySet="Payment">
-                <ScalarProperty Name="Total" ColumnName="Total" />
-                <ScalarProperty Name="ServiceTAX" ColumnName="ServiceTAX" />
-                <ScalarProperty Name="VAT" ColumnName="VAT" />
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-                <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
