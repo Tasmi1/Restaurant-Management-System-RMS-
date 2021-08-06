@@ -14,31 +14,31 @@ namespace RMS.Controllers
         {
             using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
             {
-                 ViewBag.countUser = db.Users.Count();
-                 ViewBag.countCustomer = db.Customers.Count();
-                 ViewBag.totalOrder = db.Orders.Count();
-                 ViewBag.Date = db.Orders.Where(x => x.OrderDate == DateTime.Today).Count();
+                 //ViewBag.countUser = db.Users.Count();
+                 //ViewBag.countCustomer = db.Customers.Count();
+                 //ViewBag.totalOrder = db.Orders.Count();
+                 //ViewBag.Date = db.Orders.Where(x => x.OrderDate == DateTime.Today).Count();
 
                 return View();
                 
             }
         }
 
-        public ActionResult GetDate()
-        {
-            using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
-            {
-                int admin = db.Users.Where(x => x.UserType.Type == "Admin").Count();
-                int waiter = db.Users.Where(x => x.UserType.Type == "Waiter").Count();
-                int ktichenStaff = db.Users.Where(x => x.UserType.Type == "Ktichen Staff").Count();
-                Ratio obj = new Ratio();
-                obj.Admin = admin;
-                obj.Waiter = waiter;
-                obj.KtichenStaff = ktichenStaff;
-                return Json(obj, JsonRequestBehavior.AllowGet);
+        //public ActionResult GetDate()
+        //{
+        //    using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+        //    {
+        //        int admin = db.Users.Where(x => x.UserType.Type == "Admin").Count();
+        //        int waiter = db.Users.Where(x => x.UserType.Type == "Waiter").Count();
+        //        int ktichenStaff = db.Users.Where(x => x.UserType.Type == "Ktichen Staff").Count();
+        //        Ratio obj = new Ratio();
+        //        obj.Admin = admin;
+        //        obj.Waiter = waiter;
+        //        obj.KtichenStaff = ktichenStaff;
+        //        return Json(obj, JsonRequestBehavior.AllowGet);
 
-            }
-        }
+        //    }
+        //}
 
 
         public class Ratio

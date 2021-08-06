@@ -15,25 +15,6 @@
           <Property Name="Description" Type="nvarchar" MaxLength="200" />
           <Property Name="CustomerID" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
-<<<<<<< HEAD
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ResturantManagementDB.dbo.CartDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="CartDetails">
-          <Key>
-            <PropertyRef Name="CartDetailId" />
-            <PropertyRef Name="OrderCartId" />
-            <PropertyRef Name="MenuId" />
-            <PropertyRef Name="Quantity" />
-            <PropertyRef Name="Price" />
-            <PropertyRef Name="Total" />
-          </Key>
-          <Property Name="CartDetailId" Type="int" Nullable="false" />
-          <Property Name="OrderCartId" Type="int" Nullable="false" />
-          <Property Name="MenuId" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-=======
         <EntityType Name="CartDetails">
           <Key>
             <PropertyRef Name="CartDetailID" />
@@ -45,7 +26,6 @@ warning 6002: The table/view 'ResturantManagementDB.dbo.CartDetails' does not ha
           <Property Name="OrderCartID" Type="int" Nullable="false" />
           <Property Name="MenuID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="CustomerID" Type="uniqueidentifier" Nullable="false" />
->>>>>>> f5516eec2c1b5177ee5e3e0373a699da3ff4b92e
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -108,7 +88,7 @@ warning 6002: The table/view 'ResturantManagementDB.dbo.CartDetails' does not ha
           <Property Name="MenuName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="MenuPrice" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SubCategoryID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ImagePath" Type="nvarchar" MaxLength="100" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -121,19 +101,6 @@ warning 6002: The table/view 'ResturantManagementDB.dbo.CartDetails' does not ha
           <Property Name="CustomerID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="MenuID" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
-<<<<<<< HEAD
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ResturantManagementDB.dbo.OrderCart' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="OrderCart">
-          <Key>
-            <PropertyRef Name="OrderCartId" />
-            <PropertyRef Name="OrderDate" />
-            <PropertyRef Name="OrderNumber" />
-          </Key>
-          <Property Name="OrderCartId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="OrderDate" Type="datetime" Nullable="false" />
-          <Property Name="OrderNumber" Type="nchar" MaxLength="30" Nullable="false" />
-=======
         <EntityType Name="OrderCart">
           <Key>
             <PropertyRef Name="OrderCartID" />
@@ -142,7 +109,6 @@ warning 6002: The table/view 'ResturantManagementDB.dbo.OrderCart' does not have
           <Property Name="OrderNumber" Type="nchar" MaxLength="30" Nullable="false" />
           <Property Name="OrderCartID" Type="int" Nullable="false" />
           <Property Name="OrderStatus" Type="bit" />
->>>>>>> f5516eec2c1b5177ee5e3e0373a699da3ff4b92e
         </EntityType>
         <EntityType Name="OrderItems">
           <Key>
@@ -171,6 +137,16 @@ warning 6002: The table/view 'ResturantManagementDB.dbo.OrderCart' does not have
           <Property Name="VendorID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="Price" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -374,26 +350,10 @@ warning 6002: The table/view 'ResturantManagementDB.dbo.OrderCart' does not have
           <EntitySet Name="OrderItems" EntityType="Self.OrderItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductQuantity" EntityType="Self.ProductQuantity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PurchaseProduct" EntityType="Self.PurchaseProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vendor" EntityType="Self.Vendor" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CartDetails" EntityType="Self.CartDetails" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [CartDetails].[CartDetailId] AS [CartDetailId], 
-    [CartDetails].[OrderCartId] AS [OrderCartId], 
-    [CartDetails].[MenuId] AS [MenuId], 
-    [CartDetails].[Quantity] AS [Quantity], 
-    [CartDetails].[Price] AS [Price], 
-    [CartDetails].[Total] AS [Total]
-    FROM [dbo].[CartDetails] AS [CartDetails]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="OrderCart" EntityType="Self.OrderCart" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [OrderCart].[OrderCartId] AS [OrderCartId], 
-    [OrderCart].[OrderDate] AS [OrderDate], 
-    [OrderCart].[OrderNumber] AS [OrderNumber]
-    FROM [dbo].[OrderCart] AS [OrderCart]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Booking_Customer" Association="Self.FK_Booking_Customer">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Booking" EntitySet="Booking" />
@@ -466,6 +426,7 @@ warning 6002: The table/view 'ResturantManagementDB.dbo.OrderCart' does not have
           <EntitySet Name="OrderItems" EntityType="ResturantManagementDBModel.OrderItem" />
           <EntitySet Name="ProductQuantities" EntityType="ResturantManagementDBModel.ProductQuantity" />
           <EntitySet Name="PurchaseProducts" EntityType="ResturantManagementDBModel.PurchaseProduct" />
+          <EntitySet Name="sysdiagrams" EntityType="ResturantManagementDBModel.sysdiagram" />
           <EntitySet Name="Users" EntityType="ResturantManagementDBModel.User" />
           <EntitySet Name="UserTypes" EntityType="ResturantManagementDBModel.UserType" />
           <EntitySet Name="Vendors" EntityType="ResturantManagementDBModel.Vendor" />
@@ -521,8 +482,6 @@ warning 6002: The table/view 'ResturantManagementDB.dbo.OrderCart' does not have
             <End Role="UserType" EntitySet="UserTypes" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
-          <EntitySet Name="CartDetails" EntityType="ResturantManagementDBModel.CartDetail" />
-          <EntitySet Name="OrderCarts" EntityType="ResturantManagementDBModel.OrderCart" />
         </EntityContainer>
         <EntityType Name="Booking">
           <Key>
@@ -622,13 +581,9 @@ warning 6002: The table/view 'ResturantManagementDB.dbo.OrderCart' does not have
           <Property Name="MenuName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="MenuPrice" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SubCategoryID" Type="Guid" Nullable="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CartDetails" Relationship="ResturantManagementDBModel.FK_CartDetails_Menu" FromRole="Menu" ToRole="CartDetail" />
           <NavigationProperty Name="DishSubCategory" Relationship="ResturantManagementDBModel.FK_Menu_DishSubCategory" FromRole="Menu" ToRole="DishSubCategory" />
-<<<<<<< HEAD
-          <NavigationProperty Name="Orders" Relationship="ResturantManagementDBModel.FK_Order_Menu" FromRole="Menu" ToRole="Order" />
-          <Property Name="ImagePath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-=======
->>>>>>> f5516eec2c1b5177ee5e3e0373a699da3ff4b92e
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -683,6 +638,16 @@ warning 6002: The table/view 'ResturantManagementDB.dbo.OrderCart' does not have
           <Property Name="Price" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="InventoryProduct" Relationship="ResturantManagementDBModel.FK_PurchaseProduct_InventoryProduct" FromRole="PurchaseProduct" ToRole="InventoryProduct" />
           <NavigationProperty Name="Vendor" Relationship="ResturantManagementDBModel.FK_PurchaseProduct_Vendor" FromRole="PurchaseProduct" ToRole="Vendor" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -874,32 +839,6 @@ warning 6002: The table/view 'ResturantManagementDB.dbo.OrderCart' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="CartDetail">
-          <Key>
-            <PropertyRef Name="CartDetailId" />
-            <PropertyRef Name="OrderCartId" />
-            <PropertyRef Name="MenuId" />
-            <PropertyRef Name="Quantity" />
-            <PropertyRef Name="Price" />
-            <PropertyRef Name="Total" />
-          </Key>
-          <Property Name="CartDetailId" Type="Int32" Nullable="false" />
-          <Property Name="OrderCartId" Type="Int32" Nullable="false" />
-          <Property Name="MenuId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="Total" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-        </EntityType>
-        <EntityType Name="OrderCart">
-          <Key>
-            <PropertyRef Name="OrderCartId" />
-            <PropertyRef Name="OrderDate" />
-            <PropertyRef Name="OrderNumber" />
-          </Key>
-          <Property Name="OrderCartId" Type="Guid" Nullable="false" />
-          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="OrderNumber" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1053,6 +992,17 @@ warning 6002: The table/view 'ResturantManagementDB.dbo.OrderCart' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ResturantManagementDBModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="ResturantManagementDBModel.User">
               <MappingFragment StoreEntitySet="User">
@@ -1084,27 +1034,6 @@ warning 6002: The table/view 'ResturantManagementDB.dbo.OrderCart' does not have
                 <ScalarProperty Name="BillNumber" ColumnName="BillNumber" />
                 <ScalarProperty Name="VendorName" ColumnName="VendorName" />
                 <ScalarProperty Name="VendorID" ColumnName="VendorID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CartDetails">
-            <EntityTypeMapping TypeName="ResturantManagementDBModel.CartDetail">
-              <MappingFragment StoreEntitySet="CartDetails">
-                <ScalarProperty Name="Total" ColumnName="Total" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
-                <ScalarProperty Name="OrderCartId" ColumnName="OrderCartId" />
-                <ScalarProperty Name="CartDetailId" ColumnName="CartDetailId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OrderCarts">
-            <EntityTypeMapping TypeName="ResturantManagementDBModel.OrderCart">
-              <MappingFragment StoreEntitySet="OrderCart">
-                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
-                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
-                <ScalarProperty Name="OrderCartId" ColumnName="OrderCartId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

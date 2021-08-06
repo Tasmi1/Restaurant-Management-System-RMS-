@@ -8,7 +8,7 @@ namespace RMS.Model.viewModes
     public class CartDTOs
     {
 
-        public string MenuId { get; set; }
+        public Guid MenuId { get; set; }
 
         public decimal Quantity { get; set; }
 
