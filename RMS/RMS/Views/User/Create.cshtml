@@ -19,6 +19,7 @@
             <div class="card-body">
                 <form method="post">               
                     <div class="form-group ">
+                        <h7 class="text-center text-danger">@ViewBag.Message</h7>
                         <div class="row">
                             <div class="col">
                                 <label style="font-weight: bold;font-size: 1.3em;">First Name </label>
@@ -47,13 +48,18 @@
                             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                             @Html.TextBoxFor(x => x.Password, "", new { @class = "form-control", @placeholder = "Enter Password", @type = "password" })
                         </div>
+
+                        <div class="mb-3">
+                            <label style="font-weight: bold;font-size: 1.3em;">Conform-Password</label>   <br />
+                            <input class="form-control  " type="password" name="ConfirmPassword" id="ConfirmPassword" , placeholder="Confirm Password" required>
+                        </div>
                         <div class="mb-3">
                             <label style="font-weight: bold; font-size: 1.3em;">Phone Number</label>   <br />
                             @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
                             @Html.TextBoxFor(x => x.PhoneNumber, "", new { @class = "form-control", @placeholder = "Enter Phone Number" })
                         </div>
 
-                        
+
                         <div class="mb-3">
                             <label style="font-weight: bold;font-size: 1.3em;">Address</label>   <br />
                             @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
@@ -61,10 +67,10 @@
                         </div>
 
                         <div class="mb-3">
-                            <label style="font-weight: bold;font-size: 1.3em;">Email</label>   <br />
+                            <label style="font-weight: bold;font-size: 1.3em;">User Type</label>   <br />
                             @Html.ValidationMessageFor(model => model.UserTypeID, "", new { @class = "text-danger" })
-                            @Html.DropDownListFor(x => x.UserTypeID, new SelectList(Model.UserTypes, "Id", "Name"), new { @class = "form-control form-control-lg ", required = "required"})
-                           
+                            @Html.DropDownListFor(x => x.UserTypeID, new SelectList(Model.UserTypes, "Id", "Name"), new { @class = "form-control form-control-lg ", required = "required" })
+
                         </div>
                     </div>
                     <div class="text-center">
