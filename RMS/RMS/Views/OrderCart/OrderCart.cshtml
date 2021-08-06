@@ -1,0 +1,61 @@
+﻿@model IEnumerable<RMS.Model.viewModes.CartDTOs>
+
+@{
+    ViewBag.Title = "OrderCart";
+    decimal TotalAmount = 0.00M;
+}
+
+<h2>OrderCart</h2>
+
+@using (Html.BeginForm("AddOrder", "OrderCart", FormMethod.Post))
+    {
+
+    <table class="table-condensed" style="width:100%">
+
+        @foreach (var item in Model)
+        {
+            TotalAmount += item.Total;
+            <tr>
+                <td style="text-align:right>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td style="text-align:right>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td style="text-align:right>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+               
+                <td style="text-align:right>
+                    @Html.DisplayFor(modelItem => item.ImagePath)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MenuName)
+                </td>
+
+            </tr>
+            }
+            <tr style="border-top: 2px solid maroon">
+                <td colspan="4" style="text-align:right">
+                    <h3> TotalAmount</h3>
+                </td>
+                <td style="text-align:right">
+                    <h3>@TotalAmount.ToString("#,##0.00")</h3>
+                </td>
+            </tr>
+            <tr style="text-align:right">
+                <td colspan="5">
+                    <input type="submit" value="Save" name="Save" class="btn btn-primary" />
+                </td>
+            </tr>
+            <tr style="text-align:right">
+                <td colspan="5">
+                    @Html.ActionLink("Back", "Index", "OrderCart")
+                </td>
+            </tr>
+
+        </table>
+       
+
+    }
+

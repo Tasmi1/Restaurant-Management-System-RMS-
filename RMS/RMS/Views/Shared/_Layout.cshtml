@@ -51,6 +51,7 @@
                         <span class="nav-link-text ms-1">Dashboard</span>
                     </a>
                 </li>
+
                 @*@{ if (Session["UserTypeID"] != null)
                     {
                         var usertype = Convert.ToString(Session["UserTypeID"]);
@@ -150,6 +151,7 @@
                         } }*@
 
                         </ul>
+
         </div>
 
     </aside>
@@ -192,32 +194,35 @@
         <!-- End Navbar -->
 
         <div class="container-fluid py-4">
-            <div class="row">                
+            <div class="row">
                 <div class="row">
                     @RenderBody()
-                 
-                </div>               
+
+                </div>
             </div>
-         
+
         </div>
     </main>
 
     <!--   Core JS Files   -->
     <script src="~/Content/dashboard/js/core/bootstrap.min.js"></script>
 
+
     <script>
-    var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar')) {
-      var options = {
-        damping: '0.5'
-      }
-      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-    }
+        var win = navigator.platform.indexOf('Win') > -1;
+        if (win && document.querySelector('#sidenav-scrollbar')) {
+            var options = {
+                damping: '0.5'
+            }
+            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+        }
     </script>
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+
     <script src="../Das/assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+    @RenderSection("script", false)
+
 </body>
 
 </html>

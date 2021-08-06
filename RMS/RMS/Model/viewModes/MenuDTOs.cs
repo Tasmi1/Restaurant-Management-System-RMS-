@@ -19,7 +19,10 @@ namespace RMS.Model.viewModes
         public string MenuName { get; set; }
         [Required(ErrorMessage = "Menu Price is required")]
 
-        public string MenuPrice { get; set; }
+        public decimal MenuPrice { get; set; }
+
+        public string ImagePath { get; set; }
+
         public Guid SubCategoryID { get; set; }
 
         public List<BaseGuidSelect> DishSubCategories { get; set; }
