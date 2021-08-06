@@ -74,7 +74,7 @@
             <PropertyRef Name="InvoiveID" />
           </Key>
           <Property Name="InvoiveID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Satuts" Type="bit" />
+          <Property Name="Status" Type="bit" />
           <Property Name="VAT" Type="decimal" Precision="18" Scale="0" />
           <Property Name="ServiceTax" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
@@ -565,7 +565,7 @@
             <PropertyRef Name="InvoiveID" />
           </Key>
           <Property Name="InvoiveID" Type="Guid" Nullable="false" />
-          <Property Name="Satuts" Type="Boolean" />
+          <Property Name="Status" Type="Boolean" />
           <Property Name="VAT" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="ServiceTax" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Total" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
@@ -921,7 +921,7 @@
                 <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="ServiceTax" ColumnName="ServiceTax" />
                 <ScalarProperty Name="VAT" ColumnName="VAT" />
-                <ScalarProperty Name="Satuts" ColumnName="Satuts" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="InvoiveID" ColumnName="InvoiveID" />
               </MappingFragment>
             </EntityTypeMapping>
