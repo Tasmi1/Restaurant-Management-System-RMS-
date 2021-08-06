@@ -511,8 +511,8 @@
           <Property Name="MenuPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SubCategoryID" Type="Guid" Nullable="false" />
           <Property Name="ImagePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CartDetails" Relationship="ResturantManagementDBModel.FK_CartDetails_Menu" FromRole="Menu" ToRole="CartDetail" />
-          <NavigationProperty Name="DishSubCategory" Relationship="ResturantManagementDBModel.FK_Menu_DishSubCategory" FromRole="Menu" ToRole="DishSubCategory" />
+          <NavigationProperty Name="CartDetails" Relationship="Self.FK_CartDetails_Menu" FromRole="Menu" ToRole="CartDetails" />
+          <NavigationProperty Name="DishSubCategory" Relationship="Self.FK_Menu_DishSubCategory" FromRole="Menu" ToRole="DishSubCategory" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -932,6 +932,9 @@
           <EntitySetMapping Name="Menus">
             <EntityTypeMapping TypeName="ResturantManagementDBModel.Menu">
               <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="MenuPrice" ColumnName="MenuPrice" />
                 <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
                 <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
               </MappingFragment>
