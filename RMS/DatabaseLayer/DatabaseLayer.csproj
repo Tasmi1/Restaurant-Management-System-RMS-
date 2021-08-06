@@ -86,6 +86,9 @@
     <Compile Include="InventoryProduct.cs">
       <DependentUpon>Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Invoice.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Menu.cs">
       <DependentUpon>Entity.tt</DependentUpon>
     </Compile>
@@ -93,12 +96,15 @@
       <DependentUpon>Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="OrderCart.cs">
+<<<<<<< HEAD
       <DependentUpon>Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="OrderItem.cs">
+=======
+>>>>>>> f5516eec2c1b5177ee5e3e0373a699da3ff4b92e
       <DependentUpon>Entity.tt</DependentUpon>
     </Compile>
-    <Compile Include="Payment.cs">
+    <Compile Include="OrderItem.cs">
       <DependentUpon>Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductQuantity.cs">

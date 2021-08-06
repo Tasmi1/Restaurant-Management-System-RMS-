@@ -27,10 +27,17 @@ namespace RMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool result = userTypeService.Create(model);
-                if (result == true)
+                if (!userTypeService.UserTypeValidation(model.Type))
                 {
-                    return RedirectToAction("Index");
+                    bool result = userTypeService.Create(model);
+                    if (result == true)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("Type", "Duplicate User Type!");
                 }
             }
             return View(model);

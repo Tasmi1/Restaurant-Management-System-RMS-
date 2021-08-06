@@ -18,7 +18,6 @@ namespace DatabaseLayer
         public Order()
         {
             this.OrderItems = new HashSet<OrderItem>();
-            this.Payments = new HashSet<Payment>();
         }
     
         public System.Guid OrderID { get; set; }
@@ -28,11 +27,7 @@ namespace DatabaseLayer
         public System.Guid CustomerID { get; set; }
         public System.Guid MenuID { get; set; }
     
-        public virtual Customer Customer { get; set; }
-        public virtual Menu Menu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderItem> OrderItems { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Payment> Payments { get; set; }
     }
 }
