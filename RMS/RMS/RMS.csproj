@@ -132,6 +132,7 @@
     <Compile Include="Controllers\DishSubCategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoryProductController.cs" />
+    <Compile Include="Controllers\OrderCartController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
@@ -158,13 +159,16 @@
     <Compile Include="Model\Services\MenuService.cs" />
     <Compile Include="Model\Services\UserTypeService.cs" />
     <Compile Include="Model\viewModes\Base\BaseSelectList.cs" />
+    <Compile Include="Model\viewModes\CartDTOs.cs" />
     <Compile Include="Model\viewModes\CategoryDTOs.cs" />
     <Compile Include="Model\viewModes\CustomerDTOs.cs" />
     <Compile Include="Model\viewModes\DishSubCategoryDTOs.cs" />
     <Compile Include="Model\viewModes\MenuDTOs.cs" />
     <Compile Include="Model\viewModes\DishCategoryDTOs.cs" />
     <Compile Include="Model\viewModes\InventoryProductDTOs.cs" />
+    <Compile Include="Model\viewModes\OrderCartDTOs.cs" />
     <Compile Include="Model\viewModes\OrderDTOs.cs" />
+    <Compile Include="Model\viewModes\OrderModel.cs" />
     <Compile Include="Model\viewModes\UserDTOs.cs" />
     <Compile Include="Model\viewModes\UserTypeDTOs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -223,6 +227,11 @@
     <Content Include="Content\dashboard\js\plugins\smooth-scrollbar.min.js" />
     <Content Include="Content\dashboard\js\soft-ui-dashboard.js" />
     <Content Include="Content\dashboard\js\soft-ui-dashboard.min.js" />
+    <Content Include="Content\Image\chinese.jpg" />
+    <Content Include="Content\Image\download.jpg" />
+    <Content Include="Content\Image\momo.jpg" />
+    <Content Include="Content\Image\spaghetti.jpg" />
+    <Content Include="Content\Image\sushi.jpg" />
     <Content Include="Content\Login\css\bootstrap.min.css" />
     <Content Include="Content\Login\css\owl.carousel.min.css" />
     <Content Include="Content\Login\css\style.css" />
@@ -597,7 +606,6 @@
     <Content Include="Views\DishSubCategory\Edit.cshtml" />
     <Content Include="Views\DishSubCategory\Index.cshtml" />-->
     <Content Include="Views\Menu\Details.cshtml" />
-    <Content Include="Views\Menu\Details.cshtml" />
     <Content Include="Views\DishCategory\Index.cshtml" />
     <Content Include="Views\DishCategory\Create.cshtml" />
     <Content Include="Views\DishCategory\Edit.cshtml" />
@@ -617,12 +625,16 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\Order\Create.cshtml" />
+    <Content Include="Views\Order\Details.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\OrderCart\Index.cshtml" />
+    <Content Include="Views\OrderCart\OrderCart.cshtml" />
+    <Content Include="Views\Shared\_OrderCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Categories\" />
-    <Folder Include="Views\InventoryProducts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

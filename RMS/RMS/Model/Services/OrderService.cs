@@ -12,10 +12,11 @@ namespace RMS.Model.Services
     public class OrderService
     {
         private readonly OrderConverter converter = new OrderConverter();
+        private readonly MenuService menuService = new MenuService();
 
         public OrderDTOs CreateSelectList(OrderDTOs model)
         {
-            model.Customers = GetCustomers();
+            model.Customers = GetCustomers();            
             model.Menus = GetMenus();
             return model;
         }
@@ -31,6 +32,7 @@ namespace RMS.Model.Services
                     Name = u.CustomerName
                 }).ToList();
 
+                
             }
         }
 

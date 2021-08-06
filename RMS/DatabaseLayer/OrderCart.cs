@@ -14,6 +14,11 @@ namespace DatabaseLayer
     
     public partial class OrderCart
     {
+<<<<<<< HEAD
+        public System.Guid OrderCartId { get; set; }
+        public System.DateTime OrderDate { get; set; }
+        public string OrderNumber { get; set; }
+=======
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public OrderCart()
         {
@@ -27,5 +32,6 @@ namespace DatabaseLayer
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CartDetail> CartDetails { get; set; }
+>>>>>>> f5516eec2c1b5177ee5e3e0373a699da3ff4b92e
     }
 }

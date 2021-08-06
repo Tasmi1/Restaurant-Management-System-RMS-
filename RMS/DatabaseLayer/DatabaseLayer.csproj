@@ -96,6 +96,11 @@
       <DependentUpon>Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="OrderCart.cs">
+
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderItem.cs">
+
       <DependentUpon>Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="OrderItem.cs">
@@ -106,9 +111,6 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PurchaseProduct.cs">
-      <DependentUpon>Entity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagram.cs">
       <DependentUpon>Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
@@ -145,6 +147,14 @@
       <DependentUpon>Entity.edmx</DependentUpon>
       <LastGenOutput>Entity.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\jquery-1.8.0.intellisense.js" />
+    <Content Include="Scripts\jquery-1.8.0.js" />
+    <Content Include="Scripts\jquery-1.8.0.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
