@@ -31,7 +31,6 @@ namespace RMS.Model.Services
 
             }
         }
-
         public bool UserNameValidation(string username)
         {
             using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
@@ -39,20 +38,46 @@ namespace RMS.Model.Services
                 return db.Users.Any(u => u.UserName.Equals(username));
             }
         }
-        public bool Create(UserDTOs model)
+
+
+        public bool EmailValidation(string email)
+        {
+            using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+            {
+                return db.Users.Any(u => u.Email.Equals(email));
+            }
+        }
+
+        public bool PhoneNoValidation(string phoneNumber)
+        {
+            using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+            {
+                return db.Users.Any(u => u.PhoneNumber.Equals(phoneNumber));
+            }
+        }
+
+        public bool Create(UserDTOs model, string ConfirmPassword)
         {
             try
             {
                 using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
                 {
 
-                    DatabaseLayer.User user = new DatabaseLayer.User();
-                    user.UserId = Guid.NewGuid();
-                    user = userConverter.ConverToEntity(model, user);
 
-                    db.Users.Add(user);
-                    db.SaveChanges();
-                    return true;
+                    if (model.Password == ConfirmPassword)
+                    {
+                        DatabaseLayer.User user = new DatabaseLayer.User();
+                        user.UserId = Guid.NewGuid();
+                        user = userConverter.ConverToEntity(model, user);
+                        db.Users.Add(user);
+                        db.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
                 }
             }
             catch (Exception ex)
@@ -147,7 +172,7 @@ namespace RMS.Model.Services
         }
 
 
-        public bool Login(string password, string email )
+        public bool Login(string password, string email)
         {
             try
             {
@@ -159,7 +184,7 @@ namespace RMS.Model.Services
                         return true;
                     }
                     else { return false; }
-                    
+
                 }
 
             }
