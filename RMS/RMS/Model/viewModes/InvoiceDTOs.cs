@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RMS.Model.viewModes.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,15 +9,24 @@ namespace RMS.Model.viewModes
 {
     public class InvoiceDTOs
     {
+        public InvoiceDTOs()
+        {
+            CartDetails = new List<BaseIdSelect>();
+        }
+
         public Guid InvoiceID { get; set; }
-        [StringLength(50, ErrorMessage = "Name Length should be between 3 to 50", MinimumLength = 3)]
-        [Required(ErrorMessage = "Name is required")]
-        public string Name { get; set; }
-        [Required(ErrorMessage = "Created Date is required")]
-        public DateTime CreatedDate { get; set; }
-        [Required(ErrorMessage = "Created Time is required")]
-        public TimeSpan CreatedTime { get; set; }
-        [Required(ErrorMessage = "Sub Total is required")]
+        [Required(ErrorMessage = "VAT is required")]
+        public decimal VAT { get; set; }
+        [Required(ErrorMessage = "Service Tax is required")]
+        public decimal ServiceTax { get; set; }
+        [Required(ErrorMessage = "Total is required")]
+        public decimal ITotal { get; set; }
+        [Required(ErrorMessage = "Status is required")]
         public bool Status { get; set; }
+        public int CartDetailID { get; set; }
+
+        public List<BaseIdSelect> CartDetails { get; set; }
+
+        public string CartDetail { get; set; }
     }
 }

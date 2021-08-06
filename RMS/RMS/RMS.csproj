@@ -145,7 +145,6 @@
     <Compile Include="Model\Converters\DishSubCategoryConverter.cs" />
     <Compile Include="Model\Converters\InventoryProductConverter.cs" />
     <Compile Include="Model\Converters\InvoiceConverter.cs" />
-    <Compile Include="Model\Converters\KitchineOrderConverter.cs" />
     <Compile Include="Model\Converters\OrderConverter.cs" />
     <Compile Include="Model\Converters\UserConverter.cs" />
     <Compile Include="Model\Converters\MenuConverter.cs" />
@@ -163,10 +162,10 @@
     <Compile Include="Model\viewModes\CategoryDTOs.cs" />
     <Compile Include="Model\viewModes\CustomerDTOs.cs" />
     <Compile Include="Model\viewModes\DishSubCategoryDTOs.cs" />
+    <Compile Include="Model\viewModes\InvoiceDTOs.cs" />
     <Compile Include="Model\viewModes\MenuDTOs.cs" />
     <Compile Include="Model\viewModes\DishCategoryDTOs.cs" />
     <Compile Include="Model\viewModes\InventoryProductDTOs.cs" />
-    <Compile Include="Model\viewModes\KitchineOrderDTOs.cs" />
     <Compile Include="Model\viewModes\OrderDTOs.cs" />
     <Compile Include="Model\viewModes\UserDTOs.cs" />
     <Compile Include="Model\viewModes\UserTypeDTOs.cs" />
@@ -621,6 +620,8 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\Order\Create.cshtml" />
+    <Content Include="Views\Invoice\Create.cshtml" />
+    <Content Include="Views\Invoice\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

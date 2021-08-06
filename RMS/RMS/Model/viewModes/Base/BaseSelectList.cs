@@ -11,4 +11,9 @@ namespace RMS.Model.viewModes.Base
         public string Name { get; set; }
         public TimeSpan OrderTime {get; set;}
     }
+
+    public class BaseIdSelect
+    {
+        public int Id { get; set; }
+    }
 }
