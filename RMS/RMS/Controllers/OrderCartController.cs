@@ -36,12 +36,12 @@ namespace RMS.Controllers
                                                                MenuPrice = DBMenu.MenuPrice,
                                                                ImagePath = DBMenu.ImagePath,
                                                                SubCategory = DBSubCategory.SubCategoryName
-
+                                                              
                                                            }).ToList();
             return View(ListofOrderCarts);
         }
 
-
+       
         [HttpPost]
         public JsonResult Index(Guid MenuId)
         {
@@ -70,20 +70,21 @@ namespace RMS.Controllers
             Session["CartCounter"] = ListofCart.Count;
             Session["CartItem"] = ListofCart;
             return Json(new { Success = true, Counter = ListofCart.Count }, JsonRequestBehavior.AllowGet);
-
+           
         }
 
         public ActionResult OrderCart()
         {
             ListofCart = Session["CartItem"] as List<CartDTOs>;
-
-            return View();
+   
+            return View(); 
         }
 
         [HttpPost]
         public ActionResult AddOrder()
         {
             int OrderCartId = 0;
+            //Guid OrderCartId = 0;
             ListofCart = Session["CartItem"] as List<CartDTOs>;
             OrderCart orderCart = new OrderCart()
             {
@@ -105,9 +106,9 @@ namespace RMS.Controllers
                     Price = item.Price
                 };
                 //CartDetail entitModel = new converter();
-                DB.CartDetails.Add(cartModel);
+                    DB.CartDetails.Add(cartModel);
                 DB.SaveChanges();
-
+                    
 
             }
             Session["CartItem"] = null;

@@ -52,6 +52,12 @@
                     </a>
                 </li>
 
+                @*@{ if (Session["UserTypeID"] != null)
+                    {
+                        var usertype = Convert.ToString(Session["UserTypeID"]);
+                       
+                        if (usertype == "djhjdk")
+                        {*@
 
                 <li class="nav-item">
                     <a class="nav-link  active" href="">
@@ -162,8 +168,7 @@
                     </a>
                 </li>
 
-            </ul>
-
+                        </ul>
 
         </div>
 
@@ -219,6 +224,7 @@
 
     <!--   Core JS Files   -->
     <script src="~/Content/dashboard/js/core/bootstrap.min.js"></script>
+
 
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
