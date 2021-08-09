@@ -14,7 +14,7 @@ namespace RMS.Model.Converters
             invoice.VAT = model.VAT;
             invoice.ServiceTax = model.ServiceTax;
             invoice.ITotal = model.ITotal;
-            invoice.Satuts = model.Status;
+            invoice.Status = model.Status;
             invoice.CartDetailID = model.CartDetailID;
 
             return invoice;
@@ -23,11 +23,11 @@ namespace RMS.Model.Converters
         public InvoiceDTOs ConvertToModel(DatabaseLayer.Invoice model)
         {
             InvoiceDTOs invoice = new InvoiceDTOs();
-            invoice.InvoiceID = model.InvoiceID;
+            invoice.InvoiceID = model.InvoiveID;
             invoice.VAT = (decimal)model.VAT;
             invoice.ServiceTax = (decimal)model.ServiceTax;
             invoice.ITotal = model.ITotal;
-            invoice.Status = (bool)model.Satuts;
+            invoice.Status = (bool)model.Status;
             invoice.CartDetailID = model.CartDetailID;
             
 
