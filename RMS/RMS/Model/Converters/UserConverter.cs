@@ -19,7 +19,6 @@ namespace RMS.Model.Converters
             user.Password = model.Password;
             user.Address = model.Address;
             user.UserTypeID = model.UserTypeID;
-
             return user;
         }
         public UserDTOs ConvertToModel(DatabaseLayer.User model)
@@ -35,7 +34,6 @@ namespace RMS.Model.Converters
             user.Address = model.Address;
             user.UserTypeID = model.UserTypeID;
             user.UserType = model.UserType.Type;
-
             return user;
         }
 
