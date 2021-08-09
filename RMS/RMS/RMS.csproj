@@ -234,6 +234,7 @@
     <Content Include="Content\Image\chinese.jpg" />
     <Content Include="Content\Image\download.jpg" />
     <Content Include="Content\Image\momo.jpg" />
+    <Content Include="Content\Image\OIP.jpg" />
     <Content Include="Content\Image\spaghetti.jpg" />
     <Content Include="Content\Image\sushi.jpg" />
     <Content Include="Content\Login\css\bootstrap.min.css" />
