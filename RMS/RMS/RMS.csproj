@@ -622,7 +622,6 @@
     <Content Include="Views\InventoryProduct\Create.cshtml" />
     <Content Include="Views\InventoryProduct\Details.cshtml" />
     <Content Include="Views\InventoryProduct\Edit.cshtml" />
-    <Content Include="Views\InventoryProduct\Index.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\Order\Create.cshtml" />
@@ -631,6 +630,7 @@
     <Content Include="Views\OrderCart\Index.cshtml" />
     <Content Include="Views\OrderCart\OrderCart.cshtml" />
     <Content Include="Views\Shared\_OrderCart.cshtml" />
+    <Content Include="Views\InventoryProduct\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
