@@ -23,7 +23,7 @@ namespace RMS.Model.Converters
         public InvoiceDTOs ConvertToModel(DatabaseLayer.Invoice model)
         {
             InvoiceDTOs invoice = new InvoiceDTOs();
-            invoice.InvoiceID = model.InvoiveID;
+            invoice.InvoiceID = model.InvoiceID;
             invoice.VAT = (decimal)model.VAT;
             invoice.ServiceTax = (decimal)model.ServiceTax;
             invoice.ITotal = model.ITotal;

@@ -71,9 +71,9 @@
         </EntityType>
         <EntityType Name="Invoice">
           <Key>
-            <PropertyRef Name="InvoiveID" />
+            <PropertyRef Name="InvoiceID" />
           </Key>
-          <Property Name="InvoiveID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="InvoiceID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Status" Type="bit" />
           <Property Name="VAT" Type="decimal" Precision="18" Scale="0" />
           <Property Name="ServiceTax" Type="decimal" Precision="18" Scale="0" />
@@ -563,9 +563,9 @@
         </EntityType>
         <EntityType Name="Invoice">
           <Key>
-            <PropertyRef Name="InvoiveID" />
+            <PropertyRef Name="InvoiceID" />
           </Key>
-          <Property Name="InvoiveID" Type="Guid" Nullable="false" />
+          <Property Name="InvoiceID" Type="Guid" Nullable="false" />
           <Property Name="Status" Type="Boolean" />
           <Property Name="VAT" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="ServiceTax" Type="Decimal" Precision="18" Scale="0" />
@@ -924,7 +924,7 @@
                 <ScalarProperty Name="ServiceTax" ColumnName="ServiceTax" />
                 <ScalarProperty Name="VAT" ColumnName="VAT" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="InvoiveID" ColumnName="InvoiveID" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
