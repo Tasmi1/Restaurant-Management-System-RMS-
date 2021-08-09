@@ -35,7 +35,7 @@
                             @Html.ValidationMessageFor(model => model.ITotal, "", new { @class = "text-danger" })
                             @Html.TextBoxFor(x => x.ITotal, "", new { @class = "form-control", @placeholder = "Enter Total" })
                         </div>
-                        
+
 
                         <div class="mb-3">
                             <label style="font-weight: bold;font-size: 1.3em;">Cart Detail</label>   <br />
@@ -43,6 +43,50 @@
                             @Html.DropDownListFor(x => x.CartDetailID, new SelectList(Model.CartDetails, "Id", "Name"), new { @class = "form-control form-control-lg ", required = "required" })
 
                         </div>
+
+                        <div class="mb-3">
+                            <label style="font-weight: bold; font-size: 1.3em;">Status</label>   <br />
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                            @*@Html.ValidationMessageFor(model => model.InvoiceID, "", new { @class = "text-danger" })*@
+                            @Html.TextBoxFor(x => x.Status, "", new { @class = "form-control", @placeholder = "Enter Status" })
+                            @Html.DropDownListFor(model => model.InvoiceID, new List<SelectListItem>
+                            {
+
+                                new SelectListItem{ Text="Complete",Value="1" },
+                                new SelectListItem { Text="Pending",Value="0" },
+
+
+                             }, "Select Status", new { @class = "select2", @required = "required" })
+
+
+                        </div>
+
+
+
+                        @*<select id="Invoice" name="Status" asp-items="Model">
+            <option value="0">Please select</option>
+        </select>
+        <input type="" name="Complete" />
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type="text/javascript">
+            $("body").on("change", "#ddlInvoice", function () {
+                $("input[name=Status]").val($(this).find("option:selected").text());
+            });
+        </script>*@
+                        @if (ViewBag.Message != null)
+                        {
+                            <script type="text/javascript">
+                                    $(function () {
+                                        alert("@ViewBag.Message");
+                                    });
+                            </script>
+                        }
+
+
+
+
+
+
                     </div>
                     <div class="text-center">
                         <input type="submit" value="Create" class="btn bg-gradient-primary mt-4 " style=" display: block; margin-left: auto; margin-right: auto; width: 50%; " />

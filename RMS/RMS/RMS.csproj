@@ -132,6 +132,7 @@
     <Compile Include="Controllers\DishSubCategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoryProductController.cs" />
+    <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="Model\Services\DishCategoryService.cs" />
     <Compile Include="Model\Services\DishSubCategoryService.cs" />
     <Compile Include="Model\Services\InventoryProductService.cs" />
+    <Compile Include="Model\Services\InvoiceService.cs" />
     <Compile Include="Model\Services\OrderService.cs" />
     <Compile Include="Model\Services\UserService.cs" />
     <Compile Include="Model\Services\MenuService.cs" />

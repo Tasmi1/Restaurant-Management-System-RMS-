@@ -24,7 +24,7 @@ namespace RMS.Model.Services
                 return db.CartDetails.Select(cd =>
                 new BaseIdSelect
                 {
-                    Id = cd.CartDetailId,
+                    Id = cd.CartDetailID,
                     //Name = cd.Total
                 }).ToList();
 
