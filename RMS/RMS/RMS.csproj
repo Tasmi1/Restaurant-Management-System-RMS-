@@ -132,6 +132,7 @@
     <Compile Include="Controllers\DishSubCategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoryProductController.cs" />
+    <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\OrderCartController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -145,6 +146,7 @@
     <Compile Include="Model\Converters\DishCategoryConverter.cs" />
     <Compile Include="Model\Converters\DishSubCategoryConverter.cs" />
     <Compile Include="Model\Converters\InventoryProductConverter.cs" />
+    <Compile Include="Model\Converters\InvoiceConverter.cs" />
     <Compile Include="Model\Converters\OrderConverter.cs" />
     <Compile Include="Model\Converters\UserConverter.cs" />
     <Compile Include="Model\Converters\MenuConverter.cs" />
@@ -154,6 +156,7 @@
     <Compile Include="Model\Services\DishCategoryService.cs" />
     <Compile Include="Model\Services\DishSubCategoryService.cs" />
     <Compile Include="Model\Services\InventoryProductService.cs" />
+    <Compile Include="Model\Services\InvoiceService.cs" />
     <Compile Include="Model\Services\OrderService.cs" />
     <Compile Include="Model\Services\UserService.cs" />
     <Compile Include="Model\Services\MenuService.cs" />
@@ -163,6 +166,7 @@
     <Compile Include="Model\viewModes\CategoryDTOs.cs" />
     <Compile Include="Model\viewModes\CustomerDTOs.cs" />
     <Compile Include="Model\viewModes\DishSubCategoryDTOs.cs" />
+    <Compile Include="Model\viewModes\InvoiceDTOs.cs" />
     <Compile Include="Model\viewModes\MenuDTOs.cs" />
     <Compile Include="Model\viewModes\DishCategoryDTOs.cs" />
     <Compile Include="Model\viewModes\InventoryProductDTOs.cs" />
@@ -231,6 +235,7 @@
     <Content Include="Content\Image\chinese.jpg" />
     <Content Include="Content\Image\download.jpg" />
     <Content Include="Content\Image\momo.jpg" />
+    <Content Include="Content\Image\OIP.jpg" />
     <Content Include="Content\Image\spaghetti.jpg" />
     <Content Include="Content\Image\sushi.jpg" />
     <Content Include="Content\Login\css\bootstrap.min.css" />
@@ -631,6 +636,8 @@
     <Content Include="Views\OrderCart\Index.cshtml" />
     <Content Include="Views\OrderCart\OrderCart.cshtml" />
     <Content Include="Views\Shared\_OrderCart.cshtml" />
+    <Content Include="Views\Invoice\Create.cshtml" />
+    <Content Include="Views\Invoice\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
