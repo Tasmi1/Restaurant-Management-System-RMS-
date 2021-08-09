@@ -14,7 +14,7 @@ namespace DatabaseLayer
     
     public partial class Invoice
     {
-        public System.Guid InvoiveID { get; set; }
+        public System.Guid InvoiceID { get; set; }
         public Nullable<bool> Status { get; set; }
         public Nullable<decimal> VAT { get; set; }
         public Nullable<decimal> ServiceTax { get; set; }
