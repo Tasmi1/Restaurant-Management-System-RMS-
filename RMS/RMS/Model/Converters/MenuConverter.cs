@@ -24,6 +24,7 @@ namespace RMS.Model.Converters
             menu.MenuPrice = Convert.ToDecimal(model.MenuPrice);
             menu.ImagePath = model.ImagePath;
             menu.SubCategoryID = model.SubCategoryID;
+            menu.DishSubCategory = model.DishSubCategory.SubCategoryName;
 
             return menu;
         }
