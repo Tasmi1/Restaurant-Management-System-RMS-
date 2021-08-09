@@ -53,18 +53,20 @@
                 </li>
 
                 @*@{ if (Session["UserTypeID"] != null)
-                    {
-                        var usertype = Convert.ToString(Session["UserTypeID"]);
-                       
-                        if (usertype == "djhjdk")
-                        {*@
+        {
+            var usertype = Convert.ToString(Session["UserTypeID"]);
+
+            if (usertype == "djhjdk")
+            {*@
+
+                
 
                 <li class="nav-item">
-                    <a class="nav-link  active" href="">
+                    <a class="nav-link  active" href="/InventoryProduct/Index">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class='fas fa-shopping-basket' style='font-size:15px'></i>
                         </div>
-                        <span class="nav-link-text ms-1">Product</span>
+                        <span class="nav-link-text ms-1"> Inventory Product</span>
                     </a>
                 </li>
 
@@ -91,7 +93,7 @@
                 <li class="nav-item">
                     <a class="nav-link  active" href="/Customer/Index">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class='fas fa-clipboard' style='font-size:15px'></i>
+                            <i class='fas  fas fa-users' style='font-size:15px'></i>
                         </div>
                         <span class="nav-link-text ms-1">Customer</span>
                     </a>
@@ -115,7 +117,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link  active" href="~/Views/Shared/_OrderCart.cshtml" >
+                    <a class="nav-link  active" href="~/Views/Shared/_OrderCart.cshtml">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class='fas fa-clipboard' style='font-size:15px'></i>
                         </div>
@@ -168,7 +170,7 @@
                     </a>
                 </li>
 
-                        </ul>
+            </ul>
 
         </div>
 

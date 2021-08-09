@@ -46,10 +46,9 @@
                         @Html.TextBoxFor(x => x.Description, "", new { @class = "form-control", @placeholder = "Enter Description" })
                     </div>
                     <div class="mb-3">
-
                         <label style="font-weight: bold;font-size: 1.3em;"> Category</label>   <br />
-                        @Html.DropDownListFor(x => x.CategoryID, new SelectList(Model.Categories, "Id", "Name"))
-                        @Html.ValidationMessageFor(x => x.CategoryID)
+                        @Html.DropDownListFor(x => x.CategoryID, new SelectList(Model.Categories, "Id", "Name"), new { @class = "form-control form-control-lg", required = "required" })
+                        @Html.ValidationMessageFor(x => x.CategoryID,"",new { @class = "text-danger"})
 
                     </div>
                    

@@ -227,6 +227,7 @@
     <Content Include="Content\dashboard\js\plugins\smooth-scrollbar.min.js" />
     <Content Include="Content\dashboard\js\soft-ui-dashboard.js" />
     <Content Include="Content\dashboard\js\soft-ui-dashboard.min.js" />
+    <Content Include="Content\Image\apple.jpg" />
     <Content Include="Content\Image\chinese.jpg" />
     <Content Include="Content\Image\download.jpg" />
     <Content Include="Content\Image\momo.jpg" />
