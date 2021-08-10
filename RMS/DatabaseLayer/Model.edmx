@@ -98,8 +98,8 @@
           <Property Name="OrderTime" Type="time" Precision="7" Nullable="false" />
           <Property Name="OrderDate" Type="date" Nullable="false" />
           <Property Name="Total" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="CustomerID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="MenuID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="VendorID" Type="uniqueidentifier" />
+          <Property Name="InventoryProductID" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="OrderCart">
           <Key>
@@ -128,26 +128,6 @@
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="InventoryProductID" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
-        <EntityType Name="PurchaseProduct">
-          <Key>
-            <PropertyRef Name="PurchaseProductID" />
-          </Key>
-          <Property Name="PurchaseProductID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="InventoryProductID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="VendorID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="Price" Type="varchar" MaxLength="100" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserId" />
@@ -175,9 +155,6 @@
           </Key>
           <Property Name="VendorID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="VendorName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="BillNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="TotalPrice" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="PurchaseDate" Type="date" Nullable="false" />
         </EntityType>
         <Association Name="FK_Booking_Customer">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
@@ -275,6 +252,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Fk_Order_InventoryProductID">
+          <End Role="InventoryProduct" Type="Self.InventoryProduct" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InventoryProduct">
+              <PropertyRef Name="InventoryProductID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="InventoryProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_Order_VendorID">
+          <End Role="Vendor" Type="Self.Vendor" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="VendorID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="VendorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OrderItems_Order">
           <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
           <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
@@ -296,30 +297,6 @@
             </Principal>
             <Dependent Role="ProductQuantity">
               <PropertyRef Name="InventoryProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PurchaseProduct_InventoryProduct">
-          <End Role="InventoryProduct" Type="Self.InventoryProduct" Multiplicity="1" />
-          <End Role="PurchaseProduct" Type="Self.PurchaseProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="InventoryProduct">
-              <PropertyRef Name="InventoryProductID" />
-            </Principal>
-            <Dependent Role="PurchaseProduct">
-              <PropertyRef Name="InventoryProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PurchaseProduct_Vendor">
-          <End Role="Vendor" Type="Self.Vendor" Multiplicity="1" />
-          <End Role="PurchaseProduct" Type="Self.PurchaseProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vendor">
-              <PropertyRef Name="VendorID" />
-            </Principal>
-            <Dependent Role="PurchaseProduct">
-              <PropertyRef Name="VendorID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -349,8 +326,6 @@
           <EntitySet Name="OrderCart" EntityType="Self.OrderCart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderItems" EntityType="Self.OrderItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductQuantity" EntityType="Self.ProductQuantity" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PurchaseProduct" EntityType="Self.PurchaseProduct" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vendor" EntityType="Self.Vendor" Schema="dbo" store:Type="Tables" />
@@ -386,6 +361,14 @@
             <End Role="DishSubCategory" EntitySet="DishSubCategory" />
             <End Role="Menu" EntitySet="Menu" />
           </AssociationSet>
+          <AssociationSet Name="Fk_Order_InventoryProductID" Association="Self.Fk_Order_InventoryProductID">
+            <End Role="InventoryProduct" EntitySet="InventoryProduct" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_Order_VendorID" Association="Self.Fk_Order_VendorID">
+            <End Role="Vendor" EntitySet="Vendor" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
           <AssociationSet Name="FK_OrderItems_Order" Association="Self.FK_OrderItems_Order">
             <End Role="Order" EntitySet="Order" />
             <End Role="OrderItems" EntitySet="OrderItems" />
@@ -393,14 +376,6 @@
           <AssociationSet Name="FK_ProductQuantity_InventoryProduct" Association="Self.FK_ProductQuantity_InventoryProduct">
             <End Role="InventoryProduct" EntitySet="InventoryProduct" />
             <End Role="ProductQuantity" EntitySet="ProductQuantity" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PurchaseProduct_InventoryProduct" Association="Self.FK_PurchaseProduct_InventoryProduct">
-            <End Role="InventoryProduct" EntitySet="InventoryProduct" />
-            <End Role="PurchaseProduct" EntitySet="PurchaseProduct" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PurchaseProduct_Vendor" Association="Self.FK_PurchaseProduct_Vendor">
-            <End Role="Vendor" EntitySet="Vendor" />
-            <End Role="PurchaseProduct" EntitySet="PurchaseProduct" />
           </AssociationSet>
           <AssociationSet Name="FK_User_UserType" Association="Self.FK_User_UserType">
             <End Role="UserType" EntitySet="UserType" />
@@ -425,8 +400,6 @@
           <EntitySet Name="OrderCarts" EntityType="ResturantManagementDBModel.OrderCart" />
           <EntitySet Name="OrderItems" EntityType="ResturantManagementDBModel.OrderItem" />
           <EntitySet Name="ProductQuantities" EntityType="ResturantManagementDBModel.ProductQuantity" />
-          <EntitySet Name="PurchaseProducts" EntityType="ResturantManagementDBModel.PurchaseProduct" />
-          <EntitySet Name="sysdiagrams" EntityType="ResturantManagementDBModel.sysdiagram" />
           <EntitySet Name="Users" EntityType="ResturantManagementDBModel.User" />
           <EntitySet Name="UserTypes" EntityType="ResturantManagementDBModel.UserType" />
           <EntitySet Name="Vendors" EntityType="ResturantManagementDBModel.Vendor" />
@@ -462,21 +435,21 @@
             <End Role="DishSubCategory" EntitySet="DishSubCategories" />
             <End Role="Menu" EntitySet="Menus" />
           </AssociationSet>
+          <AssociationSet Name="Fk_Order_InventoryProductID" Association="ResturantManagementDBModel.Fk_Order_InventoryProductID">
+            <End Role="InventoryProduct" EntitySet="InventoryProducts" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProductQuantity_InventoryProduct" Association="ResturantManagementDBModel.FK_ProductQuantity_InventoryProduct">
             <End Role="InventoryProduct" EntitySet="InventoryProducts" />
             <End Role="ProductQuantity" EntitySet="ProductQuantities" />
           </AssociationSet>
-          <AssociationSet Name="FK_PurchaseProduct_InventoryProduct" Association="ResturantManagementDBModel.FK_PurchaseProduct_InventoryProduct">
-            <End Role="InventoryProduct" EntitySet="InventoryProducts" />
-            <End Role="PurchaseProduct" EntitySet="PurchaseProducts" />
+          <AssociationSet Name="Fk_Order_VendorID" Association="ResturantManagementDBModel.Fk_Order_VendorID">
+            <End Role="Vendor" EntitySet="Vendors" />
+            <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderItems_Order" Association="ResturantManagementDBModel.FK_OrderItems_Order">
             <End Role="Order" EntitySet="Orders" />
             <End Role="OrderItem" EntitySet="OrderItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PurchaseProduct_Vendor" Association="ResturantManagementDBModel.FK_PurchaseProduct_Vendor">
-            <End Role="Vendor" EntitySet="Vendors" />
-            <End Role="PurchaseProduct" EntitySet="PurchaseProducts" />
           </AssociationSet>
           <AssociationSet Name="FK_User_UserType" Association="ResturantManagementDBModel.FK_User_UserType">
             <End Role="UserType" EntitySet="UserTypes" />
@@ -558,8 +531,8 @@
           <Property Name="Description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="CategoryID" Type="Guid" Nullable="false" />
           <NavigationProperty Name="Category" Relationship="ResturantManagementDBModel.FK_InventoryProduct_Category" FromRole="InventoryProduct" ToRole="Category" />
+          <NavigationProperty Name="Orders" Relationship="ResturantManagementDBModel.Fk_Order_InventoryProductID" FromRole="InventoryProduct" ToRole="Order" />
           <NavigationProperty Name="ProductQuantities" Relationship="ResturantManagementDBModel.FK_ProductQuantity_InventoryProduct" FromRole="InventoryProduct" ToRole="ProductQuantity" />
-          <NavigationProperty Name="PurchaseProducts" Relationship="ResturantManagementDBModel.FK_PurchaseProduct_InventoryProduct" FromRole="InventoryProduct" ToRole="PurchaseProduct" />
         </EntityType>
         <EntityType Name="Invoice">
           <Key>
@@ -593,8 +566,10 @@
           <Property Name="OrderTime" Type="Time" Nullable="false" Precision="7" />
           <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Total" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CustomerID" Type="Guid" Nullable="false" />
-          <Property Name="MenuID" Type="Guid" Nullable="false" />
+          <Property Name="VendorID" Type="Guid" />
+          <Property Name="InventoryProductID" Type="Guid" />
+          <NavigationProperty Name="InventoryProduct" Relationship="ResturantManagementDBModel.Fk_Order_InventoryProductID" FromRole="Order" ToRole="InventoryProduct" />
+          <NavigationProperty Name="Vendor" Relationship="ResturantManagementDBModel.Fk_Order_VendorID" FromRole="Order" ToRole="Vendor" />
           <NavigationProperty Name="OrderItems" Relationship="ResturantManagementDBModel.FK_OrderItems_Order" FromRole="Order" ToRole="OrderItem" />
         </EntityType>
         <EntityType Name="OrderCart">
@@ -627,28 +602,6 @@
           <Property Name="InventoryProductID" Type="Guid" Nullable="false" />
           <NavigationProperty Name="InventoryProduct" Relationship="ResturantManagementDBModel.FK_ProductQuantity_InventoryProduct" FromRole="ProductQuantity" ToRole="InventoryProduct" />
         </EntityType>
-        <EntityType Name="PurchaseProduct">
-          <Key>
-            <PropertyRef Name="PurchaseProductID" />
-          </Key>
-          <Property Name="PurchaseProductID" Type="Guid" Nullable="false" />
-          <Property Name="InventoryProductID" Type="Guid" Nullable="false" />
-          <Property Name="VendorID" Type="Guid" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="InventoryProduct" Relationship="ResturantManagementDBModel.FK_PurchaseProduct_InventoryProduct" FromRole="PurchaseProduct" ToRole="InventoryProduct" />
-          <NavigationProperty Name="Vendor" Relationship="ResturantManagementDBModel.FK_PurchaseProduct_Vendor" FromRole="PurchaseProduct" ToRole="Vendor" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserId" />
@@ -678,10 +631,7 @@
           </Key>
           <Property Name="VendorID" Type="Guid" Nullable="false" />
           <Property Name="VendorName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="BillNumber" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="TotalPrice" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="PurchaseDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="PurchaseProducts" Relationship="ResturantManagementDBModel.FK_PurchaseProduct_Vendor" FromRole="Vendor" ToRole="PurchaseProduct" />
+          <NavigationProperty Name="Orders" Relationship="ResturantManagementDBModel.Fk_Order_VendorID" FromRole="Vendor" ToRole="Order" />
         </EntityType>
         <Association Name="FK_Booking_Customer">
           <End Type="ResturantManagementDBModel.Customer" Role="Customer" Multiplicity="1" />
@@ -779,6 +729,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Fk_Order_InventoryProductID">
+          <End Type="ResturantManagementDBModel.InventoryProduct" Role="InventoryProduct" Multiplicity="0..1" />
+          <End Type="ResturantManagementDBModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InventoryProduct">
+              <PropertyRef Name="InventoryProductID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="InventoryProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductQuantity_InventoryProduct">
           <End Type="ResturantManagementDBModel.InventoryProduct" Role="InventoryProduct" Multiplicity="1" />
           <End Type="ResturantManagementDBModel.ProductQuantity" Role="ProductQuantity" Multiplicity="*" />
@@ -791,15 +753,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PurchaseProduct_InventoryProduct">
-          <End Type="ResturantManagementDBModel.InventoryProduct" Role="InventoryProduct" Multiplicity="1" />
-          <End Type="ResturantManagementDBModel.PurchaseProduct" Role="PurchaseProduct" Multiplicity="*" />
+        <Association Name="Fk_Order_VendorID">
+          <End Type="ResturantManagementDBModel.Vendor" Role="Vendor" Multiplicity="0..1" />
+          <End Type="ResturantManagementDBModel.Order" Role="Order" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="InventoryProduct">
-              <PropertyRef Name="InventoryProductID" />
+            <Principal Role="Vendor">
+              <PropertyRef Name="VendorID" />
             </Principal>
-            <Dependent Role="PurchaseProduct">
-              <PropertyRef Name="InventoryProductID" />
+            <Dependent Role="Order">
+              <PropertyRef Name="VendorID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -812,18 +774,6 @@
             </Principal>
             <Dependent Role="OrderItem">
               <PropertyRef Name="OrderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PurchaseProduct_Vendor">
-          <End Type="ResturantManagementDBModel.Vendor" Role="Vendor" Multiplicity="1" />
-          <End Type="ResturantManagementDBModel.PurchaseProduct" Role="PurchaseProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vendor">
-              <PropertyRef Name="VendorID" />
-            </Principal>
-            <Dependent Role="PurchaseProduct">
-              <PropertyRef Name="VendorID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -942,8 +892,8 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="ResturantManagementDBModel.Order">
               <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="InventoryProductID" ColumnName="InventoryProductID" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
                 <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
@@ -981,28 +931,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PurchaseProducts">
-            <EntityTypeMapping TypeName="ResturantManagementDBModel.PurchaseProduct">
-              <MappingFragment StoreEntitySet="PurchaseProduct">
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
-                <ScalarProperty Name="InventoryProductID" ColumnName="InventoryProductID" />
-                <ScalarProperty Name="PurchaseProductID" ColumnName="PurchaseProductID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="ResturantManagementDBModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="ResturantManagementDBModel.User">
               <MappingFragment StoreEntitySet="User">
@@ -1029,9 +957,6 @@
           <EntitySetMapping Name="Vendors">
             <EntityTypeMapping TypeName="ResturantManagementDBModel.Vendor">
               <MappingFragment StoreEntitySet="Vendor">
-                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
-                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
-                <ScalarProperty Name="BillNumber" ColumnName="BillNumber" />
                 <ScalarProperty Name="VendorName" ColumnName="VendorName" />
                 <ScalarProperty Name="VendorID" ColumnName="VendorID" />
               </MappingFragment>
