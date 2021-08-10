@@ -635,9 +635,7 @@
     <Content Include="Views\OrderCart\Index.cshtml" />
     <Content Include="Views\OrderCart\OrderCart.cshtml" />
     <Content Include="Views\Shared\_OrderCart.cshtml" />
-
     <Content Include="Views\InventoryProduct\Index.cshtml" />
-
     <Content Include="Views\Invoice\Create.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
   </ItemGroup>
@@ -664,7 +662,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DatabaseLayer\DatabaseLayer.csproj">
-      <Project>{a3ef255b-dc8c-4a6f-b1f5-b9f8a889f53e}</Project>
+      <Project>{ce9ed0b5-5704-40a3-adfd-3e1dcd432bd3}</Project>
       <Name>DatabaseLayer</Name>
     </ProjectReference>
   </ItemGroup>

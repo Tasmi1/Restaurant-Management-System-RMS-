@@ -51,7 +51,7 @@ namespace RMS.Controllers
                 {
                     OrderTime = TimeSpan.Zero,
                     OrderDate = DateTime.Now,
-                    CustomerID = model.CustomerID,
+                   
 
                     InventoryProductID = model.InventoryProductID
        

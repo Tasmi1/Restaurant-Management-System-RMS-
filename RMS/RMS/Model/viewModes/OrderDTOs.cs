@@ -27,9 +27,7 @@ namespace RMS.Model.viewModes
 
         public Guid CustomerID { get; set; }
        
-        public Guid InventoryProductID { get; set; }
-
-        public string ProductName { get; set; }
+       
 
         public List<BaseGuidSelect> ProductsName { get; set; } 
 
@@ -68,8 +66,7 @@ namespace RMS.Model.viewModes
 
         public string ProductName { get; set; }
 
-        public Guid InventoryProductID { get; set; }
-        public string ProductName { get; set; }
+       
 
         public Guid DishCategoryID { get; set; }
 
