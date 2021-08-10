@@ -24,11 +24,13 @@ namespace RMS.Controllers
         public ActionResult Create()
         {
             ViewBag.CustomerId = new SelectList(db.Customers.ToList(), "CustomerID", "CustomerName");
-            var menus = db.Menus.ToList().Select(m => new DropDownOrder { Id = m.MenuID, Name = m.MenuName, Price = m.MenuPrice }).ToList();
-            List<OrderItems> orderItems = new List<OrderItems>() { new OrderItems { Quantity = 0, SubTotal = 0, MenuID = db.Menus.FirstOrDefault().MenuID } };
+            var products = db.InventoryProducts.ToList().Select(m => new DropDownOrder { Id = m.InventoryProductID, Name = m.ProductsName }).ToList();
+           /* var menus = db.Menus.ToList().Select(m => new DropDownOrder { Id = m.MenuID, Name = m.MenuName, Price = m.MenuPrice }).ToList();*/
+            /*List<OrderItems> orderItems = new List<OrderItems>() { new OrderItems { Quantity = 0, SubTotal = 0, MenuID = db.Menus.FirstOrDefault().MenuID } };*/
+            List<OrderItems> orderItems = new List<OrderItems>() { new OrderItems { Quantity = 0, SubTotal = 0, InventoryProductID = db.InventoryProducts.FirstOrDefault().InventoryProductID } };
             OrderDTOs orderDTOs = new OrderDTOs
             {
-                DDItems = menus,
+                DDItems = products,
                 OrderItems = orderItems
             };
 
@@ -40,7 +42,8 @@ namespace RMS.Controllers
         public ActionResult Create(OrderDTOs model)
         {
             ViewBag.CustomerId = new SelectList(db.Customers.ToList(), "CustomerID", "CustomerName", model.CustomerID);
-            var order = db.Menus.ToList().Select(m => new DropDownOrder { Id = m.MenuID, Name = m.MenuName }).ToList();
+            var order = db.InventoryProducts.ToList().Select(m => new DropDownOrder { Id = m.InventoryProductID, Name = m.ProductsName }).ToList();
+            /*var order = db.Menus.ToList().Select(m => new DropDownOrder { Id = m.MenuID, Name = m.MenuName }).ToList();*/
 
             model.DDItems = order;
 
@@ -51,7 +54,8 @@ namespace RMS.Controllers
                     OrderTime = TimeSpan.Zero,
                     OrderDate = DateTime.Now,
                     CustomerID = model.CustomerID,
-                    MenuID = model.MenuID                  
+                    InventoryProductID = model.InventoryProductID
+                   /* MenuID = model.MenuID */                 
 
                 };
                 db.Orders.Add(order2);
@@ -72,7 +76,9 @@ namespace RMS.Controllers
                     db.OrderItems.Add(orderItem);
                     db.SaveChanges();
 
-                    Menu menu = db.Menus.FirstOrDefault(m => m.MenuID == items.MenuID);
+                    InventoryProduct inventory = db.InventoryProducts.FirstOrDefault(m => m.InventoryProductID == items.InventoryProductID);
+
+                   /* Menu menu = db.Menus.FirstOrDefault(m => m.MenuID == items.MenuID);*/
                     db.SaveChanges();
                 }
 

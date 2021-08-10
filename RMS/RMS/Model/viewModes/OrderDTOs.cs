@@ -12,7 +12,9 @@ namespace RMS.Model.viewModes
         public  OrderDTOs()
         {
            Customers = new List<BaseGuidSelect>();
-           Menus = new List<BaseGuidSelect>();
+          
+            ProductsName = new List<BaseGuidSelect>();
+
 
         }
         public Guid OrderID { get; set; }
@@ -22,15 +24,18 @@ namespace RMS.Model.viewModes
         public DateTime OrderDate { get; set; }
 
         public Guid CustomerID { get; set; }
-        public Guid MenuID { get; set; }
+       
+        public Guid InventoryProductID { get; set; }
 
-        public string MenuName { get; set; }
+        public string ProductName { get; set; }
+
+        public List<BaseGuidSelect> ProductsName { get; set; } 
 
         public List<BaseGuidSelect> Customers { get; set; }
 
         public string Customer { get; set; }
        
-        public List<BaseGuidSelect> Menus { get; set; }
+    
        
         public List<DropDownOrder> DDItems { get; set; }
         public List<OrderItems> OrderItems { get; set; }
@@ -49,8 +54,11 @@ namespace RMS.Model.viewModes
 
         public string Contact { get; set; }
         public string CustomerAddress { get; set; }
-        public Guid MenuID { get; set; }
-        public string MenuName { get; set; }
+       
+
+        public Guid InventoryProductID { get; set; }
+
+        public string ProductName { get; set; }
 
         public Guid DishCategoryID { get; set; }
 
@@ -71,7 +79,8 @@ namespace RMS.Model.viewModes
         public Guid Id { get; set; }
 
 
-    public Guid MenuID { get; set; }
+
+    public Guid InventoryProductID { get; set; }
 
     
     

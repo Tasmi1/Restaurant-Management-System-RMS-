@@ -25,7 +25,9 @@ namespace DatabaseLayer
         public System.DateTime OrderDate { get; set; }
         public string Total { get; set; }
         public System.Guid CustomerID { get; set; }
-        public System.Guid MenuID { get; set; }
+       
+
+        public System.Guid InventoryProductID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderItem> OrderItems { get; set; }
