@@ -12,14 +12,11 @@ namespace RMS.Model.viewModes
         public  OrderDTOs()
         {
            Customers = new List<BaseGuidSelect>();
-<<<<<<< HEAD
+
           
             ProductsName = new List<BaseGuidSelect>();
 
-=======
-           Menus = new List<BaseGuidSelect>();
-            productName = new List<BaseGuidSelect>();
->>>>>>> 6b70a72ec2f3630e298a251191f166ccf8ba2513
+
 
         }
         public Guid OrderID { get; set; }
@@ -96,7 +93,6 @@ namespace RMS.Model.viewModes
 
     public Guid InventoryProductID { get; set; }
 
-    public Guid InventoryProductID { get; set; }
 
     
     
