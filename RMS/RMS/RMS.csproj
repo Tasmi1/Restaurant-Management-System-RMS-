@@ -637,7 +637,7 @@
     <Content Include="Views\Shared\_OrderCart.cshtml" />
 
     <Content Include="Views\InventoryProduct\Index.cshtml" />
-=======
+
     <Content Include="Views\Invoice\Create.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
   </ItemGroup>
