@@ -4,59 +4,67 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.OrderID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OrderTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OrderDate)
-            </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.CustomerName)
-            </th>*@
-            @*<th>
-                @Html.DisplayNameFor(model => model.SubTotal)
-            </th>*@
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OrderID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OrderTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OrderDate)
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.CustomerName)
-                </td>*@
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.SubTotal)
-                </td>*@
-                <td>
-                    <a asp-route-id="@item.OrderID" asp-action="Details">Bill</a>
-                    @*   @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                    *@
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="col-12">
+    <div class="card mb-4">
+        <div class="card-header pb-0">
+            <h4 class="text-center"> STOCK ORDER </h4>
+            <a type=" button" class="btn btn-primary" href="/Order/Create">
+                Create
+            </a>
+        </div>
+
+
+        <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                    <thead>
+                        <tr>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Customer Name </th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Order Date</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Order Time</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Product</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Quantity </th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Price </th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Sub-Total</th>
+
+                            <th class="text-secondary opacity-7"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="text-center">
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OrderTime)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OrderDate)
+                                </td>
+
+
+                                <td>
+                                    <a asp-route-id="@item.OrderID" asp-action="Details">Bill</a>
+
+                                </td>
+                                <td class="align-middle" style="float:right;">
+
+                                    <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="/Order/Delete/@item.OrderID"><i class="far fa-trash-alt me-2"></i>Delete</a>
+                                    <a class="btn btn-link text-dark px-3 mb-0" href="/Order/Edit/@item.OrderID"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
+                                    <a class="btn btn-link text-dark px-3 mb-0" href="/Order/Details/@item.OrderID"><i class="fas fa-file-alt text-dark me-2" aria-hidden="true"></i>Details</a>
+
+                                </td>
+                                <td>
+                                    <a asp-route-id="@item.OrderID" asp-action="Details">Bill</a>
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>

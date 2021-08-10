@@ -45,7 +45,7 @@
                     <div><a class="btn btn-primary" href="#" id="addNew">Add New Orders</a></div>
                     <table class="table table-bordered" id="dataTable" border="0" cellpadding="0" cellspacing="0">
                         <tr>
-                            <th>Menu</th>
+                            <th>Product</th>
                             <th>Quantity</th>
                             <th>Price</th>
                             <th>Sub Total</th>
@@ -57,7 +57,7 @@
                             {
                                 <tr style=" border:1px solid black">
                                     <td>
-                                        <select asp-for="OrderItems[j].MenuID" class="form-control" id="dd1Order">
+                                        <select asp-for="OrderItems[j].InventoryProductID" class="form-control" id="dd1Order">
                                            
 
                                             @foreach (var order in Model.DDItems)

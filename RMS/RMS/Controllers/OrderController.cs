@@ -40,7 +40,7 @@ namespace RMS.Controllers
         public ActionResult Create(OrderDTOs model)
         {
             ViewBag.CustomerId = new SelectList(db.Customers.ToList(), "CustomerID", "CustomerName", model.CustomerID);
-            var order = db.Menus.ToList().Select(m => new DropDownOrder { Id = m.MenuID, Name = m.MenuName }).ToList();
+            var order = db.InventoryProducts.ToList().Select(m => new DropDownOrder { Id = m.InventoryProductID, Name = m.ProductsName }).ToList();
 
             model.DDItems = order;
 
@@ -51,7 +51,9 @@ namespace RMS.Controllers
                     OrderTime = TimeSpan.Zero,
                     OrderDate = DateTime.Now,
                     CustomerID = model.CustomerID,
-                    MenuID = model.MenuID                  
+                    MenuID = model.MenuID,
+                    
+                   
 
                 };
                 db.Orders.Add(order2);
@@ -72,7 +74,7 @@ namespace RMS.Controllers
                     db.OrderItems.Add(orderItem);
                     db.SaveChanges();
 
-                    Menu menu = db.Menus.FirstOrDefault(m => m.MenuID == items.MenuID);
+                    InventoryProduct inventoryProduct = db.InventoryProducts.FirstOrDefault(m => m.InventoryProductID == items.Id);
                     db.SaveChanges();
                 }
 

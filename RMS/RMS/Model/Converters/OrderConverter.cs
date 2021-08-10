@@ -14,6 +14,8 @@ namespace RMS.Model.Converters
             order.OrderDate = model.OrderDate;
             order.CustomerID = model.CustomerID;
             order.MenuID = model.MenuID;
+            order.
+            
 
             //order.Menu.MenuName = model.MenuName;
          

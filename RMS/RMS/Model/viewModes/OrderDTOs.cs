@@ -13,6 +13,7 @@ namespace RMS.Model.viewModes
         {
            Customers = new List<BaseGuidSelect>();
            Menus = new List<BaseGuidSelect>();
+            productName = new List<BaseGuidSelect>();
 
         }
         public Guid OrderID { get; set; }
@@ -25,6 +26,12 @@ namespace RMS.Model.viewModes
         public Guid MenuID { get; set; }
 
         public string MenuName { get; set; }
+
+        public Guid InventoryProductID { get; set; }
+
+        public string ProductName { get; set; }
+
+        public List<BaseGuidSelect> productName { get; set; }
 
         public List<BaseGuidSelect> Customers { get; set; }
 
@@ -52,6 +59,9 @@ namespace RMS.Model.viewModes
         public Guid MenuID { get; set; }
         public string MenuName { get; set; }
 
+        public Guid InventoryProductID { get; set; }
+        public string ProductName { get; set; }
+
         public Guid DishCategoryID { get; set; }
 
         public Guid DishSubCategoryID { get; set; }
@@ -72,6 +82,8 @@ namespace RMS.Model.viewModes
 
 
     public Guid MenuID { get; set; }
+
+    public Guid InventoryProductID { get; set; }
 
     
     
