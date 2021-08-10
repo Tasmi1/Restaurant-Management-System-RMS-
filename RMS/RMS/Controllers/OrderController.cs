@@ -43,7 +43,10 @@ namespace RMS.Controllers
         {
             ViewBag.CustomerId = new SelectList(db.Customers.ToList(), "CustomerID", "CustomerName", model.CustomerID);
             var order = db.InventoryProducts.ToList().Select(m => new DropDownOrder { Id = m.InventoryProductID, Name = m.ProductsName }).ToList();
+<<<<<<< HEAD
             /*var order = db.Menus.ToList().Select(m => new DropDownOrder { Id = m.MenuID, Name = m.MenuName }).ToList();*/
+=======
+>>>>>>> 6b70a72ec2f3630e298a251191f166ccf8ba2513
 
             model.DDItems = order;
 
@@ -54,8 +57,14 @@ namespace RMS.Controllers
                     OrderTime = TimeSpan.Zero,
                     OrderDate = DateTime.Now,
                     CustomerID = model.CustomerID,
+<<<<<<< HEAD
                     InventoryProductID = model.InventoryProductID
                    /* MenuID = model.MenuID */                 
+=======
+                    MenuID = model.MenuID,
+                    
+                   
+>>>>>>> 6b70a72ec2f3630e298a251191f166ccf8ba2513
 
                 };
                 db.Orders.Add(order2);
@@ -76,9 +85,13 @@ namespace RMS.Controllers
                     db.OrderItems.Add(orderItem);
                     db.SaveChanges();
 
+<<<<<<< HEAD
                     InventoryProduct inventory = db.InventoryProducts.FirstOrDefault(m => m.InventoryProductID == items.InventoryProductID);
 
                    /* Menu menu = db.Menus.FirstOrDefault(m => m.MenuID == items.MenuID);*/
+=======
+                    InventoryProduct inventoryProduct = db.InventoryProducts.FirstOrDefault(m => m.InventoryProductID == items.Id);
+>>>>>>> 6b70a72ec2f3630e298a251191f166ccf8ba2513
                     db.SaveChanges();
                 }
 

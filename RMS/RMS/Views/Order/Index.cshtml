@@ -8,8 +8,13 @@
 <div class="col-12">
     <div class="card mb-4">
         <div class="card-header pb-0">
+<<<<<<< HEAD
             <h6 class="text-center"> STOCK ORDER</h6>
             <a type="button" class="btn btn-primary" href="/Order/Create">
+=======
+            <h4 class="text-center"> STOCK ORDER </h4>
+            <a type=" button" class="btn btn-primary" href="/Order/Create">
+>>>>>>> 6b70a72ec2f3630e298a251191f166ccf8ba2513
                 Create
             </a>
         </div>
@@ -20,6 +25,7 @@
                 <table class="table align-items-center mb-0">
                     <thead>
                         <tr>
+<<<<<<< HEAD
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Customer</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> OrderTime</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> OrderDate</th>
@@ -27,30 +33,55 @@
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Price</th>
 
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Total</th>
+=======
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Customer Name </th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Order Date</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Order Time</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Product</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Quantity </th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Price </th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Sub-Total</th>
+>>>>>>> 6b70a72ec2f3630e298a251191f166ccf8ba2513
 
                             <th class="text-secondary opacity-7"></th>
                         </tr>
                     </thead>
+<<<<<<< HEAD
                     <tbody>
 
 
+=======
+
+                    <tbody>
+>>>>>>> 6b70a72ec2f3630e298a251191f166ccf8ba2513
                         @foreach (var item in Model)
                         {
                             <tr class="text-center">
 
                                 <td>
+<<<<<<< HEAD
                                     @Html.DisplayFor(modelItem => item.Customers)
                                 </td>
                                 <td>
+=======
+>>>>>>> 6b70a72ec2f3630e298a251191f166ccf8ba2513
                                     @Html.DisplayFor(modelItem => item.OrderTime)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.OrderDate)
                                 </td>
 
+<<<<<<< HEAD
                                
 
 
+=======
+
+                                <td>
+                                    <a asp-route-id="@item.OrderID" asp-action="Details">Bill</a>
+
+                                </td>
+>>>>>>> 6b70a72ec2f3630e298a251191f166ccf8ba2513
                                 <td class="align-middle" style="float:right;">
 
                                     <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="/Order/Delete/@item.OrderID"><i class="far fa-trash-alt me-2"></i>Delete</a>
@@ -58,6 +89,7 @@
                                     <a class="btn btn-link text-dark px-3 mb-0" href="/Order/Details/@item.OrderID"><i class="fas fa-file-alt text-dark me-2" aria-hidden="true"></i>Details</a>
 
                                 </td>
+<<<<<<< HEAD
                             </tr>
                         }
                     </tbody>
@@ -70,3 +102,17 @@
     </div>
 
 </div>
+=======
+                                <td>
+                                    <a asp-route-id="@item.OrderID" asp-action="Details">Bill</a>
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+>>>>>>> 6b70a72ec2f3630e298a251191f166ccf8ba2513
