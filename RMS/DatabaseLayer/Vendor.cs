@@ -17,16 +17,13 @@ namespace DatabaseLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Vendor()
         {
-            this.PurchaseProducts = new HashSet<PurchaseProduct>();
+            this.Orders = new HashSet<Order>();
         }
     
         public System.Guid VendorID { get; set; }
         public string VendorName { get; set; }
-        public string BillNumber { get; set; }
-        public string TotalPrice { get; set; }
-        public System.DateTime PurchaseDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PurchaseProduct> PurchaseProducts { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

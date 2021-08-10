@@ -56,12 +56,8 @@ namespace RMS.Controllers
                 {
                     OrderTime = TimeSpan.Zero,
                     OrderDate = DateTime.Now,
-                    CustomerID = model.CustomerID,
-<<<<<<< HEAD
-                    InventoryProductID = model.InventoryProductID
-                   /* MenuID = model.MenuID */                 
-=======
-                    MenuID = model.MenuID,
+                    //CustomerID = model.CustomerID,
+                    //MenuID = model.MenuID,
                     
                    
 >>>>>>> 6b70a72ec2f3630e298a251191f166ccf8ba2513
