@@ -25,8 +25,9 @@ namespace RMS.Controllers
         {
             ViewBag.CustomerId = new SelectList(db.Customers.ToList(), "CustomerID", "CustomerName");
             var products = db.InventoryProducts.ToList().Select(m => new DropDownOrder { Id = m.InventoryProductID, Name = m.ProductsName }).ToList();
-           /* var menus = db.Menus.ToList().Select(m => new DropDownOrder { Id = m.MenuID, Name = m.MenuName, Price = m.MenuPrice }).ToList();*/
-            /*List<OrderItems> orderItems = new List<OrderItems>() { new OrderItems { Quantity = 0, SubTotal = 0, MenuID = db.Menus.FirstOrDefault().MenuID } };*/
+
+
+            //NULL ERROR
             List<OrderItems> orderItems = new List<OrderItems>() { new OrderItems { Quantity = 0, SubTotal = 0, InventoryProductID = db.InventoryProducts.FirstOrDefault().InventoryProductID } };
             OrderDTOs orderDTOs = new OrderDTOs
             {
