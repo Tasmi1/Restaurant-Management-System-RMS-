@@ -50,8 +50,8 @@ namespace RMS.Controllers
                 {
                     OrderTime = TimeSpan.Zero,
                     OrderDate = DateTime.Now,
-                    CustomerID = model.CustomerID,
-                    MenuID = model.MenuID,
+                    //CustomerID = model.CustomerID,
+                    //MenuID = model.MenuID,
                     
                    
 
