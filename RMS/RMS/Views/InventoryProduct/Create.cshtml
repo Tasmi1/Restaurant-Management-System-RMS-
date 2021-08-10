@@ -23,20 +23,18 @@
 
                     </div>
 
+                   
+
                     <div class="mb-3">
-
-                        <label style="font-weight: bold;font-size: 1.3em;">ManufactureDate</label>   <br />
-                        @Html.ValidationMessageFor(model => model.ManufactureDate, "", new { @class = "text-danger" })
-                        @Html.TextBoxFor(x => x.ManufactureDate, "", new { @class = "form-control", @placeholder = "Enter Manufacture Date" })
-
+                        <label class="control-label" for="ManufactureDate">Manufacture Date</label>
+                        <input class="form-control datepicker" type="date" data-val="true" data-val-required="The Order Date field is required." id="ManufactureDate" name="ManufactureDate" placeholder="dd/mm/yyy" />
+                        <span class="text-danger field-validation-valid" data-valmsg-for="ManufactureDate" data-valmsg-replace="true"></span>
                     </div>
 
                     <div class="mb-3">
-
-                        <label style="font-weight: bold;font-size: 1.3em;">ExpDate</label>   <br />
-                        @Html.ValidationMessageFor(model => model.ExpDate, "", new { @class = "text-danger" })
-                        @Html.TextBoxFor(x => x.ExpDate, "", new { @class = "form-control", @placeholder = "Enter Exp Date" })
-
+                        <label class="control-label" for="ExpDate">Expiry Date</label>
+                        <input class="form-control datepicker" type="date" data-val="true" data-val-required="The Order Date field is required." id="ExpDate" name="ExpDate" placeholder="dd/mm/yyy" />
+                        <span class="text-danger field-validation-valid" data-valmsg-for="ExpDate" data-valmsg-replace="true"></span>
                     </div>
 
                     <div class="mb-3">
@@ -46,19 +44,18 @@
                         @Html.TextBoxFor(x => x.Description, "", new { @class = "form-control", @placeholder = "Enter Description" })
                     </div>
                     <div class="mb-3">
-
                         <label style="font-weight: bold;font-size: 1.3em;"> Category</label>   <br />
-                        @Html.DropDownListFor(x => x.CategoryID, new SelectList(Model.Categories, "Id", "Name"))
-                        @Html.ValidationMessageFor(x => x.CategoryID)
+                        @Html.DropDownListFor(x => x.CategoryID, new SelectList(Model.Categories, "Id", "Name"), new { @class = "form-control form-control-lg", required = "required" })
+                        @Html.ValidationMessageFor(x => x.CategoryID, "", new { @class = "text-danger" })
 
                     </div>
-                   
+
 
                     <div class="text-center">
-                            <input type="submit" value="Save" class="btn bg-gradient-primary mt-4 " style=" display: block; margin-left: auto; margin-right: auto; width: 40%; " />
+                        <input type="submit" value="Save" class="btn bg-gradient-primary mt-4 " style=" display: block; margin-left: auto; margin-right: auto; width: 40%; " />
 
-                        </div>
-                    </form>
+                    </div>
+                </form>
                 </div>
                </div>
             </div>

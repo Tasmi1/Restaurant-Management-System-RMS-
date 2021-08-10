@@ -132,6 +132,8 @@
     <Compile Include="Controllers\DishSubCategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoryProductController.cs" />
+    <Compile Include="Controllers\InvoiceController.cs" />
+    <Compile Include="Controllers\OrderCartController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
@@ -144,6 +146,7 @@
     <Compile Include="Model\Converters\DishCategoryConverter.cs" />
     <Compile Include="Model\Converters\DishSubCategoryConverter.cs" />
     <Compile Include="Model\Converters\InventoryProductConverter.cs" />
+    <Compile Include="Model\Converters\InvoiceConverter.cs" />
     <Compile Include="Model\Converters\OrderConverter.cs" />
     <Compile Include="Model\Converters\UserConverter.cs" />
     <Compile Include="Model\Converters\MenuConverter.cs" />
@@ -153,19 +156,24 @@
     <Compile Include="Model\Services\DishCategoryService.cs" />
     <Compile Include="Model\Services\DishSubCategoryService.cs" />
     <Compile Include="Model\Services\InventoryProductService.cs" />
+    <Compile Include="Model\Services\InvoiceService.cs" />
     <Compile Include="Model\Services\OrderService.cs" />
     <Compile Include="Model\Services\UserService.cs" />
     <Compile Include="Model\Services\MenuService.cs" />
     <Compile Include="Model\Services\UserTypeService.cs" />
     <Compile Include="Model\viewModes\Base\BaseSelectList.cs" />
+    <Compile Include="Model\viewModes\CartDTOs.cs" />
     <Compile Include="Model\viewModes\CategoryDTOs.cs" />
     <Compile Include="Model\viewModes\CustomerDTOs.cs" />
     <Compile Include="Model\viewModes\DishSubCategoryDTOs.cs" />
+    <Compile Include="Model\viewModes\InvoiceDTOs.cs" />
     <Compile Include="Model\viewModes\MenuDTOs.cs" />
     <Compile Include="Model\viewModes\DishCategoryDTOs.cs" />
     <Compile Include="Model\viewModes\InventoryProductDTOs.cs" />
     <Compile Include="Model\viewModes\KitchineOrderDTOs.cs" />
+    <Compile Include="Model\viewModes\OrderCartDTOs.cs" />
     <Compile Include="Model\viewModes\OrderDTOs.cs" />
+    <Compile Include="Model\viewModes\OrderModel.cs" />
     <Compile Include="Model\viewModes\UserDTOs.cs" />
     <Compile Include="Model\viewModes\UserTypeDTOs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -220,13 +228,17 @@
     <Content Include="Content\dashboard\js\core\popper.min.js" />
     <Content Include="Content\dashboard\js\plugins\bootstrap-notify.js" />
     <Content Include="Content\dashboard\js\plugins\Chart.extension.js" />
-    <Content Include="Content\dashboard\js\plugins\chartjs.min.js" />
-    <Content Include="Content\dashboard\js\plugins\choices.min.js" />
-    <Content Include="Content\dashboard\js\plugins\fullcalendar.min.js" />
     <Content Include="Content\dashboard\js\plugins\perfect-scrollbar.min.js" />
     <Content Include="Content\dashboard\js\plugins\smooth-scrollbar.min.js" />
     <Content Include="Content\dashboard\js\soft-ui-dashboard.js" />
     <Content Include="Content\dashboard\js\soft-ui-dashboard.min.js" />
+    <Content Include="Content\Image\apple.jpg" />
+    <Content Include="Content\Image\chinese.jpg" />
+    <Content Include="Content\Image\download.jpg" />
+    <Content Include="Content\Image\momo.jpg" />
+    <Content Include="Content\Image\OIP.jpg" />
+    <Content Include="Content\Image\spaghetti.jpg" />
+    <Content Include="Content\Image\sushi.jpg" />
     <Content Include="Content\Login\css\bootstrap.min.css" />
     <Content Include="Content\Login\css\owl.carousel.min.css" />
     <Content Include="Content\Login\css\style.css" />
@@ -554,6 +566,8 @@
     <Content Include="Content\Login\scss\bootstrap\_variables.scss" />
     <Content Include="Content\Login\scss\style.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\chart\exporting.js" />
+    <Content Include="Scripts\chart\highcharts.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -599,7 +613,6 @@
     <Content Include="Views\DishSubCategory\Edit.cshtml" />
     <Content Include="Views\DishSubCategory\Index.cshtml" />-->
     <Content Include="Views\Menu\Details.cshtml" />
-    <Content Include="Views\Menu\Details.cshtml" />
     <Content Include="Views\DishCategory\Index.cshtml" />
     <Content Include="Views\DishCategory\Create.cshtml" />
     <Content Include="Views\DishCategory\Edit.cshtml" />
@@ -615,16 +628,22 @@
     <Content Include="Views\InventoryProduct\Create.cshtml" />
     <Content Include="Views\InventoryProduct\Details.cshtml" />
     <Content Include="Views\InventoryProduct\Edit.cshtml" />
-    <Content Include="Views\InventoryProduct\Index.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\Order\Create.cshtml" />
+    <Content Include="Views\Order\Details.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\OrderCart\Index.cshtml" />
+    <Content Include="Views\OrderCart\OrderCart.cshtml" />
+    <Content Include="Views\Shared\_OrderCart.cshtml" />
+    <Content Include="Views\InventoryProduct\Index.cshtml" />
+    <Content Include="Views\Invoice\Create.cshtml" />
+    <Content Include="Views\Invoice\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Categories\" />
-    <Folder Include="Views\InventoryProducts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -640,13 +659,13 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DatabaseLayer\DatabaseLayer.csproj">
-      <Project>{686baef8-3131-4ce4-8853-bc5f878d895d}</Project>
-      <Name>DatabaseLayer</Name>
-    </ProjectReference>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
+    <ProjectReference Include="..\DatabaseLayer\DatabaseLayer.csproj">
+      <Project>{ce9ed0b5-5704-40a3-adfd-3e1dcd432bd3}</Project>
+      <Name>DatabaseLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

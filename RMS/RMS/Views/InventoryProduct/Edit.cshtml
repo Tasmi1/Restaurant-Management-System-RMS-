@@ -4,9 +4,9 @@
     ViewBag.Title = "Edit";
 }
 
+
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
     @Html.HiddenFor(x => x.InventoryProductID);
 
 <div class="form-horizontal">
@@ -16,53 +16,56 @@
             <i class="fa fa-arrow-left" style="font-size:25px;"></i>
         </a>
     </span>
-    <span style="font-size: 25px; font-weight: bold; color:black;">Edit InventoryProduct</span>
-    <div/>
+    <span style="font-size: 25px; font-weight: bold; color:black;"><p>Edit Inventory Product</p></span>
+    <hr />
+
 
     <div class="form-group">
 
-        <label style="font-weight: bold;font-size: 1.3em;">Products Name</label>   <br />
-        @Html.ValidationMessageFor(model => model.ProductsName, "", new { @class = "text-danger" })
-        @Html.TextBoxFor(x => x.ProductsName, "", new { @class = "form-control", @placeholder = "Enter Products Name" })
+        <div class="form-group">
+            <label style="font-weight: bold;font-size: 1.3em;">Products Name</label>   <br />
+            @Html.ValidationMessageFor(model => model.ProductsName, "", new { @class = "text-danger" })
+            @Html.TextBoxFor(x => x.ProductsName, "", new { @class = "form-control", @placeholder = "Enter Products Name" })
 
+        </div>
     </div>
 
     <div class="form-group">
 
-        <label style="font-weight: bold;font-size: 1.3em;">ManufactureDate</label>   <br />
+        <label style="font-weight: bold;font-size: 1.3em;">Manufacture Date</label>   <br />
         @Html.ValidationMessageFor(model => model.ManufactureDate, "", new { @class = "text-danger" })
-        @Html.TextBoxFor(x => x.ManufactureDate, "", new { @class = "form-control", @placeholder = "Enter Manufacture Date" })
+        @Html.TextBoxFor(x => x.ManufactureDate, "", new { @class = "form-control datepicker" })
 
     </div>
-
     <div class="form-group">
 
-        <label style="font-weight: bold;font-size: 1.3em;">ExpDate</label>   <br />
+        <label style="font-weight: bold;font-size: 1.3em;">Expiry Date</label>   <br />
         @Html.ValidationMessageFor(model => model.ExpDate, "", new { @class = "text-danger" })
-        @Html.TextBoxFor(x => x.ExpDate, "", new { @class = "form-control", @placeholder = "Enter Exp Date" })
+        @Html.TextBoxFor(x => x.ExpDate, "", new { @class = "form-control datepicker" })
 
     </div>
-
     <div class="form-group">
 
         <label style="font-weight: bold;font-size: 1.3em;">Description</label>   <br />
         @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
         @Html.TextBoxFor(x => x.Description, "", new { @class = "form-control", @placeholder = "Enter Description" })
-        </div>
-        <div class="form-group">
 
-            <label style="font-weight: bold;font-size: 1.3em;"> Category</label>   <br />
-            @Html.DropDownListFor(x => x.CategoryID, new SelectList(Model.Categories, "Id", "Name"))
-            @Html.ValidationMessageFor(x => x.CategoryID)
+    </div>
+    <div class="form-group">
+        <label style="font-weight: bold;font-size: 1.3em;"> Category</label>   <br />
+        @Html.DropDownListFor(x => x.CategoryID, new SelectList(Model.Categories, "Id", "Name"), new { @class = "form-control form-control-lg", required = "required" })
+        @Html.ValidationMessageFor(x => x.CategoryID, "", new { @class = "text-danger" })
 
-        </div>
+    </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-12">
-                <input type="submit" value="Save" class="btn bg-gradient-primary mt-4 " style=" display: block; margin-left: auto; margin-right: auto; width: 40%; " />
 
-            </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-12">
+            <input type="submit" value="Save" class="btn bg-gradient-primary mt-4 " style=" display: block; margin-left: auto; margin-right: auto; width: 40%; " />
+
         </div>
     </div>
-    }
+</div>
+}
+
 

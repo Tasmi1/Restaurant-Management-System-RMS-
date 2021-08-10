@@ -7,7 +7,7 @@
 <div class="col-12">
     <div class="card mb-4">
         <div class="card-header pb-0">
-            <h6>Menu </h6>
+            <h4 class="text-center"> MENU  </h4>
             <a type="button" class="btn btn-primary" href="/Menu/Create">
                 Create
             </a>
@@ -29,6 +29,7 @@
                         @foreach (var menu in Model)
                         {
                         <tr class="text-center">
+                                                     
                             <td>
                                 <div class="d-flex px-3 py-1">
 
@@ -51,11 +52,12 @@
                                 <div class="d-flex px-3 py-1">
 
                                     <div class="d-flex flex-column justify-content-center">
-                                        <h6 class="mb-0 text-sm">@menu.SubCategoryID</h6>
+                                        <h6 class="mb-0 text-sm">@menu.DishSubCategory</h6>
                                     </div>
 
                                 </div>
                             </td>
+
                             <td class="align-middle" style="float:right;">
 
                                 <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="/Menu/Delete/@menu.MenuID"><i class="far fa-trash-alt me-2"></i>Delete</a>
