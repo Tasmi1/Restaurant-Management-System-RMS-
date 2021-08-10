@@ -635,12 +635,11 @@
     <Content Include="Views\OrderCart\Index.cshtml" />
     <Content Include="Views\OrderCart\OrderCart.cshtml" />
     <Content Include="Views\Shared\_OrderCart.cshtml" />
-<<<<<<< HEAD
+
     <Content Include="Views\InventoryProduct\Index.cshtml" />
-=======
+
     <Content Include="Views\Invoice\Create.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
->>>>>>> 8ed54fb10f6177e61c84ec84ac1b8f29a8b5256c
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
