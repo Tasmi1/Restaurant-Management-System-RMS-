@@ -85,7 +85,7 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult AddOrder()
         {
-            int OrderCartId = 5;
+            int OrderCartId = 0;
           
             ListofCart = Session["CartItem"] as List<CartDTOs>;
             OrderCart orderCart = new OrderCart()
