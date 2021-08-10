@@ -147,6 +147,7 @@
     <Compile Include="Model\Converters\DishSubCategoryConverter.cs" />
     <Compile Include="Model\Converters\InventoryProductConverter.cs" />
     <Compile Include="Model\Converters\InvoiceConverter.cs" />
+    <Compile Include="Model\Converters\KitchineOrderConverter.cs" />
     <Compile Include="Model\Converters\OrderConverter.cs" />
     <Compile Include="Model\Converters\UserConverter.cs" />
     <Compile Include="Model\Converters\MenuConverter.cs" />
@@ -157,6 +158,7 @@
     <Compile Include="Model\Services\DishSubCategoryService.cs" />
     <Compile Include="Model\Services\InventoryProductService.cs" />
     <Compile Include="Model\Services\InvoiceService.cs" />
+    <Compile Include="Model\Services\KitchineOrderService.cs" />
     <Compile Include="Model\Services\OrderService.cs" />
     <Compile Include="Model\Services\UserService.cs" />
     <Compile Include="Model\Services\MenuService.cs" />
