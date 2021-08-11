@@ -29,7 +29,7 @@ namespace RMS.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(InventoryProductDTOs Model)
+        public ActionResult Create(InventoryProductDTOs Model, ProductQuantity quantityModel)
         {
 
             if (ModelState.IsValid)
