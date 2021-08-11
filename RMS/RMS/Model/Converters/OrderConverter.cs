@@ -12,9 +12,7 @@ namespace RMS.Model.Converters
         {
             order.OrderTime = model.OrderTime;
             order.OrderDate = model.OrderDate;
-            order.CustomerID = model.CustomerID;
-            order.MenuID = model.MenuID;
-
+           
             //order.Menu.MenuName = model.MenuName;
          
             return order;
@@ -29,8 +27,6 @@ namespace RMS.Model.Converters
 
             
             
-            order.CustomerID = model.CustomerID;
-            order.MenuID = model.MenuID;
             return order;
         }
     }

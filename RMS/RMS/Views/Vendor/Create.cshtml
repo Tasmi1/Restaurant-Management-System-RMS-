@@ -18,7 +18,7 @@
                 <form method="post">
                     <div class="mb-3">
 
-                        <label style="font-weight: bold;font-size: 1.3em;">Vendor</label>   <br />
+                        <label style="font-weight: bold;font-size: 1.3em;">Vendor Name</label>   <br />
                         @Html.ValidationMessageFor(model => model.VendorName, "", new { @class = "text-danger" })
                         @Html.TextBoxFor(x => x.VendorName, "", new { @class = "form-control", @placeholder = "Enter Vendor" })
 
