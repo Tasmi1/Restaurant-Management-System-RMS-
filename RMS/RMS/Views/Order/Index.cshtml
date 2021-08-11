@@ -23,7 +23,7 @@
                     <thead>
                         <tr>
 
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Customer</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Vendor </th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> OrderTime</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> OrderDate</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Quantity</th>
@@ -46,7 +46,7 @@
 
                                 <td>
 
-                                    @Html.DisplayFor(modelItem => item.Customers)
+                                    @Html.DisplayFor(modelItem => item.Vendors)
                                 </td>
                                 <td>
 
@@ -80,17 +80,3 @@
     </div>
 
 </div>
-=======
-                                <td>
-                                    <a asp-route-id="@item.OrderID" asp-action="Details">Bill</a>
-
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-    </div>
->>>>>>> 6b70a72ec2f3630e298a251191f166ccf8ba2513

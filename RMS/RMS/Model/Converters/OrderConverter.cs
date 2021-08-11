@@ -13,7 +13,6 @@ namespace RMS.Model.Converters
             order.OrderTime = model.OrderTime;
             order.OrderDate = model.OrderDate;
         
-
             order.InventoryProductID = model.InventoryProductID;
 
          

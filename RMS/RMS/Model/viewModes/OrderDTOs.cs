@@ -11,12 +11,9 @@ namespace RMS.Model.viewModes
     {
         public  OrderDTOs()
         {
-           Customers = new List<BaseGuidSelect>();
+           Vendors = new List<BaseGuidSelect>();
 
-          
             ProductsName = new List<BaseGuidSelect>();
-
-
 
         }
         public Guid OrderID { get; set; }
@@ -25,23 +22,21 @@ namespace RMS.Model.viewModes
         [Required(ErrorMessage = "Order Date is required")]
         public DateTime OrderDate { get; set; }
 
-        public Guid CustomerID { get; set; }
-       
-       
+  
 
+        public Guid VendorID { get; set; }
+       
         public List<BaseGuidSelect> ProductsName { get; set; } 
 
         public Guid InventoryProductID { get; set; }
 
         public string ProductName { get; set; }
 
-        public List<BaseGuidSelect> productName { get; set; }
 
-        public List<BaseGuidSelect> Customers { get; set; }
+        public List<BaseGuidSelect> Vendors { get; set; }
 
-        public string Customer { get; set; }
-       
-    
+
+        public string Vendor { get; set; }
        
         public List<DropDownOrder> DDItems { get; set; }
         public List<OrderItems> OrderItems { get; set; }
@@ -55,18 +50,14 @@ namespace RMS.Model.viewModes
         [Required(ErrorMessage = "Total is required")]
 
         public string Total { get; set; }
-        public Guid CustomerID { get; set; }
-        public string CustomerName { get; set; }
+        public Guid VendorID { get; set; }
+        public string VendorName { get; set; }
 
         public string Contact { get; set; }
-        public string CustomerAddress { get; set; }
        
-
         public Guid InventoryProductID { get; set; }
 
         public string ProductName { get; set; }
-
-       
 
         public Guid DishCategoryID { get; set; }
 
@@ -84,15 +75,9 @@ namespace RMS.Model.viewModes
 }
     public class OrderItems
     {
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
 
-
-
-    public Guid InventoryProductID { get; set; }
-
-
-    
-    
+         public Guid InventoryProductID { get; set; }
 
         public int Quantity { get; set; }
 
