@@ -12,43 +12,46 @@ namespace RMS.Model.Services
     public class OrderService
     {
         private readonly OrderConverter converter = new OrderConverter();
-        private readonly MenuService menuService = new MenuService();
+        private readonly InventoryProductService inventoryProductService = new InventoryProductService();
 
         public OrderDTOs CreateSelectList(OrderDTOs model)
         {
-            model.Customers = GetCustomers();            
-            model.Menus = GetMenus();
+           
+            model.ProductsName = GetProducts();
+            model.Vendors = GetVendors();
+        
             return model;
         }
 
-        public List<BaseGuidSelect> GetCustomers()
+        public List<BaseGuidSelect> GetVendors()
         {
             using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
             {
-                return db.Customers.Select(u =>
+                return db.Vendors.Select(u =>
                 new BaseGuidSelect
                 {
-                    Id = u.CustomerID,
-                    Name = u.CustomerName
+                    Id = u.VendorID,
+                    Name = u.VendorName
                 }).ToList();
 
                 
             }
         }
 
-        public List<BaseGuidSelect> GetMenus()
+        public List<BaseGuidSelect> GetProducts()
         {
             using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
             {
-                return db.Menus.Select(u =>
+                return db.InventoryProducts.Select(u =>
                 new BaseGuidSelect
                 {
-                    Id = u.MenuID,
-                    Name = u.MenuName
+                    Id = u.InventoryProductID,
+                    Name = u.ProductsName
                 }).ToList();
-
             }
         }
+
+     
 
         public bool Create(OrderDTOs model)
         {

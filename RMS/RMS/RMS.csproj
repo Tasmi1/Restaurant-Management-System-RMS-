@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -46,10 +47,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -135,6 +136,7 @@
     <Compile Include="Controllers\DishSubCategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoryProductController.cs" />
+    <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\OrderCartController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -149,7 +151,9 @@
     <Compile Include="Model\Converters\DishCategoryConverter.cs" />
     <Compile Include="Model\Converters\DishSubCategoryConverter.cs" />
     <Compile Include="Model\Converters\InventoryProductConverter.cs" />
+    <Compile Include="Model\Converters\InvoiceConverter.cs" />
     <Compile Include="Model\Converters\OrderConverter.cs" />
+    <Compile Include="Model\Converters\ProductQuantityConverter.cs" />
     <Compile Include="Model\Converters\UserConverter.cs" />
     <Compile Include="Model\Converters\MenuConverter.cs" />
     <Compile Include="Model\Converters\UserTypeConverter.cs" />
@@ -159,6 +163,7 @@
     <Compile Include="Model\Services\DishCategoryService.cs" />
     <Compile Include="Model\Services\DishSubCategoryService.cs" />
     <Compile Include="Model\Services\InventoryProductService.cs" />
+    <Compile Include="Model\Services\InvoiceService.cs" />
     <Compile Include="Model\Services\OrderService.cs" />
     <Compile Include="Model\Services\UserService.cs" />
     <Compile Include="Model\Services\MenuService.cs" />
@@ -169,12 +174,14 @@
     <Compile Include="Model\viewModes\CategoryDTOs.cs" />
     <Compile Include="Model\viewModes\CustomerDTOs.cs" />
     <Compile Include="Model\viewModes\DishSubCategoryDTOs.cs" />
+    <Compile Include="Model\viewModes\InvoiceDTOs.cs" />
     <Compile Include="Model\viewModes\MenuDTOs.cs" />
     <Compile Include="Model\viewModes\DishCategoryDTOs.cs" />
     <Compile Include="Model\viewModes\InventoryProductDTOs.cs" />
     <Compile Include="Model\viewModes\OrderCartDTOs.cs" />
     <Compile Include="Model\viewModes\OrderDTOs.cs" />
     <Compile Include="Model\viewModes\OrderModel.cs" />
+    <Compile Include="Model\viewModes\ProductQuantityDTOs.cs" />
     <Compile Include="Model\viewModes\UserDTOs.cs" />
     <Compile Include="Model\viewModes\UserTypeDTOs.cs" />
     <Compile Include="Model\viewModes\VendorDTOs.cs" />
@@ -234,9 +241,11 @@
     <Content Include="Content\dashboard\js\plugins\smooth-scrollbar.min.js" />
     <Content Include="Content\dashboard\js\soft-ui-dashboard.js" />
     <Content Include="Content\dashboard\js\soft-ui-dashboard.min.js" />
+    <Content Include="Content\Image\apple.jpg" />
     <Content Include="Content\Image\chinese.jpg" />
     <Content Include="Content\Image\download.jpg" />
     <Content Include="Content\Image\momo.jpg" />
+    <Content Include="Content\Image\OIP.jpg" />
     <Content Include="Content\Image\spaghetti.jpg" />
     <Content Include="Content\Image\sushi.jpg" />
     <Content Include="Content\Login\css\bootstrap.min.css" />
@@ -628,7 +637,6 @@
     <Content Include="Views\InventoryProduct\Create.cshtml" />
     <Content Include="Views\InventoryProduct\Details.cshtml" />
     <Content Include="Views\InventoryProduct\Edit.cshtml" />
-    <Content Include="Views\InventoryProduct\Index.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\Order\Create.cshtml" />
@@ -701,7 +709,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

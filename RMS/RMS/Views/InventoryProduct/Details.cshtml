@@ -3,9 +3,9 @@
 @{
     ViewBag.Title = "Details";
 }
-<h2>Details</h2>
+
 <div class="container" style="margin-top: 2%;">
-    <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+    <div class=" mx-auto">
         <div class="card">
             <div class="card-header text-center pt-4">
                 <span>
@@ -15,30 +15,43 @@
                 </span>
                 <samp style="font-size: 20px; font-weight: bold; color:black;">InventoryProduct Details</samp>
             </div>
+
+            <dl class="card-body">
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProductsName)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ProductsName)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ManufactureDate)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ManufactureDate)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ExpDate)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ExpDate)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+            </dl>
         </div>
-        <div class="card-body">
-            <div class="mb-3">
-                <label style="font-weight: bold;font-size: 1.3em;">Products Name</label> <br />
-                @Html.DisplayFor(model => model.ProductsName)
-
-                <label style="font-weight: bold;font-size: 1.3em;">ManufactureDate</label> <br />
-                @Html.DisplayFor(model => model.ManufactureDate)
-                <label style="font-weight: bold;font-size: 1.3em;">ExpDate</label>   <br />
-                @Html.DisplayFor(model => model.ExpDate)
-                <label style="font-weight: bold;font-size: 1.3em;">Description</label>   <br />
-                @Html.DisplayFor(model => model.Description)
-
-                <label style="font-weight: bold;font-size: 1.3em;">Category</label>   <br />
-                @Html.DisplayFor(model => model.CategoryID)
-               
-            </div>
-
-        </div>
-
 
     </div>
 
 </div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
 
 
 

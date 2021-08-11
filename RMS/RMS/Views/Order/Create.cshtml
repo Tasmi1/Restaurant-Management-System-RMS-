@@ -16,7 +16,7 @@
                         <i class="fa fa-arrow-left" style="font-size:27px;"></i>
                     </a>
                 </span>
-                <samp style="font-size: 20px; font-weight: bold; color:black;">Order</samp>
+                <samp style="font-size: 20px; font-weight: bold; color:black;"> Stock Order</samp>
             </div>
             <div class="card-body">
                 <form method="post">
@@ -34,9 +34,9 @@
                     </div>
 
                     <div class="mb-3">
-                        <label style="font-weight: bold;font-size: 1.3em;">Customer</label>   <br />
-                        @Html.ValidationMessageFor(model => model.CustomerID, "", new { @class = "text-danger" })
-                        @Html.DropDownListFor(x => x.CustomerID, new SelectList(Model.Customers, "Id", "Name"), new { @class = "form-control form-control-lg ", required = "required" })
+                        <label style="font-weight: bold;font-size: 1.3em;"> Vendor </label>   <br />
+                        @Html.ValidationMessageFor(model => model.VendorID, "", new { @class = "text-danger" })
+                        @Html.DropDownListFor(x => x.VendorID, new SelectList(Model.Vendors, "Id", "Name"), new { @class = "form-control form-control-lg ", required = "required" })
 
                     </div>
                 
@@ -45,7 +45,7 @@
                     <div><a class="btn btn-primary" href="#" id="addNew">Add New Orders</a></div>
                     <table class="table table-bordered" id="dataTable" border="0" cellpadding="0" cellspacing="0">
                         <tr>
-                            <th>Menu</th>
+                            <th>Product</th>
                             <th>Quantity</th>
                             <th>Price</th>
                             <th>Sub Total</th>
@@ -57,7 +57,7 @@
                             {
                                 <tr style=" border:1px solid black">
                                     <td>
-                                        <select asp-for="OrderItems[j].MenuID" class="form-control" id="dd1Order">
+                                        <select asp-for="OrderItems[j].InventoryProductID" class="form-control" id="dd1Order">
                                            
 
                                             @foreach (var order in Model.DDItems)

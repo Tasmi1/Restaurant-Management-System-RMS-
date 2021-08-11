@@ -35,17 +35,17 @@ namespace RMS.Controllers
                                                                MenuPrice = DBMenu.MenuPrice,
                                                                ImagePath = DBMenu.ImagePath,
                                                                SubCategory = DBSubCategory.SubCategoryName
-                                                              
+
                                                            }).ToList();
             return View(ListofOrderCarts);
         }
 
-       
+
         [HttpPost]
         public JsonResult Index(Guid MenuId)
         {
             CartDTOs dTOs = new CartDTOs();
-            Menu DBMenu = DB.Menus.Single(model => model.MenuID == MenuId);
+            Menu menu = DB.Menus.Single(model => model.MenuID == MenuId);
             if (Session["CartCounter"] != null)
             {
                 ListofCart = Session["CartItem"] as List<CartDTOs>;
@@ -53,61 +53,67 @@ namespace RMS.Controllers
             if (ListofCart.Any(model => model.MenuId == MenuId))
             {
                 dTOs = ListofCart.Single(model => model.MenuId == MenuId);
-                dTOs.Quantity++;
-                dTOs.Total = dTOs.Quantity * dTOs.Price;
+                dTOs.Quantity = dTOs.Quantity + 1;
+                dTOs.Total = dTOs.Quantity * dTOs.UnitPrice;
             }
             else
             {
                 dTOs.MenuId = MenuId;
-                dTOs.MenuName = DBMenu.MenuName;
+                dTOs.MenuName = menu.MenuName;
+                dTOs.ImagePath = menu.ImagePath;
                 dTOs.Quantity = 1;
-                dTOs.Total = Convert.ToDecimal(DBMenu.MenuPrice);
-                dTOs.Price = Convert.ToDecimal(DBMenu.MenuPrice);
+                dTOs.Total = Convert.ToDecimal(menu.MenuPrice);
+                dTOs.UnitPrice = Convert.ToDecimal(menu.MenuPrice);
                 ListofCart.Add(dTOs);
 
             }
+
             Session["CartCounter"] = ListofCart.Count;
             Session["CartItem"] = ListofCart;
             return Json(new { Success = true, Counter = ListofCart.Count }, JsonRequestBehavior.AllowGet);
-           
+
         }
 
         public ActionResult OrderCart()
         {
             ListofCart = Session["CartItem"] as List<CartDTOs>;
-   
-            return View(); 
+
+            return View(ListofCart);
         }
 
         [HttpPost]
         public ActionResult AddOrder()
         {
             int OrderCartId = 0;
-            //Guid OrderCartId = 0;
+          
             ListofCart = Session["CartItem"] as List<CartDTOs>;
             OrderCart orderCart = new OrderCart()
             {
                 OrderDate = DateTime.Now,
-                OrderNumber = String.Format("(0:ddmmyyyyhhmmss)", DateTime.Now)
+                OrderNumber = String.Format("(0:ddmmyyyyhhmmss)", DateTime.Now),
+                OrderStatus = false,
+                OrderCartID = OrderCartId + 1, 
 
-            };
-            DB.OrderCarts.Add(orderCart);
+        };
+           
+                DB.OrderCarts.Add(orderCart);
             DB.SaveChanges();
-            int orderCartId = orderCart.OrderCartID;
+
+            OrderCartId = orderCart.OrderCartID;
             foreach (var item in ListofCart)
             {
-                CartDetail cartModel = new CartDetail
-                {
-                    Total = item.Total,
-                    MenuID = item.MenuId,
-                    OrderCartID = item.OrderCartId,
-                    Quantity = item.Quantity,
-                    Price = item.Price
-                };
-                //CartDetail entitModel = new converter();
+                CartDetail cartModel = new CartDetail();
+                cartModel.Total = item.Total;
+                cartModel.MenuID = item.MenuId;
+                cartModel.CartDetailID = OrderCartId;
+                cartModel.Quantity = item.Quantity;
+                cartModel.Price = item.UnitPrice;
+
+
+
                     DB.CartDetails.Add(cartModel);
                 DB.SaveChanges();
-                    
+
 
             }
             Session["CartItem"] = null;
