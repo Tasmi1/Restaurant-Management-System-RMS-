@@ -34,9 +34,9 @@
                     </div>
 
                     <div class="mb-3">
-                        <label style="font-weight: bold;font-size: 1.3em;">Customer</label>   <br />
-                        @Html.ValidationMessageFor(model => model.CustomerID, "", new { @class = "text-danger" })
-                        @Html.DropDownListFor(x => x.CustomerID, new SelectList(Model.Customers, "Id", "Name"), new { @class = "form-control form-control-lg ", required = "required" })
+                        <label style="font-weight: bold;font-size: 1.3em;"> Vendor </label>   <br />
+                        @Html.ValidationMessageFor(model => model.VendorID, "", new { @class = "text-danger" })
+                        @Html.DropDownListFor(x => x.VendorID, new SelectList(Model.Vendors, "Id", "Name"), new { @class = "form-control form-control-lg ", required = "required" })
 
                     </div>
                 
