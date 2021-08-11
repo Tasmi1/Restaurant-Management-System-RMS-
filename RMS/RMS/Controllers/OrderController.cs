@@ -48,41 +48,63 @@ namespace RMS.Controllers
 
             if(ModelState.IsValid)
             {
-                Order order2 = new Order
+                double total = 0;
+                Order ord = new Order
                 {
-                    OrderTime = TimeSpan.Zero,
-                    OrderDate = DateTime.Now,
-                   
-
-                    InventoryProductID = model.InventoryProductID
-       
-
+                    OrderTime = model.OrderTime,
+                    OrderDate = model.OrderDate,
+                    VendorID = model.VendorID,
+                    //InventoryProductID = model.InventoryProductID
                 };
-                db.Orders.Add(order2);
-                db.SaveChanges();
-
-                Vendor vendor = db.Vendors.FirstOrDefault(m => m.VendorID == model.VendorID);
-                db.SaveChanges();
-
-                foreach(var items in model.OrderItems)
+                var orderItems = new List<OrderItem>();
+                foreach (var item in model.OrderItems)
                 {
-                    OrderItem orderItem = new OrderItem
+                    total += item.SubTotal;
+                    orderItems.Add(new OrderItem
                     {
-                        OrderID = order2.OrderID,
-                        Price = items.Price,
-                        Quantity = items.Quantity
-                       /* SubTotal = items.SubTotal*/
-                    };
-                    db.OrderItems.Add(orderItem);
-                    db.SaveChanges();
-
-
-                    InventoryProduct inventory = db.InventoryProducts.FirstOrDefault(m => m.InventoryProductID == items.InventoryProductID);
-/*
-                    InventoryProduct inventoryProduct = db.InventoryProducts.FirstOrDefault(m => m.InventoryProductID == items.Id);*/
-
-                    db.SaveChanges();
+                        Price = item.Price,
+                        Quantity = item.Quantity,
+                        ItemID = item.InventoryProductID
+                    });
                 }
+
+                ord.Total = total.ToString();
+                ord.OrderID = Guid.NewGuid();
+                db.Orders.Add(ord);
+                db.SaveChanges();
+
+                ord.OrderItems = orderItems;
+                foreach(var orderItem in orderItems)
+                {
+                    orderItem.OrderID = ord.OrderID;
+                    orderItem.ItemID = Guid.NewGuid();
+                    db.OrderItems.Add(orderItem);
+                }
+                db.SaveChanges();
+
+
+//                Vendor vendor = db.Vendors.FirstOrDefault(m => m.VendorID == model.VendorID);
+//                db.SaveChanges();
+
+//                foreach(var items in model.OrderItems)
+//                {
+//                    OrderItem orderItem = new OrderItem
+//                    {
+//                        OrderID = order2.OrderID,
+//                        Price = items.Price,
+//                        Quantity = items.Quantity
+//                       /* SubTotal = items.SubTotal*/
+//                    };
+//                    db.OrderItems.Add(orderItem);
+//                    db.SaveChanges();
+
+
+//                    InventoryProduct inventory = db.InventoryProducts.FirstOrDefault(m => m.InventoryProductID == items.InventoryProductID);
+///*
+//                    InventoryProduct inventoryProduct = db.InventoryProducts.FirstOrDefault(m => m.InventoryProductID == items.Id);*/
+
+//                    db.SaveChanges();
+               // }
 
                 orderService.CreateSelectList(model);
                 return RedirectToAction("Index");
@@ -97,6 +119,7 @@ namespace RMS.Controllers
 
 
         }
+
 
         public ActionResult Edit(Guid id)
         {
