@@ -21,11 +21,11 @@ namespace DatabaseLayer
         }
     
         public System.Guid OrderID { get; set; }
-        public System.TimeSpan OrderTime { get; set; }
         public System.DateTime OrderDate { get; set; }
         public string Total { get; set; }
         public Nullable<System.Guid> VendorID { get; set; }
         public Nullable<System.Guid> InventoryProductID { get; set; }
+        public Nullable<System.TimeSpan> OrderTime { get; set; }
     
         public virtual InventoryProduct InventoryProduct { get; set; }
         public virtual Vendor Vendor { get; set; }

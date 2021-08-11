@@ -19,12 +19,14 @@ namespace RMS.Model.Services
             {
                 using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
                 {
-
-                    var dbOrder = db.OrderCarts.ToList();
-                    foreach (var order in dbOrder)
+                                     
+                    var orderdate = db.OrderCarts.Where(x => x.OrderDate == DateTime.Today & x.OrderStatus == false).ToList();
+                    foreach (var order in orderdate)
                     {
-                        orders.Add(converter.ConvertToModel(order));
+                        {
+                            orders.Add(converter.ConvertToModel(order));
 
+                        }
                     }
                     return orders;
                 }

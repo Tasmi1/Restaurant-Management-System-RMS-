@@ -13,7 +13,7 @@ namespace RMS.Model.Converters
            
             kitchineOrder.OrderDate = model.OrderDate;
             kitchineOrder.OrderNumber = model.OrderNumber;
-            kitchineOrder.OrderStatus = model.OrderStatus;
+            kitchineOrder.OrderStatus = (bool)model.OrderStatus;
             return kitchineOrder;
         }
         public KitchineOrderDTOs ConvertToModel(DatabaseLayer.OrderCart model)
@@ -22,7 +22,7 @@ namespace RMS.Model.Converters
             kitchineOrder.OrderCartID = model.OrderCartID;
             kitchineOrder.OrderDate = model.OrderDate;
             kitchineOrder.OrderNumber = model.OrderNumber;
-            kitchineOrder.OrderStatus = (bool)model.OrderStatus;
+            kitchineOrder.OrderStatus = model.OrderStatus;
             return kitchineOrder;
         }
     }

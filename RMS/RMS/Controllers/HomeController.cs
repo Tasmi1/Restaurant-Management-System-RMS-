@@ -17,8 +17,8 @@ namespace RMS.Controllers
 
                 ViewBag.countUser = db.Users.Count();
                 ViewBag.countCustomer = db.Customers.Count();
-                ViewBag.totalOrder = db.Orders.Count();
-                ViewBag.Date = db.Orders.Where(x => x.OrderDate == DateTime.Today).Count();
+                ViewBag.totalOrder = db.OrderCarts.Count();
+                ViewBag.Date = db.OrderCarts.Where(x => x.OrderDate == DateTime.Today).Count();
 
                 return View();
             }
