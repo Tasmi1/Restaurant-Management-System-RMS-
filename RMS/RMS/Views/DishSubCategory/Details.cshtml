@@ -19,8 +19,8 @@
 
                 <div class="mb-3">
 
-                    <label style="font-weight: bold;font-size: 1.3em;">Dish Category ID</label>   <br />
-                    @Html.DisplayFor(model => model.SubCategoryId)
+                    @*<label style="font-weight: bold;font-size: 1.3em;">Dish Category ID</label>   <br />
+                    @Html.DisplayFor(model => model.SubCategoryId)*@
 
                     <label style="font-weight: bold;font-size: 1.3em;">Category</label>   <br />
                     @Html.DisplayFor(model => model.SubCategoryName)
@@ -28,7 +28,7 @@
                 </div>
                 <div>
                     <spam class="btn bg-gradient-primary" style="color:white;">@Html.ActionLink("Edit", "Edit", new { id = Model.SubCategoryId })</spam>
-                    @Html.ActionLink("Delete", "Delete", new { id = Model.SubCategoryId })
+                    <spam class="btn bg-gradient-primary" style="color:white;">@Html.ActionLink("Delete", "Delete", new { id = Model.SubCategoryId })</spam>
                 </div>
 
             </div>

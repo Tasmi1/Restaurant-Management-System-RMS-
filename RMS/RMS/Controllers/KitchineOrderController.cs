@@ -49,6 +49,28 @@ namespace RMS.Controllers
                 return View(orderItems);
             }
         }
+
+
+        public ActionResult Edit(int orderId)
+        {
+            KitchineOrderDTOs model = orderService.GetById(orderId);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(KitchineOrderDTOs model)
+        {
+            if (ModelState.IsValid)
+            {
+                bool result = orderService.Update(model);
+                if (result)
+                {
+                    return RedirectToAction("Index");
+                }
+
+            }
+            return View(model);
+        }
     }
 }
 
