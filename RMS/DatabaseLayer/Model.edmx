@@ -11,9 +11,9 @@
           </Key>
           <Property Name="BookingID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
-          <Property Name="TableNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="200" />
           <Property Name="CustomerID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TableID" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="CartDetails">
           <Key>
@@ -23,9 +23,10 @@
           <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="CartDetailID" Type="int" Nullable="false" />
-          <Property Name="OrderCartID" Type="int" Nullable="false" />
+          <Property Name="OrderCartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MenuID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="CustomerID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TableID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CustomerID" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -129,6 +130,13 @@
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="InventoryProductID" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="TableID" />
+          </Key>
+          <Property Name="TableID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TableName" Type="nchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserId" />
@@ -169,8 +177,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Booking_Table">
+          <End Role="Table" Type="Self.Table" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table">
+              <PropertyRef Name="TableID" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="TableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CartDetails_Customer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="CartDetails" Type="Self.CartDetails" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
@@ -202,6 +222,18 @@
             </Principal>
             <Dependent Role="CartDetails">
               <PropertyRef Name="OrderCartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CartDetails_Table">
+          <End Role="Table" Type="Self.Table" Multiplicity="1" />
+          <End Role="CartDetails" Type="Self.CartDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table">
+              <PropertyRef Name="TableID" />
+            </Principal>
+            <Dependent Role="CartDetails">
+              <PropertyRef Name="TableID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -327,11 +359,16 @@
           <EntitySet Name="OrderCart" EntityType="Self.OrderCart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderItems" EntityType="Self.OrderItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductQuantity" EntityType="Self.ProductQuantity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vendor" EntityType="Self.Vendor" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Booking_Customer" Association="Self.FK_Booking_Customer">
             <End Role="Customer" EntitySet="Customer" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_Table" Association="Self.FK_Booking_Table">
+            <End Role="Table" EntitySet="Table" />
             <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
           <AssociationSet Name="FK_CartDetails_Customer" Association="Self.FK_CartDetails_Customer">
@@ -344,6 +381,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_CartDetails_OrderCart" Association="Self.FK_CartDetails_OrderCart">
             <End Role="OrderCart" EntitySet="OrderCart" />
+            <End Role="CartDetails" EntitySet="CartDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CartDetails_Table" Association="Self.FK_CartDetails_Table">
+            <End Role="Table" EntitySet="Table" />
             <End Role="CartDetails" EntitySet="CartDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_DishSubCategory_DishCategory" Association="Self.FK_DishSubCategory_DishCategory">
@@ -394,10 +435,11 @@
           </Key>
           <Property Name="BookingID" Type="Guid" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="TableNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="CustomerID" Type="Guid" Nullable="false" />
+          <Property Name="TableID" Type="Guid" Nullable="false" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Booking_Customer" FromRole="Booking" ToRole="Customer" />
+          <NavigationProperty Name="Table" Relationship="Self.FK_Booking_Table" FromRole="Booking" ToRole="Table" />
         </EntityType>
         <EntityType Name="CartDetail">
           <Key>
@@ -407,12 +449,14 @@
           <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Total" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="CartDetailID" Type="Int32" Nullable="false" />
-          <Property Name="OrderCartID" Type="Int32" Nullable="false" />
+          <Property Name="OrderCartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MenuID" Type="Guid" Nullable="false" />
-          <Property Name="CustomerID" Type="Guid" Nullable="false" />
+          <Property Name="TableID" Type="Guid" Nullable="false" />
+          <Property Name="CustomerID" Type="Guid" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_CartDetails_Customer" FromRole="CartDetails" ToRole="Customer" />
           <NavigationProperty Name="Menu" Relationship="Self.FK_CartDetails_Menu" FromRole="CartDetails" ToRole="Menu" />
           <NavigationProperty Name="OrderCart" Relationship="Self.FK_CartDetails_OrderCart" FromRole="CartDetails" ToRole="OrderCart" />
+          <NavigationProperty Name="Table" Relationship="Self.FK_CartDetails_Table" FromRole="CartDetails" ToRole="Table" />
           <NavigationProperty Name="Invoices" Relationship="Self.FK_Invoice_CartDetails" FromRole="CartDetails" ToRole="Invoice" />
         </EntityType>
         <EntityType Name="Category">
@@ -535,6 +579,15 @@
           <Property Name="InventoryProductID" Type="Guid" Nullable="false" />
           <NavigationProperty Name="InventoryProduct" Relationship="Self.FK_ProductQuantity_InventoryProduct" FromRole="ProductQuantity" ToRole="InventoryProduct" />
         </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="TableID" />
+          </Key>
+          <Property Name="TableID" Type="Guid" Nullable="false" />
+          <Property Name="TableName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Bookings" Relationship="Self.FK_Booking_Table" FromRole="Table" ToRole="Booking" />
+          <NavigationProperty Name="CartDetails" Relationship="Self.FK_CartDetails_Table" FromRole="Table" ToRole="CartDetails" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserId" />
@@ -578,8 +631,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Booking_Table">
+          <End Role="Table" Type="Self.Table" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table">
+              <PropertyRef Name="TableID" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="TableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CartDetails_Customer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="CartDetails" Type="Self.CartDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
@@ -611,6 +676,18 @@
             </Principal>
             <Dependent Role="CartDetails">
               <PropertyRef Name="OrderCartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CartDetails_Table">
+          <End Role="Table" Type="Self.Table" Multiplicity="1" />
+          <End Role="CartDetails" Type="Self.CartDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table">
+              <PropertyRef Name="TableID" />
+            </Principal>
+            <Dependent Role="CartDetails">
+              <PropertyRef Name="TableID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -736,11 +813,16 @@
           <EntitySet Name="OrderCarts" EntityType="Self.OrderCart" />
           <EntitySet Name="OrderItems" EntityType="Self.OrderItem" />
           <EntitySet Name="ProductQuantities" EntityType="Self.ProductQuantity" />
+          <EntitySet Name="Tables" EntityType="Self.Table" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="UserTypes" EntityType="Self.UserType" />
           <EntitySet Name="Vendors" EntityType="Self.Vendor" />
           <AssociationSet Name="FK_Booking_Customer" Association="Self.FK_Booking_Customer">
             <End Role="Customer" EntitySet="Customers" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_Table" Association="Self.FK_Booking_Table">
+            <End Role="Table" EntitySet="Tables" />
             <End Role="Booking" EntitySet="Bookings" />
           </AssociationSet>
           <AssociationSet Name="FK_CartDetails_Customer" Association="Self.FK_CartDetails_Customer">
@@ -753,6 +835,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_CartDetails_OrderCart" Association="Self.FK_CartDetails_OrderCart">
             <End Role="OrderCart" EntitySet="OrderCarts" />
+            <End Role="CartDetails" EntitySet="CartDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CartDetails_Table" Association="Self.FK_CartDetails_Table">
+            <End Role="Table" EntitySet="Tables" />
             <End Role="CartDetails" EntitySet="CartDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_Invoice_CartDetails" Association="Self.FK_Invoice_CartDetails">
@@ -803,9 +889,9 @@
               <MappingFragment StoreEntitySet="Booking">
                 <ScalarProperty Name="BookingID" ColumnName="BookingID" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="TableNumber" ColumnName="TableNumber" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="TableID" ColumnName="TableID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -818,6 +904,7 @@
                 <ScalarProperty Name="CartDetailID" ColumnName="CartDetailID" />
                 <ScalarProperty Name="OrderCartID" ColumnName="OrderCartID" />
                 <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="TableID" ColumnName="TableID" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -932,6 +1019,14 @@
                 <ScalarProperty Name="ProductQuantityID" ColumnName="ProductQuantityID" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="InventoryProductID" ColumnName="InventoryProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tables">
+            <EntityTypeMapping TypeName="ResturantManagementDBModel.Table">
+              <MappingFragment StoreEntitySet="Table">
+                <ScalarProperty Name="TableID" ColumnName="TableID" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

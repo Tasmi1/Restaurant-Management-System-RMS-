@@ -143,6 +143,7 @@
     <Compile Include="Controllers\KitchineOrderController.cs" />
     <Compile Include="Controllers\OrderCartController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\TableController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\UserTypeController.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="Model\Converters\OrderConverter.cs" />
     <Compile Include="Model\Converters\OrderDetailsConverter.cs" />
     <Compile Include="Model\Converters\ProductQuantityConverter.cs" />
+    <Compile Include="Model\Converters\TableConverter.cs" />
     <Compile Include="Model\Converters\UserConverter.cs" />
     <Compile Include="Model\Converters\MenuConverter.cs" />
     <Compile Include="Model\Converters\UserTypeConverter.cs" />
@@ -172,6 +174,7 @@
     <Compile Include="Model\Services\InvoiceService.cs" />
     <Compile Include="Model\Services\KitchineOrderService.cs" />
     <Compile Include="Model\Services\OrderService.cs" />
+    <Compile Include="Model\Services\TableService.cs" />
     <Compile Include="Model\Services\UserService.cs" />
     <Compile Include="Model\Services\MenuService.cs" />
     <Compile Include="Model\Services\UserTypeService.cs" />
@@ -190,6 +193,7 @@
     <Compile Include="Model\viewModes\OrderDTOs.cs" />
     <Compile Include="Model\viewModes\OrderModel.cs" />
     <Compile Include="Model\viewModes\ProductQuantityDTOs.cs" />
+    <Compile Include="Model\viewModes\TableDTOs.cs" />
     <Compile Include="Model\viewModes\UserDTOs.cs" />
     <Compile Include="Model\viewModes\UserTypeDTOs.cs" />
     <Compile Include="Model\viewModes\VendorDTOs.cs" />
@@ -665,6 +669,10 @@
     <Content Include="Views\Menu\Details.cshtml" />
     <Content Include="Views\KitchineOrder\Edit.cshtml" />
     <Content Include="Views\OrderCart\EditorTemplates\CartDTOs.cshtml" />
+    <Content Include="Views\Table\Index.cshtml" />
+    <Content Include="Views\Table\Create.cshtml" />
+    <Content Include="Views\Table\Details.cshtml" />
+    <Content Include="Views\Table\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -689,7 +697,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DatabaseLayer\DatabaseLayer.csproj">
-      <Project>{0a97baef-07f1-444e-b444-6229fa24e65b}</Project>
+      <Project>{c2f17f22-b100-44c1-88ae-bbff54486fa8}</Project>
       <Name>DatabaseLayer</Name>
     </ProjectReference>
   </ItemGroup>
