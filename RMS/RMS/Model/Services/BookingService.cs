@@ -1,6 +1,7 @@
 ﻿using DatabaseLayer;
 using RMS.Model.Converters;
 using RMS.Model.viewModes;
+using RMS.Model.viewModes.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,52 @@ namespace RMS.Model.Services
     public class BookingService
     {
         private readonly BookingConverter bookingconverter = new BookingConverter();
+
+        public BookingDTOs CreateSelectList(BookingDTOs model)
+        {
+            model.Customers = GetCustomerTypes();
+            model.Tables = GetCustomerTypes();
+            return model;
+        }
+
+
+        public List<BaseGuidSelect> GetCustomerTypes()
+        {
+            using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+            {
+                return db.Customers.Select(u =>
+                new BaseGuidSelect
+                {
+                    Id = u.CustomerID,
+                    Name = u.CustomerName
+                }).ToList();
+
+              
+
+            }
+        }
+
+        public BookingDTOs CreateSelectListTable(BookingDTOs model)
+        {
+            model.Tables = GetTableTypes();
+            return model;
+        }
+
+
+        public List<BaseGuidSelect> GetTableTypes()
+        {
+            using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+            {
+               
+                return db.Tables.Select(u =>
+                new BaseGuidSelect
+                {
+                    Id = u.TableID,
+                    Name = u.TableName
+                }).ToList();
+
+            }
+        }
 
         public bool Create(BookingDTOs model)
         {
