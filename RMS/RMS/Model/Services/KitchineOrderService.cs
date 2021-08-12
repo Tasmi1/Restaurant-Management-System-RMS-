@@ -40,40 +40,54 @@ namespace RMS.Model.Services
 
         }
 
+        public KitchineOrderDTOs GetById(int orderId)
+        {
+            KitchineOrderDTOs model = new KitchineOrderDTOs();
+            try
+            {
+                using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+                {
 
-        //public OrderDetailsDTOs GetById(int orderCartID)
-        //{
-        //    OrderDetailsDTOs model = new OrderDetailsDTOs();
-        //    try
-        //    {
-        //        using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
-        //        {
-        //            IEnumerable<OrderDetailsDTOs> orderItems = (from o in db.OrderCarts
-        //                                                        join oI in db.CartDetails on o.OrderCartID equals oI.OrderCartID
-        //                                                        join me in db.Menus on oI.MenuID equals me.MenuID
-        //                                                        where o.OrderCartID == orderCartID
-        //                                                        select new OrderDetailsDTOs()
-        //                                                        {
-        //                                                            OrderCartID = o.OrderCartID,
-        //                                                            OrderDate = o.OrderDate,
-        //                                                            CustomerName = oI.Customer.CustomerName,
-        //                                                            Quantity = oI.Quantity,
-        //                                                            MenuName = me.MenuName
+                    OrderCart order = db.OrderCarts.FirstOrDefault(ca => ca.OrderCartID == orderId);
+                    if (order != null)
+                    {
+                        model = converter.ConvertToModel(order);
 
-        //                                                        }
-        //                ).ToList();
+                    }
+                    return model;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
 
-        //            orderItems = (IEnumerable<OrderDetailsDTOs>)model;
+        }
 
-        //            return model;
-        //        }
-               
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw;
-        //    }
 
-        //}
+        public bool Update(KitchineOrderDTOs model)
+        {
+            try
+            {
+                using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+                {
+
+                    OrderCart order = db.OrderCarts.FirstOrDefault(ca => ca.OrderCartID == model.OrderCartID);
+                    if (order != null)
+                    {
+                        order = converter.ConverToEntity(model, order);
+                        db.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
     }
 }

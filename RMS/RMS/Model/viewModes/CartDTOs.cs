@@ -22,4 +22,14 @@ namespace RMS.Model.viewModes
       
 
     }
+
+    public class OrderCartsDTOs
+    {
+        public OrderCartsDTOs()
+        {
+            Carts = new List<CartDTOs>();
+        }
+        public decimal Total { get; set; }
+        public List<CartDTOs> Carts { get; set; }
+    }
 }
