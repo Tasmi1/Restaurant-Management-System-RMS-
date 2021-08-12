@@ -140,6 +140,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoryProductController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
+    <Compile Include="Controllers\KitchineOrderController.cs" />
     <Compile Include="Controllers\OrderCartController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -155,7 +156,9 @@
     <Compile Include="Model\Converters\DishSubCategoryConverter.cs" />
     <Compile Include="Model\Converters\InventoryProductConverter.cs" />
     <Compile Include="Model\Converters\InvoiceConverter.cs" />
+    <Compile Include="Model\Converters\KitchineOrderConverter.cs" />
     <Compile Include="Model\Converters\OrderConverter.cs" />
+    <Compile Include="Model\Converters\OrderDetailsConverter.cs" />
     <Compile Include="Model\Converters\ProductQuantityConverter.cs" />
     <Compile Include="Model\Converters\UserConverter.cs" />
     <Compile Include="Model\Converters\MenuConverter.cs" />
@@ -167,6 +170,7 @@
     <Compile Include="Model\Services\DishSubCategoryService.cs" />
     <Compile Include="Model\Services\InventoryProductService.cs" />
     <Compile Include="Model\Services\InvoiceService.cs" />
+    <Compile Include="Model\Services\KitchineOrderService.cs" />
     <Compile Include="Model\Services\OrderService.cs" />
     <Compile Include="Model\Services\UserService.cs" />
     <Compile Include="Model\Services\MenuService.cs" />
@@ -181,6 +185,7 @@
     <Compile Include="Model\viewModes\MenuDTOs.cs" />
     <Compile Include="Model\viewModes\DishCategoryDTOs.cs" />
     <Compile Include="Model\viewModes\InventoryProductDTOs.cs" />
+    <Compile Include="Model\viewModes\KitchineOrderDTOs.cs" />
     <Compile Include="Model\viewModes\OrderCartDTOs.cs" />
     <Compile Include="Model\viewModes\OrderDTOs.cs" />
     <Compile Include="Model\viewModes\OrderModel.cs" />
@@ -652,7 +657,15 @@
     <Content Include="Views\Vendor\Create.cshtml" />
     <Content Include="Views\Vendor\Edit.cshtml" />
     <Content Include="Views\Vendor\Details.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
+=======
+    <Content Include="Views\InventoryProduct\Index.cshtml" />
+    <Content Include="Views\Invoice\Create.cshtml" />
+    <Content Include="Views\Invoice\Index.cshtml" />
+    <Content Include="Views\KitchineOrder\Index.cshtml" />
+    <Content Include="Views\KitchineOrder\OrderDetails.cshtml" />
+>>>>>>> 46ea18098286265c9e0610e5b1f820a5970b0b84
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -676,7 +689,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DatabaseLayer\DatabaseLayer.csproj">
-      <Project>{be2d4453-1ef5-40ad-9256-e2d0383be851}</Project>
+      <Project>{0a97baef-07f1-444e-b444-6229fa24e65b}</Project>
       <Name>DatabaseLayer</Name>
     </ProjectReference>
   </ItemGroup>

@@ -18,7 +18,7 @@ namespace RMS.Model.viewModes
         }
         public Guid OrderID { get; set; }
         [Required(ErrorMessage = "Order Time is required")]
-        public TimeSpan OrderTime { get; set; }
+        public TimeSpan ? OrderTime { get; set; }
         [Required(ErrorMessage = "Order Date is required")]
         public DateTime OrderDate { get; set; }
 
@@ -28,7 +28,7 @@ namespace RMS.Model.viewModes
        
         public List<BaseGuidSelect> ProductsName { get; set; } 
 
-        public Guid InventoryProductID { get; set; }
+        public string OrderName { get; set; }
 
         public string ProductName { get; set; }
 
@@ -44,7 +44,7 @@ namespace RMS.Model.viewModes
     public class CustomerOrder
     {
         public Guid OrderID { get; set; }
-        public TimeSpan OrderTime { get; set; }
+        public TimeSpan ? OrderTime { get; set; }
         [Required(ErrorMessage = "Order Date is required")]
         public DateTime OrderDate { get; set; }
         [Required(ErrorMessage = "Total is required")]

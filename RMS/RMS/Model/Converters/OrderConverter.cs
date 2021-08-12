@@ -11,12 +11,8 @@ namespace RMS.Model.Converters
         public DatabaseLayer.Order ConvertToEntity(OrderDTOs model, DatabaseLayer.Order order)
         {
             order.OrderTime = model.OrderTime;
-            order.OrderDate = model.OrderDate;
-        
-            order.InventoryProductID = model.InventoryProductID;
-            
-
-         
+            order.OrderDate = model.OrderDate;        
+            order.OrderName = model.OrderName;        
             return order;
         }
 
@@ -24,11 +20,9 @@ namespace RMS.Model.Converters
         {
             OrderDTOs order = new OrderDTOs();
             order.OrderID = model.OrderID;
-            order.OrderTime = model.OrderTime;
+            order.OrderName = model.OrderName;
             order.OrderDate = model.OrderDate;
-            order.Vendor = model.Vendor.VendorName;
-            if(model.InventoryProductID != null)
-                order.InventoryProductID = (Guid)model.InventoryProductID;
+            order.Vendor = model.Vendor.VendorName;            
             return order;
         }
 
