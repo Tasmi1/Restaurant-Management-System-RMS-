@@ -25,6 +25,7 @@ namespace RMS.Model.Converters
             booking.TableNumber = model.TableNumber;
             booking.Description = model.Description;
             booking.CustomerID = model.CustomerID;
+            booking.Customer = model.Customer.CustomerName;
             return booking;
         }
 

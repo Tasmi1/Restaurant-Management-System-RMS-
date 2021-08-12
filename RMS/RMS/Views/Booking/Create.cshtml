@@ -44,7 +44,7 @@
 
                         <label style="font-weight: bold;font-size: 1.3em;">CustomerID</label>   <br />
                         @Html.ValidationMessageFor(model => model.CustomerID, "", new { @class = "text-danger" })
-                        @Html.TextBoxFor(x => x.CustomerID, "", new { @class = "form-control", @placeholder = "Enter CustomerID" })
+                        @Html.DropDownListFor(x => x.CustomerID, new SelectList(Model.Customers, "Id", "Name"), new { @class = "form-control form-control-lg ", required = "required" })
 
                     </div>
 
