@@ -38,6 +38,7 @@ namespace DatabaseLayer
         public virtual DbSet<OrderCart> OrderCarts { get; set; }
         public virtual DbSet<OrderItem> OrderItems { get; set; }
         public virtual DbSet<ProductQuantity> ProductQuantities { get; set; }
+        public virtual DbSet<Table> Tables { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserType> UserTypes { get; set; }
         public virtual DbSet<Vendor> Vendors { get; set; }
