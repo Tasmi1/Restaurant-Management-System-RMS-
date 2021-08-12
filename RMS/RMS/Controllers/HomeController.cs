@@ -14,18 +14,14 @@ namespace RMS.Controllers
         {
             using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
             {
-
                 ViewBag.countUser = db.Users.Count();
                 ViewBag.countCustomer = db.Customers.Count();
-                ViewBag.totalOrder = db.Orders.Count();
-                ViewBag.Date = db.Orders.Where(x => x.OrderDate == DateTime.Today).Count();
-
+                ViewBag.totalOrder = db.OrderCarts.Count();
+                ViewBag.Date = db.OrderCarts.Where(x => x.OrderDate == DateTime.Today).Count();
                 return View();
             }
 
         }
-
-
         public ActionResult GetDate()
         {
             using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
@@ -38,11 +34,8 @@ namespace RMS.Controllers
                 obj.Waiter = waiter;
                 obj.KtichenStaff = ktichenStaff;
                 return Json(obj, JsonRequestBehavior.AllowGet);
-
             }
         }
-
-
         public class Ratio
         {
             public int Admin { get; set; }
