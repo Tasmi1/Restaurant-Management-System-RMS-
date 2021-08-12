@@ -657,19 +657,17 @@
     <Content Include="Views\Vendor\Create.cshtml" />
     <Content Include="Views\Vendor\Edit.cshtml" />
     <Content Include="Views\Vendor\Details.cshtml" />
-
-    <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
-
     <Content Include="Views\InventoryProduct\Index.cshtml" />
     <Content Include="Views\Invoice\Create.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
     <Content Include="Views\KitchineOrder\Index.cshtml" />
     <Content Include="Views\KitchineOrder\OrderDetails.cshtml" />
-
+    <Content Include="Views\OrderCart\EditorTemplates\CartDTOs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Shared\EditorTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

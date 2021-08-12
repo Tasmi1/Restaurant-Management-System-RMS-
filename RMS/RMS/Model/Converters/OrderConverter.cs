@@ -12,7 +12,9 @@ namespace RMS.Model.Converters
         {
             order.OrderTime = model.OrderTime;
             order.OrderDate = model.OrderDate;        
-            order.OrderName = model.OrderName;        
+            order.OrderName = model.OrderName;
+          
+           
             return order;
         }
 
@@ -33,8 +35,9 @@ namespace RMS.Model.Converters
                 OrderDate = entity.OrderDate,
                 OrderTime = (TimeSpan)entity.OrderTime,
                 Vendor = entity.Vendor.VendorName,
-                ProductName = entity.OrderName,
-                
+                OrderName = entity.OrderName,
+                ProductName = entity.OrderItems.FirstOrDefault()?.InventoryProduct.ProductsName,
+            
                 //Name = entity.Name
             };
 
