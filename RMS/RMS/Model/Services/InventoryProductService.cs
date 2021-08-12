@@ -12,6 +12,7 @@ namespace RMS.Model.Services
     public class InventoryProductService
     {
         private readonly InventoryProductConverter converter = new InventoryProductConverter();
+        private readonly ProductQuantityConverter productconverter = new ProductQuantityConverter();
 
         public InventoryProductDTOs CreateSelectList(InventoryProductDTOs model)
         {
@@ -41,8 +42,11 @@ namespace RMS.Model.Services
                 return db.InventoryProducts.Any(u => u.ProductsName.Equals(ProducstName));
             }
         }
+        private readonly ProductQuantityDTOs modelQuanity = new ProductQuantityDTOs();
+
         public bool Create(InventoryProductDTOs model)
         {
+
             try
             {
                 using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
@@ -50,8 +54,15 @@ namespace RMS.Model.Services
                     DatabaseLayer.InventoryProduct inventoryProduct = new DatabaseLayer.InventoryProduct();
                     inventoryProduct.InventoryProductID = Guid.NewGuid();
                     inventoryProduct = converter.ConverToEntity(model, inventoryProduct);
-
+                    
                     db.InventoryProducts.Add(inventoryProduct);
+                    db.SaveChanges();
+                    DatabaseLayer.ProductQuantity productQuantity = new DatabaseLayer.ProductQuantity();
+                    productQuantity.ProductQuantityID = Guid.NewGuid();
+                    productQuantity = productconverter.ConverToEntity(modelQuanity, productQuantity);
+                    productQuantity.Quantity = 0;
+                    productQuantity.InventoryProductID = inventoryProduct.InventoryProductID;
+                    db.ProductQuantities.Add(productQuantity);
                     db.SaveChanges();
                     return true;
                 }
