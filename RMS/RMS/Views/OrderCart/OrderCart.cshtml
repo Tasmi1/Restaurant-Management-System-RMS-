@@ -5,10 +5,83 @@
     decimal TotalAmount = 0.00M;
 }
 
-<h2>OrderCart</h2>
 
+<div class=" col-12">
+    <div class="card mb-4">
+        <div class="card-header pb-0">
+            <h6 class="text-center"> ORDER CART </h6>
+            <a type="button" class="btn btn-primary" href="/OrderCart/OrderCart">
+                Bill
+            </a>
+        </div>
+
+        <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                    <thead>
+                        <tr>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> MenuName </th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Quantity </th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Price </th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Total </th>
+                            <th class="text-secondary opacity-7"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                       
+                        
+                            @foreach (var item in Model)
+                            {
+                                TotalAmount += item.Total;
+                                <tr class="text-center">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MenuName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Quantity)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UnitPrice)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => item.Total)
+                                    </td>
+                                </tr>
+                            }
+                            <tr style="border-top: 2px solid maroon">
+                                <td colspan="4" style="text-align:right">
+                                    <h3> TotalAmount</h3>
+                                </td>
+                                <td style="text-align:right">
+                                    <h3>@TotalAmount.ToString("#,##0.00")</h3>
+                                </td>
+                            </tr>
+                            <tr style="text-align:right">
+                                <td colspan="5">
+                                    @Html.ActionLink("Save", "Index", "OrderCart", new { @class = "btn btn-primary" })
+                                    <input type="submit" value="Save" name="Save" class="btn btn-primary" />
+                                </td>
+                            </tr>
+                            <tr style="text-align:right">
+                                <td colspan="5">
+                                    @Html.ActionLink("Back", "Index", "OrderCart", new { @class = "btn btn-primary"})
+                                </td>
+                            </tr>
+                            
+                       
+
+
+                        </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+@*
 @using (Html.BeginForm("AddOrder", "OrderCart", FormMethod.Post))
-    {
+{
 
     <table class="table-condensed" style="width:100%">
 
@@ -25,7 +98,7 @@
                 <td style="text-align:right>
                     @Html.DisplayFor(modelItem => item.Total)
                 </td>
-               
+
                 <td style="text-align:right>
                     @Html.DisplayFor(modelItem => item.ImagePath)
                 </td>
@@ -34,28 +107,27 @@
                 </td>
 
             </tr>
-            }
-            <tr style="border-top: 2px solid maroon">
-                <td colspan="4" style="text-align:right">
-                    <h3> TotalAmount</h3>
-                </td>
-                <td style="text-align:right">
-                    <h3>@TotalAmount.ToString("#,##0.00")</h3>
-                </td>
-            </tr>
-            <tr style="text-align:right">
-                <td colspan="5">
-                    <input type="submit" value="Save" name="Save" class="btn btn-primary" />
-                </td>
-            </tr>
-            <tr style="text-align:right">
-                <td colspan="5">
-                    @Html.ActionLink("Back", "Index", "OrderCart")
-                </td>
-            </tr>
+        }
+        <tr style="border-top: 2px solid maroon">
+            <td colspan="4" style="text-align:right">
+                <h3> TotalAmount</h3>
+            </td>
+            <td style="text-align:right">
+                <h3>@TotalAmount.ToString("#,##0.00")</h3>
+            </td>
+        </tr>
+        <tr style="text-align:right">
+            <td colspan="5">
+                <input type="submit" value="Save" name="Save" class="btn btn-primary" />
+            </td>
+        </tr>
+        <tr style="text-align:right">
+            <td colspan="5">
+                @Html.ActionLink("Back", "Index", "OrderCart")
+            </td>
+        </tr>
 
-        </table>
-       
+    </table>
 
-    }
 
+}*@

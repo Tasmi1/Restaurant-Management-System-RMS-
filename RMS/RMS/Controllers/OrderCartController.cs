@@ -82,7 +82,7 @@ namespace RMS.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddOrder()
+        public ActionResult AddOrder(List<CartDTOs> model)
         {
             int OrderCartId = 0;
           

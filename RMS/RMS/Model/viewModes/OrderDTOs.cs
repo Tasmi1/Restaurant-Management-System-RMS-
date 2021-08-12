@@ -72,8 +72,25 @@ namespace RMS.Model.viewModes
 
         public double SubTotal { get; set; }
     }
+
+    public class OrderVM
+    {
+        public string Vendor { get; set; }
+
+        public TimeSpan OrderTime { get; set; }
+        public DateTime OrderDate { get; set; }
+        public string ProductName { get; set; }
+
+        public int? Quantity { get; set; }
+
+        public string Price { get; set; }
+
+        public string Total { get; set; }
+    }
+
+
 }
-    public class OrderItems
+public class OrderItems
     {
         public Guid Id { get; set; }
 
@@ -95,6 +112,4 @@ namespace RMS.Model.viewModes
         public string Price { get; set; }
     }
 
-
-
-
+   
