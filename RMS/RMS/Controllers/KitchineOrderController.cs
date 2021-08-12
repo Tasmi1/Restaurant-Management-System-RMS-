@@ -25,68 +25,26 @@ namespace RMS.Controllers
         {
             db = new ResturantManagementDBEntities();
         }
-        public ActionResult OrderDetails(int? OrderCartID)
+        public ActionResult OrderDetails(int orderCartID)
         {
-
-            //var orderItems = new OrderDetailsDTOs
-            //{
-            //    Customer = db.Customers.ToList(),
-            //    CartDetail = db.CartDetails.ToList(),
-            //    OrderCart = db.OrderCarts.ToList(),
-            //    Menu = db.Menus.ToList()
-            //};
-
-
-            //using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
-            //{
-            //     var query = (from o in db.OrderCarts
-            //             join oI in db.CartDetails on o.OrderCartID equals oI.OrderCartID
-            //              join me in db.Menus on oI.MenuID equals me.MenuID
-            //             where o.OrderCartID == OrderCartID
-            //             select new
-            //             {
-            //                 o.OrderCartID,
-            //                 o.OrderDate,
-            //                 oI.Customer.CustomerName,
-            //                 oI.Quantity,
-            //                 me.MenuName
-
-            //             });
-            //    foreach (var item in query)
-            //    {
-
-            //        OrderDetailsDTOs order = new OrderDetailsDTOs();
-            //        order.OrderCartID = item.OrderCartID;
-            //        order.OrderDate = item.OrderDate;
-            //        order.Quantity = item.Quantity;
-            //        order.MenuName = item.MenuName;
-            //        order.CustomerName = item.CustomerName;
-
-            //        orderItems.Add(order);
-
-
-
-            //    }
-
-
             using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
             {
                 IEnumerable<OrderDetailsDTOs> orderItems = (from o in db.OrderCarts
                                                             join oI in db.CartDetails on o.OrderCartID equals oI.OrderCartID
                                                             join me in db.Menus on oI.MenuID equals me.MenuID
-                                                            where o.OrderCartID == OrderCartID
+                                                            where o.OrderCartID == orderCartID
                                                             select new OrderDetailsDTOs()
                                                             {
-                                                              OrderCartID =  o.OrderCartID,
-                                                                OrderDate=  o.OrderDate,
-                                                                CustomerName =  oI.Customer.CustomerName,
-                                                                Quantity=  oI.Quantity,
+                                                                OrderCartID = o.OrderCartID,
+                                                                OrderDate = o.OrderDate,
+                                                                CustomerName = oI.Customer.CustomerName,
+                                                                Quantity = oI.Quantity,
                                                                 MenuName = me.MenuName
 
                                                             }
                     ).ToList();
-            
-                          
+
+
 
                 return View(orderItems);
             }

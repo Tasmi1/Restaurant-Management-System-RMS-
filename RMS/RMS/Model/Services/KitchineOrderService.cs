@@ -12,6 +12,7 @@ namespace RMS.Model.Services
     {
         private readonly KitchineOrderConverter converter = new KitchineOrderConverter();
         private readonly OrderDetailsConverter orderDetailsConverter = new OrderDetailsConverter();
+        private OrderDetailsDTOs orderItems;
 
         public List<KitchineOrderDTOs> GetAll()
         {
@@ -47,15 +48,26 @@ namespace RMS.Model.Services
         //    {
         //        using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
         //        {
+        //            IEnumerable<OrderDetailsDTOs> orderItems = (from o in db.OrderCarts
+        //                                                        join oI in db.CartDetails on o.OrderCartID equals oI.OrderCartID
+        //                                                        join me in db.Menus on oI.MenuID equals me.MenuID
+        //                                                        where o.OrderCartID == orderCartID
+        //                                                        select new OrderDetailsDTOs()
+        //                                                        {
+        //                                                            OrderCartID = o.OrderCartID,
+        //                                                            OrderDate = o.OrderDate,
+        //                                                            CustomerName = oI.Customer.CustomerName,
+        //                                                            Quantity = oI.Quantity,
+        //                                                            MenuName = me.MenuName
 
-        //            OrderCart orderCarts = db.OrderCarts.FirstOrDefault(c => c.OrderCartID == orderCartID);
-        //            if (orderCarts != null)
-        //            {
-        //                model = orderDetailsConverter.ConvertToModel(orderCarts);
+        //                                                        }
+        //                ).ToList();
 
-        //            }
+        //            orderItems = (IEnumerable<OrderDetailsDTOs>)model;
+
         //            return model;
         //        }
+               
         //    }
         //    catch (Exception ex)
         //    {
