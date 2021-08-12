@@ -133,6 +133,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DishCategoryController.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\Converters\BookingConverter.cs" />
     <Compile Include="Model\Converters\CategoryConverter.cs" />
     <Compile Include="Model\Converters\CustomerConverter.cs" />
     <Compile Include="Model\Converters\DishCategoryConverter.cs" />
@@ -166,6 +168,7 @@
     <Compile Include="Model\Converters\MenuConverter.cs" />
     <Compile Include="Model\Converters\UserTypeConverter.cs" />
     <Compile Include="Model\Converters\VendorConverter.cs" />
+    <Compile Include="Model\Services\BookingService.cs" />
     <Compile Include="Model\Services\CategoryService.cs" />
     <Compile Include="Model\Services\CustomerService.cs" />
     <Compile Include="Model\Services\DishCategoryService.cs" />
@@ -180,6 +183,7 @@
     <Compile Include="Model\Services\UserTypeService.cs" />
     <Compile Include="Model\Services\VendorService.cs" />
     <Compile Include="Model\viewModes\Base\BaseSelectList.cs" />
+    <Compile Include="Model\viewModes\BookingDTOscs.cs" />
     <Compile Include="Model\viewModes\CartDTOs.cs" />
     <Compile Include="Model\viewModes\CategoryDTOs.cs" />
     <Compile Include="Model\viewModes\CustomerDTOs.cs" />
@@ -664,6 +668,11 @@
     <Content Include="Views\InventoryProduct\Index.cshtml" />
     <Content Include="Views\Invoice\Create.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
+    <Content Include="Views\Booking\Index.cshtml" />
+    <Content Include="Views\Booking\Create.cshtml" />
+    <Content Include="Views\Booking\Edit.cshtml" />
+    <Content Include="Views\Booking\Details.cshtml" />
+    <Content Include="Views\KitchineOrder\Edit.cshtml" />
     <Content Include="Views\KitchineOrder\Index.cshtml" />
     <Content Include="Views\KitchineOrder\OrderDetails.cshtml" />
     <Content Include="Views\Menu\Details.cshtml" />

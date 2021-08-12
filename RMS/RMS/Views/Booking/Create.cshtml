@@ -23,15 +23,7 @@
                         <span class="text-danger field-validation-valid" data-valmsg-for="Date" data-valmsg-replace="true"></span>
                     </div>
 
-                    <div class="mb-3">
-
-                        <label style="font-weight: bold;font-size: 1.3em;">TableNumber</label>   <br />
-                        @Html.ValidationMessageFor(model => model.TableNumber, "", new { @class = "text-danger" })
-                        @Html.TextBoxFor(x => x.TableNumber, "", new { @class = "form-control", @placeholder = "Enter TableNumber" })
-
-
-                    </div>
-
+                 
                     <div class="mb-3">
 
                         <label style="font-weight: bold;font-size: 1.3em;">Description</label>   <br />
@@ -40,7 +32,21 @@
 
                     </div>
 
+                    <div class="mb-3">
 
+                        <label style="font-weight: bold;font-size: 1.3em;">CustomerID</label>   <br />
+                        @Html.ValidationMessageFor(model => model.CustomerID, "", new { @class = "text-danger" })
+                        @Html.DropDownListFor(x => x.CustomerID, new SelectList(Model.Customers, "Id", "Name"), new { @class = "form-control form-control-lg ", required = "required" })
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label style="font-weight: bold;font-size: 1.3em;">CustomerID</label>   <br />
+                        @Html.ValidationMessageFor(model => model.TableID, "", new { @class = "text-danger" })
+                        @Html.DropDownListFor(x => x.TableID, new SelectList(Model.Tables, "Id", "Name"), new { @class = "form-control form-control-lg ", required = "required" })
+
+                    </div>
 
                     <div class="text-center">
                         <input type="submit" value="Save" class="btn bg-gradient-primary mt-4 " style=" display: block; margin-left: auto; margin-right: auto; width: 40%; " />

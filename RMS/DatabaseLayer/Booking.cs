@@ -16,10 +16,11 @@ namespace DatabaseLayer
     {
         public System.Guid BookingID { get; set; }
         public System.DateTime Date { get; set; }
-        public string TableNumber { get; set; }
         public string Description { get; set; }
         public System.Guid CustomerID { get; set; }
+        public System.Guid TableID { get; set; }
     
         public virtual Customer Customer { get; set; }
+        public virtual Table Table { get; set; }
     }
 }

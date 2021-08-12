@@ -26,11 +26,13 @@ namespace DatabaseLayer
         public int CartDetailID { get; set; }
         public int OrderCartID { get; set; }
         public System.Guid MenuID { get; set; }
-        public System.Guid CustomerID { get; set; }
+        public System.Guid TableID { get; set; }
+        public Nullable<System.Guid> CustomerID { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual Menu Menu { get; set; }
         public virtual OrderCart OrderCart { get; set; }
+        public virtual Table Table { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Invoice> Invoices { get; set; }
     }
