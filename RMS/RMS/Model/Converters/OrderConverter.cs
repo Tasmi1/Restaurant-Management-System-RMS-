@@ -31,8 +31,10 @@ namespace RMS.Model.Converters
             var orderVM = new OrderVM
             {
                 OrderDate = entity.OrderDate,
-                OrderTime = entity.OrderTime,
+                OrderTime = (TimeSpan)entity.OrderTime,
                 Vendor = entity.Vendor.VendorName,
+                ProductName = entity.OrderName,
+                
                 //Name = entity.Name
             };
 
@@ -40,7 +42,7 @@ namespace RMS.Model.Converters
             {
                 orderVM.Price = item.Price;
                 orderVM.Quantity = item.Quantity;
-                orderVM.ProductName = entity.InventoryProduct.ProductsName; //not entity, should be item
+                orderVM.ProductName = item.InventoryProduct.ProductsName; //not entity, should be item
                 if(item.Quantity != null)//item.Price tryparse if only true
                     orderVM.Total = (item.Quantity * Convert.ToInt32(item.Price)).ToString();
             }

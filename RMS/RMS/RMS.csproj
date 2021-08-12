@@ -657,15 +657,15 @@
     <Content Include="Views\Vendor\Create.cshtml" />
     <Content Include="Views\Vendor\Edit.cshtml" />
     <Content Include="Views\Vendor\Details.cshtml" />
-<<<<<<< HEAD
+
     <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
-=======
+
     <Content Include="Views\InventoryProduct\Index.cshtml" />
     <Content Include="Views\Invoice\Create.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
     <Content Include="Views\KitchineOrder\Index.cshtml" />
     <Content Include="Views\KitchineOrder\OrderDetails.cshtml" />
->>>>>>> 46ea18098286265c9e0610e5b1f820a5970b0b84
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
