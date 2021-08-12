@@ -44,6 +44,8 @@ namespace RMS.Controllers
         [HttpPost]
         public JsonResult Index(Guid MenuId)
         {
+            ViewBag.CustomerID = new SelectList(DB.CustomerNames.ToList(), "CustomerID", "CustomerName");
+            ViewBag.TableID = new SelectList(DB.TableNames.ToList(), "TableID", "TableName");
             CartDTOs dTOs = new CartDTOs();
             Menu menu = DB.Menus.Single(model => model.MenuID == MenuId);
             if (Session["CartCounter"] != null)
@@ -53,7 +55,8 @@ namespace RMS.Controllers
             if (ListofCart.Any(model => model.MenuId == MenuId))
             {
                 dTOs = ListofCart.Single(model => model.MenuId == MenuId);
-                dTOs.Quantity = dTOs.Quantity + 1;
+                
+                dTOs.Quantity++;
                 dTOs.Total = dTOs.Quantity * dTOs.UnitPrice;
             }
             else
@@ -64,6 +67,8 @@ namespace RMS.Controllers
                 dTOs.Quantity = 1;
                 dTOs.Total = Convert.ToDecimal(menu.MenuPrice);
                 dTOs.UnitPrice = Convert.ToDecimal(menu.MenuPrice);
+               
+                
                 ListofCart.Add(dTOs);
 
             }
@@ -86,6 +91,7 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult AddOrder(OrderCartsDTOs model)
         {
+
             int OrderCartId = 10;
 
             ListofCart = model.Carts;
@@ -95,6 +101,7 @@ namespace RMS.Controllers
                 OrderNumber = String.Format("(0:ddmmyyyyhhmmss)", DateTime.Now),
                 OrderStatus = false,
                 OrderCartID = OrderCartId + 1, 
+
 
         };
            
@@ -106,9 +113,11 @@ namespace RMS.Controllers
             {
                 CartDetail cartModel = new CartDetail();
                 cartModel.Total = item.Total;
+                
                 cartModel.MenuID = item.MenuId;               
                 cartModel.Quantity = item.Quantity;
                 cartModel.Price = item.UnitPrice;
+
 
 
 
