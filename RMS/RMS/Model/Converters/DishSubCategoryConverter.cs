@@ -24,6 +24,7 @@ namespace RMS.Model.Converters
             dishSubCategory.SubCategoryName = dishSub.SubCategoryName;
 
             dishSubCategory.DishCategoryId = dishSub.DishCategoryID;
+            dishSubCategory.DishCategory = dishSub.DishCategory.DishCategoryName;
             return dishSubCategory;
 
 
