@@ -11,6 +11,7 @@ namespace RMS.Model.Converters
     {
         public DatabaseLayer.Booking ConverToEntity(BookingDTOs model, DatabaseLayer.Booking booking)
         {
+
             booking.Date = model.Date;
             booking.TableNumber = model.TableNumber;
             booking.Description = model.Description;

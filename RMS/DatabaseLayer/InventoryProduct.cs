@@ -17,7 +17,7 @@ namespace DatabaseLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public InventoryProduct()
         {
-            this.Orders = new HashSet<Order>();
+            this.OrderItems = new HashSet<OrderItem>();
             this.ProductQuantities = new HashSet<ProductQuantity>();
         }
     
@@ -30,7 +30,7 @@ namespace DatabaseLayer
     
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductQuantity> ProductQuantities { get; set; }
     }

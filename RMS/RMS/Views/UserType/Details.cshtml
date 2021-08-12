@@ -19,16 +19,16 @@
               
                 <div class="mb-3">
 
-                    <label style="font-weight: bold;font-size: 1.3em;">Type ID</label>   <br />
-                    @Html.DisplayFor(model => model.UserTypeID)
+                    @*<label style="font-weight: bold;font-size: 1.3em;">Type ID</label>   <br />
+                    @Html.DisplayFor(model => model.UserTypeID)*@
 
-                    <label style="font-weight: bold;font-size: 1.3em;">Type</label>   <br />
+                    <label style="font-weight: bold;font-size: 1.3em;">User Type</label>   <br />
                     @Html.DisplayFor(model => model.Type)
 
                 </div>
                 <div>
                     <spam class="btn bg-gradient-primary" style="color:white;">@Html.ActionLink("Edit", "Edit", new { id = Model.UserTypeID })</spam>
-                    @Html.ActionLink("Delete", "Delete", new { id = Model.UserTypeID })
+                    <spam class="btn bg-gradient-primary" style="color:white;">@Html.ActionLink("Delete", "Delete", new { id = Model.UserTypeID })</spam>
                 </div>
         
             </div>

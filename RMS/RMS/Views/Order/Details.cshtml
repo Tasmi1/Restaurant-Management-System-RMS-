@@ -5,8 +5,7 @@
     ViewBag.Title = "Details";
 }
 <p>
-    <label>Customer:@Model.FirstOrDefault().CustomerName</label></br>
-    <label>ContactNumber:@Model.FirstOrDefault().Contact</label></br>
+    <label>Customer:@Model.FirstOrDefault().VendorName</label></br>
     <label>OrderTime:@Model.FirstOrDefault().OrderTime</label></br>
     <label>OrderDate:@Model.FirstOrDefault().OrderDate</label></br>
     <label>SubTotal:@Model.FirstOrDefault().SubTotal</label></br>
@@ -18,7 +17,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.MenuName)
+                @Html.DisplayNameFor(model => model.ProductName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Price)
@@ -34,7 +33,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelitem => item.MenuName)
+                    @Html.DisplayFor(modelitem => item.ProductName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelitem => item.Price)

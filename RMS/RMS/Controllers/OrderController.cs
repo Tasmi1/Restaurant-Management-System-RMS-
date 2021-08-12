@@ -23,10 +23,11 @@ namespace RMS.Controllers
         }
         public ActionResult Create()
         {
-            ViewBag.CustomerId = new SelectList(db.Customers.ToList(), "CustomerID", "CustomerName");
+            ViewBag.VendorID = new SelectList(db.Vendors.ToList(), "VendorID","VendorName" );
             var products = db.InventoryProducts.ToList().Select(m => new DropDownOrder { Id = m.InventoryProductID, Name = m.ProductsName }).ToList();
-           /* var menus = db.Menus.ToList().Select(m => new DropDownOrder { Id = m.MenuID, Name = m.MenuName, Price = m.MenuPrice }).ToList();*/
-            /*List<OrderItems> orderItems = new List<OrderItems>() { new OrderItems { Quantity = 0, SubTotal = 0, MenuID = db.Menus.FirstOrDefault().MenuID } };*/
+
+
+            //NULL ERROR
             List<OrderItems> orderItems = new List<OrderItems>() { new OrderItems { Quantity = 0, SubTotal = 0, InventoryProductID = db.InventoryProducts.FirstOrDefault().InventoryProductID } };
             OrderDTOs orderDTOs = new OrderDTOs
             {
@@ -41,47 +42,79 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Create(OrderDTOs model)
         {
-            ViewBag.CustomerId = new SelectList(db.Customers.ToList(), "CustomerID", "CustomerName", model.CustomerID);
+            ViewBag.VendorID = new SelectList(db.Vendors.ToList(), "VendorID", "VendorName", model.VendorID);
             var order = db.InventoryProducts.ToList().Select(m => new DropDownOrder { Id = m.InventoryProductID, Name = m.ProductsName }).ToList();
             model.DDItems = order;
 
             if(ModelState.IsValid)
             {
-                Order order2 = new Order
+                double total = 0;
+                Order ord = new Order
                 {
-                    OrderTime = TimeSpan.Zero,
-                    OrderDate = DateTime.Now,
-                   
 
-                    InventoryProductID = model.InventoryProductID
-       
-
+                    OrderTime = model.OrderTime,
+                    OrderDate = model.OrderDate,
+                    VendorID = model.VendorID,
+                    OrderName = model.OrderName
+                    //InventoryProductID = model.InventoryProductID
                 };
-                db.Orders.Add(order2);
+                ord.Total = "abc";
+                ord.OrderID = Guid.NewGuid();
+                db.Orders.Add(ord);
                 db.SaveChanges();
-
-                Customer customer = db.Customers.FirstOrDefault(m => m.CustomerID == model.CustomerID);
-                db.SaveChanges();
-
-                foreach(var items in model.OrderItems)
+                //var orderItems = new List<OrderItem>();
+                foreach (var item in model.OrderItems)
                 {
-                    OrderItem orderItem = new OrderItem
+                    total += item.SubTotal;
+                   // orderItems.Add(new OrderItem
+                    OrderItem orderItems1 = new OrderItem
                     {
-                        OrderID = order2.OrderID,
-                        Price = items.Price,
-                        Quantity = items.Quantity
-                       /* SubTotal = items.SubTotal*/
+                        
+                        Price = item.Price,
+                        Quantity = item.Quantity,
+                        InventoryProductID = item.InventoryProductID
                     };
-                    db.OrderItems.Add(orderItem);
+                    ord.Total = total.ToString();
+                   orderItems1.OrderID = ord.OrderID;
+                    
+                    orderItems1.ItemID = Guid.NewGuid();
+                    db.OrderItems.Add(orderItems1);
                     db.SaveChanges();
 
-
-                    InventoryProduct inventory = db.InventoryProducts.FirstOrDefault(m => m.InventoryProductID == items.InventoryProductID);
-
-                    InventoryProduct inventoryProduct = db.InventoryProducts.FirstOrDefault(m => m.InventoryProductID == items.Id);
-
-                    db.SaveChanges();
                 }
+
+               /* ord.OrderItems = orderItems;
+                foreach(var orderItem in orderItems)
+                {
+                    orderItem.OrderID = ord.OrderID;
+                    orderItem.ItemID = Guid.NewGuid();
+                    db.OrderItems.Add(orderItem);
+                }
+                db.SaveChanges();*/
+
+
+//                Vendor vendor = db.Vendors.FirstOrDefault(m => m.VendorID == model.VendorID);
+//                db.SaveChanges();
+
+//                foreach(var items in model.OrderItems)
+//                {
+//                    OrderItem orderItem = new OrderItem
+//                    {
+//                        OrderID = order2.OrderID,
+//                        Price = items.Price,
+//                        Quantity = items.Quantity
+//                       /* SubTotal = items.SubTotal*/
+//                    };
+//                    db.OrderItems.Add(orderItem);
+//                    db.SaveChanges();
+
+
+//                    InventoryProduct inventory = db.InventoryProducts.FirstOrDefault(m => m.InventoryProductID == items.InventoryProductID);
+///*
+//                    InventoryProduct inventoryProduct = db.InventoryProducts.FirstOrDefault(m => m.InventoryProductID == items.Id);*/
+
+//                    db.SaveChanges();
+               // }
 
                 orderService.CreateSelectList(model);
                 return RedirectToAction("Index");
@@ -96,6 +129,7 @@ namespace RMS.Controllers
 
 
         }
+
 
         public ActionResult Edit(Guid id)
         {

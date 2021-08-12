@@ -11,8 +11,7 @@ namespace RMS.Model.viewModes
         public Guid MenuId { get; set; }
 
         public decimal Quantity { get; set; }
-
-        public decimal Price { get; set; }
+        public decimal UnitPrice { get; set; }
 
         public decimal Total { get; set; }
 
@@ -20,7 +19,17 @@ namespace RMS.Model.viewModes
 
         public string MenuName { get; set; }
 
-        public int OrderCartId { get; set; }
+      
 
+    }
+
+    public class OrderCartsDTOs
+    {
+        public OrderCartsDTOs()
+        {
+            Carts = new List<CartDTOs>();
+        }
+        public decimal Total { get; set; }
+        public List<CartDTOs> Carts { get; set; }
     }
 }

@@ -1,18 +1,18 @@
 ﻿
 
-<div class="collapse navbar-collapse  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
-    <ul class="navbar-nav">
-        <li class="nav-item">
+<li class="nav-item">
+    
+
             @if (Session["CartCounter"] == null)
             {
-                @Html.ActionLink("Cart", "OrderCart", "OrderCart", new { id = "cartItem" })
+                @Html.ActionLink("Cart Details", "OrderCart", "OrderCart", new { id = "cartItem" })
 
             }
             else
             {
-                @Html.ActionLink("Cart(" + Session["CartCounter"] + ")", "OrderCart", "OrderCart", new { id = "cartItem" })
+                @Html.ActionLink("Cart Details(" + Session["CartCounter"] + ")", "OrderCart", "OrderCart", new { id = "cartItem" })
             }
 
-        </li>
-    </ul>
- </div>
+
+ 
+</li>

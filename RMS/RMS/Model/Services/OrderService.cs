@@ -16,21 +16,22 @@ namespace RMS.Model.Services
 
         public OrderDTOs CreateSelectList(OrderDTOs model)
         {
-            model.Customers = GetCustomers();
+           
             model.ProductsName = GetProducts();
+            model.Vendors = GetVendors();
         
             return model;
         }
 
-        public List<BaseGuidSelect> GetCustomers()
+        public List<BaseGuidSelect> GetVendors()
         {
             using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
             {
-                return db.Customers.Select(u =>
+                return db.Vendors.Select(u =>
                 new BaseGuidSelect
                 {
-                    Id = u.CustomerID,
-                    Name = u.CustomerName
+                    Id = u.VendorID,
+                    Name = u.VendorName
                 }).ToList();
 
                 
@@ -122,9 +123,9 @@ namespace RMS.Model.Services
 
         }
 
-        public List<OrderDTOs> GetAll()
+        public List<OrderVM> GetAll()
         {
-            List<OrderDTOs> orders = new List<OrderDTOs>();
+            List<OrderVM> orders = new List<OrderVM>();
             try
             {
                 using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
@@ -133,7 +134,7 @@ namespace RMS.Model.Services
                     var dbOrders = db.Orders.ToList();
                     foreach (var order in dbOrders)
                     {
-                        orders.Add(converter.ConvertToModel(order));
+                        orders.Add(converter.ConvertToOrderModel(order));
 
                     }
                     return orders;
