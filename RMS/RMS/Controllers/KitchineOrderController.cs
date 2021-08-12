@@ -25,7 +25,7 @@ namespace RMS.Controllers
         {
             db = new ResturantManagementDBEntities();
         }
-        public ActionResult OrderDetails(int orderCartID)
+        public ActionResult OrderDetails(int? orderCartID)
         {
             using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
             {
