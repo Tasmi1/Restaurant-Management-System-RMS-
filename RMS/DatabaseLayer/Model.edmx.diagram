@@ -6,38 +6,38 @@
     <edmx:Diagrams>
 <<<<<<< HEAD
       <Diagram DiagramId="acd3b15151a54088950b0dd53df726d1" Name="Diagram1">
-        <EntityTypeShape EntityType="ResturantManagementDBModel.Booking" Width="1.5" PointX="6" PointY="4.75" />
-        <EntityTypeShape EntityType="ResturantManagementDBModel.CartDetail" Width="1.5" PointX="3" PointY="4.125" />
-        <EntityTypeShape EntityType="ResturantManagementDBModel.Category" Width="1.5" PointX="7.75" PointY="10.25" />
-        <EntityTypeShape EntityType="ResturantManagementDBModel.Customer" Width="1.5" PointX="3.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ResturantManagementDBModel.DishCategory" Width="1.5" PointX="1.5" PointY="14.5" />
-        <EntityTypeShape EntityType="ResturantManagementDBModel.DishSubCategory" Width="1.5" PointX="1.5" PointY="11.25" />
-        <EntityTypeShape EntityType="ResturantManagementDBModel.InventoryProduct" Width="1.5" PointX="10" PointY="9.625" />
-        <EntityTypeShape EntityType="ResturantManagementDBModel.Invoice" Width="1.5" PointX="5.25" PointY="8.75" />
-        <EntityTypeShape EntityType="ResturantManagementDBModel.Menu" Width="1.5" PointX="0.75" PointY="8" />
-        <EntityTypeShape EntityType="ResturantManagementDBModel.Order" Width="1.5" PointX="10" PointY="0.75" />
-        <EntityTypeShape EntityType="ResturantManagementDBModel.OrderCart" Width="1.5" PointX="0.75" PointY="1.375" />
-        <EntityTypeShape EntityType="ResturantManagementDBModel.OrderItem" Width="1.5" PointX="12.25" PointY="6.75" />
-        <EntityTypeShape EntityType="ResturantManagementDBModel.ProductQuantity" Width="1.5" PointX="12.25" PointY="10.125" />
-        <EntityTypeShape EntityType="ResturantManagementDBModel.Table" Width="1.5" PointX="0.75" PointY="5" />
-        <EntityTypeShape EntityType="ResturantManagementDBModel.User" Width="1.5" PointX="6" PointY="13.375" />
-        <EntityTypeShape EntityType="ResturantManagementDBModel.UserType" Width="1.5" PointX="3.75" PointY="14" />
-        <EntityTypeShape EntityType="ResturantManagementDBModel.Vendor" Width="1.5" PointX="7.75" PointY="1.375" />
-        <AssociationConnector Association="ResturantManagementDBModel.FK_Booking_Customer" />
-        <AssociationConnector Association="ResturantManagementDBModel.FK_Booking_Table" />
-        <AssociationConnector Association="ResturantManagementDBModel.FK_CartDetails_Customer" />
-        <AssociationConnector Association="ResturantManagementDBModel.FK_CartDetails_Menu" />
-        <AssociationConnector Association="ResturantManagementDBModel.FK_CartDetails_OrderCart" />
-        <AssociationConnector Association="ResturantManagementDBModel.FK_CartDetails_Table" />
-        <AssociationConnector Association="ResturantManagementDBModel.FK_Invoice_CartDetails" />
-        <AssociationConnector Association="ResturantManagementDBModel.FK_InventoryProduct_Category" />
-        <AssociationConnector Association="ResturantManagementDBModel.FK_DishSubCategory_DishCategory" />
-        <AssociationConnector Association="ResturantManagementDBModel.FK_Menu_DishSubCategory" />
-        <AssociationConnector Association="ResturantManagementDBModel.FK_OrderItem_InventoryProduct" />
-        <AssociationConnector Association="ResturantManagementDBModel.FK_ProductQuantity_InventoryProduct" />
-        <AssociationConnector Association="ResturantManagementDBModel.Fk_Order_VendorID" />
-        <AssociationConnector Association="ResturantManagementDBModel.FK_OrderItems_Order" />
-        <AssociationConnector Association="ResturantManagementDBModel.FK_User_UserType" />
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 =======
       <Diagram DiagramId="cd0f985d4d4746b483179841625a4de1" Name="Diagram1">
         <EntityTypeShape EntityType="ResturantManagementDBModel.Booking" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
@@ -71,6 +71,38 @@
         <AssociationConnector Association="ResturantManagementDBModel.FK_User_UserType" ManuallyRouted="false" />
 >>>>>>> 7b1d98bcca5fc8dcd0f3f1966c98e22ffc7bd49e
       </Diagram>
+        <EntityTypeShape EntityType="ResturantManagementDBModel.Booking" Width="1.5" PointX="7.8734340015209447" PointY="13.273501312953188" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.CartDetail" Width="1.5" PointX="7.4008501411419605" PointY="22.491593788606856" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.Category" Width="1.5" PointX="9.9548079473687388" PointY="12.718724107704462" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.Customer" Width="1.5" PointX="8.1516192872783257" PointY="30.552291154187309" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.DishCategory" Width="1.5" PointX="0.59568597217820862" PointY="0.17019344874201037" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.DishSubCategory" Width="1.5" PointX="8.27704680723932" PointY="22.6721242324785" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.InventoryProduct" Width="1.5" PointX="9.99898268934292" PointY="0.52812899673736147" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.Invoice" Width="1.5" PointX="1.59852054975858" PointY="29.385103328798479" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.Menu" Width="1.5" PointX="11.372729602909056" PointY="9.707283322563061" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.Order" Width="1.5" PointX="9.5821048345333448" PointY="28.860961554972903" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.OrderCart" Width="1.5" PointX="8.8364562545141467" PointY="3.0023164912137745" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.OrderItem" Width="1.5" PointX="2.3040564257204794" PointY="1.3476342118101354" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.ProductQuantity" Width="1.5" PointX="7.4533707217561878" PointY="14.432445011303036" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.Table" Width="1.5" PointX="4.7860449761087285" PointY="9.3780787034789466" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.User" Width="1.5" PointX="1.7714715775900856" PointY="25.627525416029396" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.UserType" Width="1.5" PointX="11.651082862006074" PointY="12.507287597519945" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.Vendor" Width="1.5" PointX="7.3352239519987368" PointY="24.057086776968596" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_Booking_Customer" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_Booking_Table" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_CartDetails_Customer" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_CartDetails_Menu" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_CartDetails_OrderCart" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_CartDetails_Table" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_Invoice_CartDetails" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_InventoryProduct_Category" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_DishSubCategory_DishCategory" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_Menu_DishSubCategory" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_OrderItem_InventoryProduct" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_ProductQuantity_InventoryProduct" />
+        <AssociationConnector Association="ResturantManagementDBModel.Fk_Order_VendorID" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_OrderItems_Order" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_User_UserType" />
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

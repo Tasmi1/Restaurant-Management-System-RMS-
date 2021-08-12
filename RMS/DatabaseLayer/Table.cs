@@ -12,28 +12,21 @@ namespace DatabaseLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class CartDetail
+    public partial class Table
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CartDetail()
+        public Table()
         {
-            this.Invoices = new HashSet<Invoice>();
+            this.Bookings = new HashSet<Booking>();
+            this.CartDetails = new HashSet<CartDetail>();
         }
     
-        public decimal Quantity { get; set; }
-        public decimal Price { get; set; }
-        public decimal Total { get; set; }
-        public int CartDetailID { get; set; }
-        public int OrderCartID { get; set; }
-        public System.Guid MenuID { get; set; }
         public System.Guid TableID { get; set; }
-        public Nullable<System.Guid> CustomerID { get; set; }
+        public string TableName { get; set; }
     
-        public virtual Customer Customer { get; set; }
-        public virtual Menu Menu { get; set; }
-        public virtual OrderCart OrderCart { get; set; }
-        public virtual Table Table { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Invoice> Invoices { get; set; }
+        public virtual ICollection<Booking> Bookings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CartDetail> CartDetails { get; set; }
     }
 }

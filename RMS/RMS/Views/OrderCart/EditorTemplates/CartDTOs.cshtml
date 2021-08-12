@@ -3,6 +3,7 @@
 @using (Html.BeginCollectionItem("Carts"))
 {
     <tr class="text-center">
+       
         <td>
             @Html.DisplayFor(modelItem => modelItem.MenuName)
             @Html.HiddenFor(x => x.MenuId)

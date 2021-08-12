@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using DatabaseLayer;
+using RMS.Model.viewModes.Base;
 
 namespace RMS.Controllers
 {
@@ -21,9 +22,33 @@ namespace RMS.Controllers
             ListofCart = new List<CartDTOs>();
         }
 
+        public OrderCartsDTOs CreateSelectList(OrderCartsDTOs model)
+        {
+            model.CustomerNames = GetCustomers();
+
+            return model;
+        }
+
+        public List<BaseGuidSelect> GetCustomers()
+        {
+            using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+            {
+                return db.Customers.Select(u =>
+                new BaseGuidSelect
+                {
+                    Id = u.CustomerID,
+                    Name = u.CustomerName
+                }).ToList();
+            }
+        }
+
+
         //GET: OrderCart
         public ActionResult Index()
         {
+
+            ViewBag.CustomerID = new SelectList(DB.Customers.ToList(), "CustomerID", "CustomerName");
+            ViewBag.TableID = new SelectList(DB.Tables.ToList(), "TableID", "TableName");
             IEnumerable<OrderCartDTOs> ListofOrderCarts = (from DBMenu in DB.Menus
                                                            join
                                                            DBSubCategory in DB.DishSubCategories
@@ -36,6 +61,7 @@ namespace RMS.Controllers
                                                                ImagePath = DBMenu.ImagePath,
                                                                SubCategory = DBSubCategory.SubCategoryName
 
+
                                                            }).ToList();
             return View(ListofOrderCarts);
         }
@@ -44,8 +70,8 @@ namespace RMS.Controllers
         [HttpPost]
         public JsonResult Index(Guid MenuId)
         {
-            ViewBag.CustomerID = new SelectList(DB.CustomerNames.ToList(), "CustomerID", "CustomerName");
-            ViewBag.TableID = new SelectList(DB.TableNames.ToList(), "TableID", "TableName");
+            ViewBag.CustomerID = new SelectList(DB.Customers.ToList(), "CustomerID", "CustomerName");
+            ViewBag.TableID = new SelectList(DB.Tables.ToList(), "TableID", "TableName");
             CartDTOs dTOs = new CartDTOs();
             Menu menu = DB.Menus.Single(model => model.MenuID == MenuId);
             if (Session["CartCounter"] != null)
@@ -67,6 +93,7 @@ namespace RMS.Controllers
                 dTOs.Quantity = 1;
                 dTOs.Total = Convert.ToDecimal(menu.MenuPrice);
                 dTOs.UnitPrice = Convert.ToDecimal(menu.MenuPrice);
+                
                
                 
                 ListofCart.Add(dTOs);

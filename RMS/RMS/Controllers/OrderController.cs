@@ -55,10 +55,12 @@ namespace RMS.Controllers
                     OrderTime = model.OrderTime,
                     OrderDate = model.OrderDate,
                     VendorID = model.VendorID,
-                    OrderName = model.OrderName
+                    OrderName = model.OrderName,
+                    Total = model.OrderItems.Sum(x => x.SubTotal).ToString()
+                   
                     //InventoryProductID = model.InventoryProductID
                 };
-                ord.Total = "abc";
+                
                 ord.OrderID = Guid.NewGuid();
                 db.Orders.Add(ord);
                 db.SaveChanges();
