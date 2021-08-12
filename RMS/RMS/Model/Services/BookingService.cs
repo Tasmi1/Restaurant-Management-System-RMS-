@@ -15,12 +15,13 @@ namespace RMS.Model.Services
 
         public BookingDTOs CreateSelectList(BookingDTOs model)
         {
-            model.Customers = GetUserTypes();
+            model.Customers = GetCustomerTypes();
+            model.Tables = GetCustomerTypes();
             return model;
         }
 
 
-        public List<BaseGuidSelect> GetUserTypes()
+        public List<BaseGuidSelect> GetCustomerTypes()
         {
             using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
             {
@@ -31,8 +32,33 @@ namespace RMS.Model.Services
                     Name = u.CustomerName
                 }).ToList();
 
+              
+
             }
         }
+
+        public BookingDTOs CreateSelectListTable(BookingDTOs model)
+        {
+            model.Tables = GetTableTypes();
+            return model;
+        }
+
+
+        public List<BaseGuidSelect> GetTableTypes()
+        {
+            using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+            {
+               
+                return db.Tables.Select(u =>
+                new BaseGuidSelect
+                {
+                    Id = u.TableID,
+                    Name = u.TableName
+                }).ToList();
+
+            }
+        }
+
         public bool Create(BookingDTOs model)
         {
             try

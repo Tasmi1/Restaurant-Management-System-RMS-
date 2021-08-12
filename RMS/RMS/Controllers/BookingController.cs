@@ -22,6 +22,7 @@ namespace RMS.Controllers
         {
             BookingDTOs model = new BookingDTOs();
             bookingService.CreateSelectList(model);           
+            bookingService.CreateSelectListTable(model);           
             return View(model);
         }
 
@@ -38,6 +39,7 @@ namespace RMS.Controllers
 
             }
             bookingService.CreateSelectList(model);
+            bookingService.CreateSelectListTable(model);
 
             return View(model);
         }
@@ -46,6 +48,7 @@ namespace RMS.Controllers
         {
             BookingDTOs model = bookingService.GetById(id);
             bookingService.CreateSelectList(model);
+            bookingService.CreateSelectListTable(model);
             return View(model);
         }
 
@@ -62,6 +65,7 @@ namespace RMS.Controllers
 
             }
             bookingService.CreateSelectList(model);
+            bookingService.CreateSelectListTable(model);
             return View(model);
         }
 

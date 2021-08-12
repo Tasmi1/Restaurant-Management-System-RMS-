@@ -94,11 +94,9 @@ namespace RMS.Controllers
                 OrderDate = DateTime.Now,
                 OrderNumber = String.Format("(0:ddmmyyyyhhmmss)", DateTime.Now),
                 OrderStatus = false,
-                OrderCartID = OrderCartId + 1, 
-
-        };
-           
-                DB.OrderCarts.Add(orderCart);
+          
+            };           
+            DB.OrderCarts.Add(orderCart);
             DB.SaveChanges();
 
             OrderCartId = orderCart.OrderCartID;
@@ -110,9 +108,7 @@ namespace RMS.Controllers
                 cartModel.Quantity = item.Quantity;
                 cartModel.Price = item.UnitPrice;
 
-
-
-                    DB.CartDetails.Add(cartModel);
+                DB.CartDetails.Add(cartModel);
                 DB.SaveChanges();
 
 

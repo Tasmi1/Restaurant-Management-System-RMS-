@@ -668,6 +668,9 @@
     <Content Include="Views\Booking\Create.cshtml" />
     <Content Include="Views\Booking\Edit.cshtml" />
     <Content Include="Views\Booking\Details.cshtml" />
+    <Content Include="Views\KitchineOrder\Edit.cshtml" />
+    <Content Include="Views\KitchineOrder\Index.cshtml" />
+    <Content Include="Views\KitchineOrder\OrderDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -692,7 +695,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DatabaseLayer\DatabaseLayer.csproj">
-      <Project>{0a97baef-07f1-444e-b444-6229fa24e65b}</Project>
+      <Project>{cef6e7d6-2d82-4f7c-92db-27ef59849b17}</Project>
       <Name>DatabaseLayer</Name>
     </ProjectReference>
   </ItemGroup>

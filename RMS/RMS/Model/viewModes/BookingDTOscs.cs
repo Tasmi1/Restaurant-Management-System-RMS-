@@ -14,10 +14,15 @@ namespace RMS.Model.viewModes
         public string Description { get; set; }
         public Guid CustomerID { get; set; }
 
-
         public List<BaseGuidSelect> Customers { get; set; }
 
         public string Customer { get; set; }
+
+        public Guid TableID { get; set; }
+
+        public List<BaseGuidSelect> Tables { get; set; }
+
+        public string Table { get; set; }
 
     }
 
