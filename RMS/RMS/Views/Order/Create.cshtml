@@ -57,12 +57,12 @@
                             {
                                 <tr style=" border:1px solid black">
                                     <td>
-                                        <select asp-for="OrderItems[j].InventoryProductID" class="form-control" id="dd1Order">
+                                        <select asp-for="OrderItems[@j].InventoryProductID" class="form-control" name="OrderItem[@j].product" id="dd1Order">
                                            
 
                                             @foreach (var order in Model.DDItems)
                                             {
-                                                <option data-id="@order.Price" value="@order.Id">@order.Name</option>
+                                                <option data-id="@order.Price" value="@order.Id" id="@order.Id">@order.Name</option>
 
                                             }
                                         </select>
@@ -101,20 +101,21 @@
 {
 
     <script type="text/javascript">
-        $(document).ready(function (e) {           
+        $(document).ready(function (e) {
             //Add new row
             $("#addNew").click(function (e) {
                 e.preventDefault();
                 var $tableBody = $("#dataTable");
                 var $trLast = $tableBody.find("tr:last");
                 var $trNew = $trLast.clone();
-                debugger
-                var suffix = $trNew.find(':input:first').attr('id').match(/\d+/);
+                var suffix = $trNew.find(':input:first').attr('name').match(/\d+/);
                 $trNew.find("td:last").html('<a href="#" class="btn btn-danger remove">Remove</a>');
                 $.each($trNew.find(':input'), function (i, val) {
                     // Replaced Name
+                    var previous = '[' + parseInt(suffix) + ']';
+                    var later = '[' + (parseInt(suffix) + 1) + ']';
                     var oldN = $(this).attr('name');
-                    var newN = oldN.replace('[' + suffix + ']', '[' + (parseInt(suffix) + 1) + ']');
+                    var newN = oldN.replace(previous, later);
                     $(this).attr('name', newN);
 
                     $(this).removeClass("input-validation-error");

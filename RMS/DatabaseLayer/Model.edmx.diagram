@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b8c31420080544ed80cbadb2d48d334e" Name="Diagram1">
+      <Diagram DiagramId="69aff83697b849bebf88c84f0f7cd472" Name="Diagram1">
         <EntityTypeShape EntityType="ResturantManagementDBModel.Booking" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ResturantManagementDBModel.CartDetail" Width="1.5" PointX="6" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ResturantManagementDBModel.Category" Width="1.5" PointX="5.75" PointY="10.125" IsExpanded="true" />
@@ -18,7 +18,6 @@
         <EntityTypeShape EntityType="ResturantManagementDBModel.OrderCart" Width="1.5" PointX="3.75" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ResturantManagementDBModel.OrderItem" Width="1.5" PointX="12.5" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ResturantManagementDBModel.ProductQuantity" Width="1.5" PointX="10.25" PointY="13.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ResturantManagementDBModel.sysdiagram" Width="1.5" PointX="10.75" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ResturantManagementDBModel.User" Width="1.5" PointX="13" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ResturantManagementDBModel.UserType" Width="1.5" PointX="10.75" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ResturantManagementDBModel.Vendor" Width="1.5" PointX="8" PointY="13.125" IsExpanded="true" />

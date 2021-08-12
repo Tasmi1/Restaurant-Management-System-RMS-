@@ -75,7 +75,7 @@ namespace RMS.Model.viewModes
 }
     public class OrderItems
     {
-        public Guid? Id { get; set; }
+        public Guid Id { get; set; }
 
          public Guid InventoryProductID { get; set; }
 

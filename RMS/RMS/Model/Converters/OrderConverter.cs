@@ -14,6 +14,7 @@ namespace RMS.Model.Converters
             order.OrderDate = model.OrderDate;
         
             order.InventoryProductID = model.InventoryProductID;
+            
 
          
             return order;
@@ -25,7 +26,9 @@ namespace RMS.Model.Converters
             order.OrderID = model.OrderID;
             order.OrderTime = model.OrderTime;
             order.OrderDate = model.OrderDate;
-            order.InventoryProductID = (Guid)model.InventoryProductID;
+            order.Vendor = model.Vendor.VendorName;
+            if(model.InventoryProductID != null)
+                order.InventoryProductID = (Guid)model.InventoryProductID;
             return order;
         }
     }

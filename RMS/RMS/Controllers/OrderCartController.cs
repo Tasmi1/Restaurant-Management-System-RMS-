@@ -1,16 +1,15 @@
-﻿using DatabaseLayer;
-using RMS.Model.viewModes;
+﻿using RMS.Model.viewModes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Configuration;
 using System.Web.Mvc;
+using DatabaseLayer;
 
 namespace RMS.Controllers
 {
     public class OrderCartController : Controller
     {
+
         private ResturantManagementDBEntities DB = new ResturantManagementDBEntities();
 
         private List<CartDTOs> ListofCart;
