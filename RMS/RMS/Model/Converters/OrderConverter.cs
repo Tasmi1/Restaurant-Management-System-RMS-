@@ -31,5 +31,26 @@ namespace RMS.Model.Converters
                 order.InventoryProductID = (Guid)model.InventoryProductID;
             return order;
         }
+
+        public OrderVM ConvertToOrderModel(DatabaseLayer.Order entity)
+        {
+            var orderVM = new OrderVM
+            {
+                OrderDate = entity.OrderDate,
+                OrderTime = entity.OrderTime,
+                Vendor = entity.Vendor.VendorName,
+                //Name = entity.Name
+            };
+
+            foreach(var item in entity.OrderItems)
+            {
+                orderVM.Price = item.Price;
+                orderVM.Quantity = item.Quantity;
+                orderVM.ProductName = entity.InventoryProduct.ProductsName; //not entity, should be item
+                if(item.Quantity != null)//item.Price tryparse if only true
+                    orderVM.Total = (item.Quantity * Convert.ToInt32(item.Price)).ToString();
+            }
+            return orderVM;
+        }
     }
 }
