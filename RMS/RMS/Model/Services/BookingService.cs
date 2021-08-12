@@ -16,7 +16,6 @@ namespace RMS.Model.Services
         public BookingDTOs CreateSelectList(BookingDTOs model)
         {
             model.Customers = GetCustomerTypes();
-            model.Tables = GetCustomerTypes();
             return model;
         }
 
