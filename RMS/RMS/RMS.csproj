@@ -659,6 +659,7 @@
     <Content Include="Views\Invoice\Index.cshtml" />
     <Content Include="Views\KitchineOrder\Index.cshtml" />
     <Content Include="Views\KitchineOrder\OrderDetails.cshtml" />
+    <Content Include="Views\Menu\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

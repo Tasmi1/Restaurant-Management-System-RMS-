@@ -17,7 +17,7 @@
             <div class="card-body">
                 <form method="post">
                     <div class="mb-3">
-                        <label style="font-weight: bold;font-size: 1.3em;">Products Name</label>   <br />
+                        <label style="font-weight: bold;font-size: 1.3em;">Product Name</label>   <br />
                         @Html.ValidationMessageFor(model => model.ProductsName, "", new { @class = "text-danger" })
                         @Html.TextBoxFor(x => x.ProductsName, "", new { @class = "form-control", @placeholder = "Enter Products Name" })
 

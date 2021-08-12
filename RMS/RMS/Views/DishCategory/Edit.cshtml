@@ -15,7 +15,7 @@
 
                     <div class="card-header text-center pt-4">
                         <span>
-                            <a href="/UserType" style=" float:left;">
+                            <a href="/DishCategory" style=" float:left;">
                                 <i class="fa fa-arrow-left" style="font-size:27px;"></i>
                             </a>
                         </span>
@@ -24,11 +24,11 @@
 
                     <div class="card-body">
                         <div class="form-group">
-                            @Html.LabelFor(model => model.DishCategoryName, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-12">
-                                @Html.TextBoxFor(model => model.DishCategoryName, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.DishCategoryName, "", new { @class = "text-danger" })
-                            </div>
+
+                            <label style="font-weight: bold;font-size: 1.3em;">Dish Category Name</label>   <br />
+                            @Html.ValidationMessageFor(model => model.DishCategoryName, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(x => x.DishCategoryName, "", new { @class = "form-control", @placeholder = "Enter Menu Name" })
+
                         </div>
 
                         <div class="form-group">
