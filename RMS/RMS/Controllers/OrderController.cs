@@ -51,36 +51,46 @@ namespace RMS.Controllers
                 double total = 0;
                 Order ord = new Order
                 {
+
                     OrderTime = model.OrderTime,
                     OrderDate = model.OrderDate,
                     VendorID = model.VendorID,
+                    OrderName = model.OrderName
                     //InventoryProductID = model.InventoryProductID
                 };
-                var orderItems = new List<OrderItem>();
-                foreach (var item in model.OrderItems)
-                {
-                    total += item.SubTotal;
-                    orderItems.Add(new OrderItem
-                    {
-                        Price = item.Price,
-                        Quantity = item.Quantity,
-                        ItemID = item.InventoryProductID
-                    });
-                }
-
-                ord.Total = total.ToString();
+                ord.Total = "abc";
                 ord.OrderID = Guid.NewGuid();
                 db.Orders.Add(ord);
                 db.SaveChanges();
+                //var orderItems = new List<OrderItem>();
+                foreach (var item in model.OrderItems)
+                {
+                    total += item.SubTotal;
+                   // orderItems.Add(new OrderItem
+                    OrderItem orderItems1 = new OrderItem
+                    {
+                        
+                        Price = item.Price,
+                        Quantity = item.Quantity,
+                        InventoryProductID = item.InventoryProductID
+                    };
+                    ord.Total = total.ToString();
+                   orderItems1.OrderID = ord.OrderID;
+                    
+                    orderItems1.ItemID = Guid.NewGuid();
+                    db.OrderItems.Add(orderItems1);
+                    db.SaveChanges();
 
-                ord.OrderItems = orderItems;
+                }
+
+               /* ord.OrderItems = orderItems;
                 foreach(var orderItem in orderItems)
                 {
                     orderItem.OrderID = ord.OrderID;
                     orderItem.ItemID = Guid.NewGuid();
                     db.OrderItems.Add(orderItem);
                 }
-                db.SaveChanges();
+                db.SaveChanges();*/
 
 
 //                Vendor vendor = db.Vendors.FirstOrDefault(m => m.VendorID == model.VendorID);
