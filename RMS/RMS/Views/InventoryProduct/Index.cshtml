@@ -26,7 +26,7 @@
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Manufacture Date</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Expiry Date</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Category</th>
-
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Description</th>
                             <th class="text-secondary opacity-7"></th>
                         </tr>
                     </thead>
@@ -49,6 +49,9 @@
 
                             <td>
                                 @Html.DisplayFor(modelItem => item.Category)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
                             </td>
 
 
