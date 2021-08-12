@@ -150,6 +150,7 @@
     <Compile Include="Model\Converters\InvoiceConverter.cs" />
     <Compile Include="Model\Converters\KitchineOrderConverter.cs" />
     <Compile Include="Model\Converters\OrderConverter.cs" />
+    <Compile Include="Model\Converters\OrderDetailsConverter.cs" />
     <Compile Include="Model\Converters\UserConverter.cs" />
     <Compile Include="Model\Converters\MenuConverter.cs" />
     <Compile Include="Model\Converters\UserTypeConverter.cs" />
@@ -643,6 +644,7 @@
     <Content Include="Views\Invoice\Create.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
     <Content Include="Views\KitchineOrder\Index.cshtml" />
+    <Content Include="Views\KitchineOrder\OrderDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

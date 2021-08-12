@@ -1,5 +1,6 @@
 ﻿using DatabaseLayer;
 using RMS.Model.Services;
+using RMS.Model.viewModes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,32 +18,80 @@ namespace RMS.Controllers
             var order = orderService.GetAll();
             return View(order);
         }
-        //        SELECT* FROM CartDetails
-        //INNER JOIN OrderCart o ON o.OrderCartID = CartDetails.OrderCartID
-        //INNER JOIN Menu m ON CartDetails.MenuID = m.MenuID;
 
-
-        public ActionResult OrderDetails()
+        private ResturantManagementDBEntities db;
+       
+        public KitchineOrderController()
         {
+            db = new ResturantManagementDBEntities();
+        }
+        public ActionResult OrderDetails(int? OrderCartID)
+        {
+
+            //var orderItems = new OrderDetailsDTOs
+            //{
+            //    Customer = db.Customers.ToList(),
+            //    CartDetail = db.CartDetails.ToList(),
+            //    OrderCart = db.OrderCarts.ToList(),
+            //    Menu = db.Menus.ToList()
+            //};
+
+
+            //using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+            //{
+            //     var query = (from o in db.OrderCarts
+            //             join oI in db.CartDetails on o.OrderCartID equals oI.OrderCartID
+            //              join me in db.Menus on oI.MenuID equals me.MenuID
+            //             where o.OrderCartID == OrderCartID
+            //             select new
+            //             {
+            //                 o.OrderCartID,
+            //                 o.OrderDate,
+            //                 oI.Customer.CustomerName,
+            //                 oI.Quantity,
+            //                 me.MenuName
+
+            //             });
+            //    foreach (var item in query)
+            //    {
+
+            //        OrderDetailsDTOs order = new OrderDetailsDTOs();
+            //        order.OrderCartID = item.OrderCartID;
+            //        order.OrderDate = item.OrderDate;
+            //        order.Quantity = item.Quantity;
+            //        order.MenuName = item.MenuName;
+            //        order.CustomerName = item.CustomerName;
+
+            //        orderItems.Add(order);
+
+
+
+            //    }
+
+
             using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
             {
-                List<OrderCart> order = db.OrderCarts.ToList();
-                List<CartDetail> orderItems = db.CartDetails.ToList();
-                List<Menu> menus = db.Menus.ToList();
+                IEnumerable<OrderDetailsDTOs> orderItems = (from o in db.OrderCarts
+                                                            join oI in db.CartDetails on o.OrderCartID equals oI.OrderCartID
+                                                            join me in db.Menus on oI.MenuID equals me.MenuID
+                                                            where o.OrderCartID == OrderCartID
+                                                            select new OrderDetailsDTOs()
+                                                            {
+                                                              OrderCartID =  o.OrderCartID,
+                                                                OrderDate=  o.OrderDate,
+                                                                CustomerName =  oI.Customer.CustomerName,
+                                                                Quantity=  oI.Quantity,
+                                                                MenuName = me.MenuName
 
-                var employeeRecord = from o in order
-                                     join d in orderItems on e.Department_Id equals d.DepartmentId into table1
-                                     from d in table1.ToList()
-                                     join i in incentives on e.Incentive_Id equals i.IncentiveId into table2
-                                     from i in table2.ToList()
-                                     select new ViewModel
-                                     {
-                                         employee = e,
-                                         department = d,
-                                         incentive = i
-                                     };
-                return View(employeeRecord);
+                                                            }
+                    ).ToList();
+            
+                          
+
+                return View(orderItems);
             }
         }
     }
 }
+
+

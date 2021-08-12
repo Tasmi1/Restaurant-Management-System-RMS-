@@ -11,6 +11,7 @@ namespace RMS.Model.Services
     public class KitchineOrderService
     {
         private readonly KitchineOrderConverter converter = new KitchineOrderConverter();
+        private readonly OrderDetailsConverter orderDetailsConverter = new OrderDetailsConverter();
 
         public List<KitchineOrderDTOs> GetAll()
         {
@@ -37,5 +38,30 @@ namespace RMS.Model.Services
             }
 
         }
+
+
+        //public OrderDetailsDTOs GetById(int orderCartID)
+        //{
+        //    OrderDetailsDTOs model = new OrderDetailsDTOs();
+        //    try
+        //    {
+        //        using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+        //        {
+
+        //            OrderCart orderCarts = db.OrderCarts.FirstOrDefault(c => c.OrderCartID == orderCartID);
+        //            if (orderCarts != null)
+        //            {
+        //                model = orderDetailsConverter.ConvertToModel(orderCarts);
+
+        //            }
+        //            return model;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw;
+        //    }
+
+        //}
     }
 }

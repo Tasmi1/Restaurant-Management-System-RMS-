@@ -1,0 +1,18 @@
+﻿@model IEnumerable<RMS.Model.viewModes.OrderDetailsDTOs>
+
+@{
+    ViewBag.Title = "OrderDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>OrderDetails</h2>
+@*<label>Bill No: @Model.FirstOrDefault().OrderCartID</label></br>*@
+
+
+
+@foreach (var item in Model)
+{
+    <h2>@Html.DisplayFor(modelItem => item.OrderCartID)</h2>
+    <h2>@Html.DisplayFor(modelItem => item.MenuName)</h2>
+
+}
