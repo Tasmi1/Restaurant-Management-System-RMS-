@@ -1,8 +1,11 @@
 ﻿
 
-<div class="collapse navbar-collapse  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
-    <ul class="navbar-nav">
-        <li class="nav-item">
+<li class="nav-item">
+    @*<a class="nav-link  active" href="">*@
+        @*<div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class='fas fa-shopping-basket' style='font-size:15px'></i>
+        </div>*@  
+
             @if (Session["CartCounter"] == null)
             {
                 @Html.ActionLink("Cart", "OrderCart", "OrderCart", new { id = "cartItem" })
@@ -13,6 +16,6 @@
                 @Html.ActionLink("Cart(" + Session["CartCounter"] + ")", "OrderCart", "OrderCart", new { id = "cartItem" })
             }
 
-        </li>
-    </ul>
- </div>
+
+   @* </a>*@
+</li>

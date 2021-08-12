@@ -16,21 +16,22 @@ namespace RMS.Model.Services
 
         public OrderDTOs CreateSelectList(OrderDTOs model)
         {
-            model.Customers = GetCustomers();
+           
             model.ProductsName = GetProducts();
+            model.Vendors = GetVendors();
         
             return model;
         }
 
-        public List<BaseGuidSelect> GetCustomers()
+        public List<BaseGuidSelect> GetVendors()
         {
             using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
             {
-                return db.Customers.Select(u =>
+                return db.Vendors.Select(u =>
                 new BaseGuidSelect
                 {
-                    Id = u.CustomerID,
-                    Name = u.CustomerName
+                    Id = u.VendorID,
+                    Name = u.VendorName
                 }).ToList();
 
                 
