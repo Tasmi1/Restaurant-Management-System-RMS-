@@ -12,7 +12,9 @@ namespace RMS.Model.Converters
         {
             order.OrderTime = model.OrderTime;
             order.OrderDate = model.OrderDate;        
-            order.OrderName = model.OrderName;        
+            order.OrderName = model.OrderName;
+          
+           
             return order;
         }
 
@@ -24,6 +26,30 @@ namespace RMS.Model.Converters
             order.OrderDate = model.OrderDate;
             order.Vendor = model.Vendor.VendorName;            
             return order;
+        }
+
+        public OrderVM ConvertToOrderModel(DatabaseLayer.Order entity)
+        {
+            var orderVM = new OrderVM
+            {
+                OrderDate = entity.OrderDate,
+                OrderTime = (TimeSpan)entity.OrderTime,
+                Vendor = entity.Vendor.VendorName,
+                OrderName = entity.OrderName,
+                ProductName = entity.OrderItems.FirstOrDefault()?.InventoryProduct.ProductsName,
+            
+                //Name = entity.Name
+            };
+
+            foreach(var item in entity.OrderItems)
+            {
+                orderVM.Price = item.Price;
+                orderVM.Quantity = item.Quantity;
+                orderVM.ProductName = item.InventoryProduct.ProductsName; //not entity, should be item
+                if(item.Quantity != null)//item.Price tryparse if only true
+                    orderVM.Total = (item.Quantity * Convert.ToInt32(item.Price)).ToString();
+            }
+            return orderVM;
         }
     }
 }

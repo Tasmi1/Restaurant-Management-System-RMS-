@@ -123,9 +123,9 @@ namespace RMS.Model.Services
 
         }
 
-        public List<OrderDTOs> GetAll()
+        public List<OrderVM> GetAll()
         {
-            List<OrderDTOs> orders = new List<OrderDTOs>();
+            List<OrderVM> orders = new List<OrderVM>();
             try
             {
                 using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
@@ -134,7 +134,7 @@ namespace RMS.Model.Services
                     var dbOrders = db.Orders.ToList();
                     foreach (var order in dbOrders)
                     {
-                        orders.Add(converter.ConvertToModel(order));
+                        orders.Add(converter.ConvertToOrderModel(order));
 
                     }
                     return orders;

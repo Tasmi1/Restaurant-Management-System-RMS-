@@ -77,16 +77,18 @@ namespace RMS.Controllers
         public ActionResult OrderCart()
         {
             ListofCart = Session["CartItem"] as List<CartDTOs>;
-
-            return View(ListofCart);
+            OrderCartsDTOs ordercart = new OrderCartsDTOs();
+            ordercart.Carts = ListofCart;
+            ordercart.Total = ListofCart.Sum(x => x.Total);
+            return View(ordercart);
         }
 
         [HttpPost]
-        public ActionResult AddOrder()
+        public ActionResult AddOrder(OrderCartsDTOs model)
         {
-            int OrderCartId = 0;
-          
-            ListofCart = Session["CartItem"] as List<CartDTOs>;
+            int OrderCartId = 10;
+
+            ListofCart = model.Carts;
             OrderCart orderCart = new OrderCart()
             {
                 OrderDate = DateTime.Now,
@@ -104,8 +106,7 @@ namespace RMS.Controllers
             {
                 CartDetail cartModel = new CartDetail();
                 cartModel.Total = item.Total;
-                cartModel.MenuID = item.MenuId;
-                cartModel.CartDetailID = OrderCartId;
+                cartModel.MenuID = item.MenuId;               
                 cartModel.Quantity = item.Quantity;
                 cartModel.Price = item.UnitPrice;
 
