@@ -4,6 +4,41 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
+<<<<<<< HEAD
+      <Diagram DiagramId="acd3b15151a54088950b0dd53df726d1" Name="Diagram1">
+        <EntityTypeShape EntityType="ResturantManagementDBModel.Booking" Width="1.5" PointX="6" PointY="4.75" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.CartDetail" Width="1.5" PointX="3" PointY="4.125" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.Category" Width="1.5" PointX="7.75" PointY="10.25" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.Customer" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.DishCategory" Width="1.5" PointX="1.5" PointY="14.5" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.DishSubCategory" Width="1.5" PointX="1.5" PointY="11.25" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.InventoryProduct" Width="1.5" PointX="10" PointY="9.625" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.Invoice" Width="1.5" PointX="5.25" PointY="8.75" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.Menu" Width="1.5" PointX="0.75" PointY="8" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.Order" Width="1.5" PointX="10" PointY="0.75" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.OrderCart" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.OrderItem" Width="1.5" PointX="12.25" PointY="6.75" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.ProductQuantity" Width="1.5" PointX="12.25" PointY="10.125" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.Table" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.User" Width="1.5" PointX="6" PointY="13.375" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.UserType" Width="1.5" PointX="3.75" PointY="14" />
+        <EntityTypeShape EntityType="ResturantManagementDBModel.Vendor" Width="1.5" PointX="7.75" PointY="1.375" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_Booking_Customer" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_Booking_Table" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_CartDetails_Customer" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_CartDetails_Menu" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_CartDetails_OrderCart" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_CartDetails_Table" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_Invoice_CartDetails" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_InventoryProduct_Category" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_DishSubCategory_DishCategory" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_Menu_DishSubCategory" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_OrderItem_InventoryProduct" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_ProductQuantity_InventoryProduct" />
+        <AssociationConnector Association="ResturantManagementDBModel.Fk_Order_VendorID" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_OrderItems_Order" />
+        <AssociationConnector Association="ResturantManagementDBModel.FK_User_UserType" />
+=======
       <Diagram DiagramId="cd0f985d4d4746b483179841625a4de1" Name="Diagram1">
         <EntityTypeShape EntityType="ResturantManagementDBModel.Booking" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ResturantManagementDBModel.CartDetail" Width="1.5" PointX="6" PointY="3.75" IsExpanded="true" />
@@ -34,6 +69,7 @@
         <AssociationConnector Association="ResturantManagementDBModel.Fk_Order_VendorID" ManuallyRouted="false" />
         <AssociationConnector Association="ResturantManagementDBModel.FK_OrderItems_Order" ManuallyRouted="false" />
         <AssociationConnector Association="ResturantManagementDBModel.FK_User_UserType" ManuallyRouted="false" />
+>>>>>>> 7b1d98bcca5fc8dcd0f3f1966c98e22ffc7bd49e
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
