@@ -250,6 +250,7 @@
     <Content Include="Content\dashboard\js\soft-ui-dashboard.js" />
     <Content Include="Content\dashboard\js\soft-ui-dashboard.min.js" />
     <Content Include="Content\Image\apple.jpg" />
+    <Content Include="Content\Image\BP.jpg" />
     <Content Include="Content\Image\chinese.jpg" />
     <Content Include="Content\Image\download.jpg" />
     <Content Include="Content\Image\momo.jpg" />
@@ -629,7 +630,6 @@
     <Content Include="Views\DishSubCategory\Details.cshtml" />
     <Content Include="Views\DishSubCategory\Edit.cshtml" />
     <Content Include="Views\DishSubCategory\Index.cshtml" />-->
-    <Content Include="Views\Menu\Details.cshtml" />
     <Content Include="Views\DishCategory\Index.cshtml" />
     <Content Include="Views\DishCategory\Create.cshtml" />
     <Content Include="Views\DishCategory\Edit.cshtml" />
@@ -662,6 +662,7 @@
     <Content Include="Views\Invoice\Index.cshtml" />
     <Content Include="Views\KitchineOrder\Index.cshtml" />
     <Content Include="Views\KitchineOrder\OrderDetails.cshtml" />
+    <Content Include="Views\Menu\Details.cshtml" />
     <Content Include="Views\KitchineOrder\Edit.cshtml" />
     <Content Include="Views\OrderCart\EditorTemplates\CartDTOs.cshtml" />
   </ItemGroup>

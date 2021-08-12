@@ -6,57 +6,49 @@
 
 
 <div class="container" style="margin-top: 2%;">
-    <div class=" mx-auto">
+    <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
         <div class="card">
             <div class="card-header text-center pt-4">
                 <span>
                     <a href="/Customer" style=" float:left;">
                         <i class="fa fa-arrow-left" style="font-size:27px;"></i>
-                    </a> 
+                    </a>
                 </span>
-                <samp style="font-size: 30px; font-weight: bold; color:black;">Customer Details </samp>
+                <samp style="font-size: 20px; font-weight: bold; color:black;">Customer Details</samp>
             </div>
-            <dl class="card-body">
-                <dt>
-                    @Html.DisplayNameFor(model => model.CustomerID)
-                </dt>
+            <div class="card-body">
 
-                <dd>
-                    @Html.DisplayFor(model => model.CustomerID)
-                </dd>
+                <div class="mb-3">
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.CustomerName)
-                </dt>
-
-                <dd>
+                    <label style="font-weight: bold;font-size: 1.3em;">Full Name</label>   <br />
                     @Html.DisplayFor(model => model.CustomerName)
-                </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Address)
-                </dt>
+                </div>
 
-                <dd>
+                <div class="mb-3">
+
+                    <label style="font-weight: bold;font-size: 1.3em;"> Address </label>   <br />
                     @Html.DisplayFor(model => model.Address)
-                </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Contact)
-                </dt>
+                </div>
 
-                <dd>
+                <div class="mb-3">
+
+                    <label style="font-weight: bold;font-size: 1.3em;"> Contact Number </label>   <br />
                     @Html.DisplayFor(model => model.Contact)
-                </dd>
 
-            </dl>
+                </div>
+
+              
+                <div>
+                    @*<spam class="btn bg-gradient-primary" style="color:white;">@Html.ActionLink("Edit", "Edit", new { id = Model.CustomerID })</spam>*@
+                    <spam class= "btn bg-gradient-primary" style="color:white;">@Html.ActionLink("Edit", "Edit", new { id = Model.CustomerID})</spam>
+                    <spam class="btn bg-gradient-primary" style="color:white;">@Html.ActionLink("Delete", "Delete", new { id = Model.CustomerID })</spam>
+
+                </div>
+
+            </div>
         </div>
-
     </div>
 </div>
 
-
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

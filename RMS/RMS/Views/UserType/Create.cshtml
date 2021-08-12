@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-header text-center pt-4">
                 <span>
-                    <a href="/User" style=" float:left;">
+                    <a href="/UserType" style=" float:left;">
                         <i class="fa fa-arrow-left" style="font-size:27px;"></i>
                     </a>
                 </span>
@@ -18,7 +18,7 @@
                 <form method="post">
                     <div class="mb-3">
 
-                        <label style="font-weight: bold;font-size: 1.3em;">Type</label>   <br />
+                        <label style="font-weight: bold;font-size: 1.3em;">User Type</label>   <br />
                         @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
                         @Html.TextBoxFor(x => x.Type, "", new { @class = "form-control", @placeholder = "Enter User Type" })
 
