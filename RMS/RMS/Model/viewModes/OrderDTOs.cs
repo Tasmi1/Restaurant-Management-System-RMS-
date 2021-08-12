@@ -28,7 +28,7 @@ namespace RMS.Model.viewModes
        
         public List<BaseGuidSelect> ProductsName { get; set; } 
 
-        public Guid InventoryProductID { get; set; }
+        public string OrderName { get; set; }
 
         public string ProductName { get; set; }
 
