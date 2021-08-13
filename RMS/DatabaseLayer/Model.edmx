@@ -105,7 +105,7 @@
           </Key>
           <Property Name="OrderDate" Type="date" Nullable="false" />
           <Property Name="OrderNumber" Type="nchar" MaxLength="30" Nullable="false" />
-          <Property Name="OrderCartID" Type="int" Nullable="false" />
+          <Property Name="OrderCartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OrderStatus" Type="bit" />
         </EntityType>
         <EntityType Name="OrderItems">
@@ -624,7 +624,7 @@
           </Key>
           <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="OrderNumber" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
-          <Property Name="OrderCartID" Type="Int32" Nullable="false" />
+          <Property Name="OrderCartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrderStatus" Type="Boolean" />
           <NavigationProperty Name="CartDetails" Relationship="ResturantManagementDBModel.FK_CartDetails_OrderCart" FromRole="OrderCart" ToRole="CartDetail" />
           <NavigationProperty Name="Invoices" Relationship="ResturantManagementDBModel.FK_Invoice_OrderCart" FromRole="OrderCart" ToRole="Invoice" />
@@ -871,7 +871,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
