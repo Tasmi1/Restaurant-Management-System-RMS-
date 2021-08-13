@@ -14,12 +14,20 @@ namespace RMS.Controllers
         private readonly VendorService vendorServie = new VendorService();
         public ActionResult Index()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             var vendors = vendorServie.GetAll();
             return View(vendors);
         }
 
         public ActionResult Create()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             VendorDTOs model = new VendorDTOs();
             return View(model);
         }
@@ -27,7 +35,10 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Create(VendorDTOs model)
         {
-
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
                 if (!vendorServie.VendorNameValidation(model.VendorName))
@@ -50,6 +61,10 @@ namespace RMS.Controllers
 
         public ActionResult Edit(Guid id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             VendorDTOs model = vendorServie.GetById(id);
             return View(model);
         }
@@ -57,6 +72,10 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Edit(VendorDTOs model)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
                 bool result = vendorServie.Update(model);
@@ -71,6 +90,10 @@ namespace RMS.Controllers
 
         public ActionResult Details(Guid id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             VendorDTOs model = vendorServie.GetById(id);
             return View(model);
         }

@@ -16,6 +16,10 @@ namespace RMS.Controllers
 
         public ActionResult Index()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             //var invoice = invoiceService.GetAll();
             IEnumerable<InvoiceIndexDTOs> ListOfCartDetails = (from o in db.OrderCarts
                                                                 join oI in db.CartDetails on o.OrderCartID equals oI.OrderCartID
@@ -34,6 +38,10 @@ namespace RMS.Controllers
 
         public ActionResult Details(int? orderCartID)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             IEnumerable<InvoiceIndexDTOs> ListOfCartDetails = (from o in db.OrderCarts
                                                                join oI in db.CartDetails on o.OrderCartID equals oI.OrderCartID
                                                                join t in db.Tables on oI.TableID equals t.TableID
@@ -60,12 +68,20 @@ namespace RMS.Controllers
         }
         public ActionResult Edit(Guid invoice)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             InvoiceDTOs model = invoiceService.GetById(invoice);
             return View(model);
         }
         [HttpPost]
         public ActionResult Edit(InvoiceDTOs model)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
                 bool result = invoiceService.Update(model);

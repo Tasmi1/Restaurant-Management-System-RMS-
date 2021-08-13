@@ -11,15 +11,20 @@ namespace RMS.Controllers
 {
     public class UserController : Controller
     {
+        private ResturantManagementDBEntities db = new ResturantManagementDBEntities();
         private readonly UserService userService = new UserService();
         // GET: User
         public ActionResult Index()
-        {
+        {           
             var user = userService.GetAll();
             return View(user);
         }
         public ActionResult Create()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             UserDTOs model = new UserDTOs();
             userService.CreateSelectList(model);
             return View(model);
@@ -27,6 +32,10 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Create(UserDTOs model, string ConfirmPassword)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
                 if (!userService.UserNameValidation(model.UserName))
@@ -73,6 +82,10 @@ namespace RMS.Controllers
 
         public ActionResult Edit(Guid id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             UserDTOs model = userService.GetById(id);
             userService.CreateSelectList(model);
             return View(model);
@@ -80,6 +93,10 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Edit(UserDTOs model)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
                 bool result = userService.Update(model);
@@ -95,6 +112,10 @@ namespace RMS.Controllers
 
         public ActionResult Details(Guid id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             UserDTOs model = userService.GetById(id);
             return View(model);
         }
@@ -102,7 +123,10 @@ namespace RMS.Controllers
 
         public ActionResult Delete(Guid id)
         {
-
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             ResturantManagementDBEntities db = new ResturantManagementDBEntities();
             {
                 var model = db.Users.Find(id);
@@ -129,7 +153,7 @@ namespace RMS.Controllers
                     if (result == true)
                     {
 
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Login");
                     }
                     if (result == false)
                     {
@@ -172,20 +196,49 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Login(string password, string email)
         {
+            var user = db.Users.Where(u => u.Email == email && u.Password == password ).FirstOrDefault();
+            if (user != null)
+            {
+                Session["UserID"] = user.UserId;
+                Session["UserTypeID"] = user.UserTypeID;
+                Session["UserName"] = user.UserName;
+                Session["FristName"] = user.FristName;
+                Session["LastName"] = user.LastName;
+                Session["Password"] = user.Password;
+                Session["Email"] = user.Email;
+                Session["PhoneNumber"] = user.PhoneNumber;
+                Session["Address"] = user.Address;
+                bool result = userService.Login(password, email);
+                if (result)
+                {
+                   var usertype = user.UserTypeID.ToString();//Waiter
+                    if (usertype == "79e6e845-edfb-4061-acce-155e2ab5780a") 
+                    {
 
-            bool result = userService.Login( password, email);
-            if (result)
-            {
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                ViewBag.message = "Either Email or Password does't match";
-            }
+                    return RedirectToAction("Index", "Home");
 
-            if (result == false)
-            {
-                ViewBag.message = "Either Email or Password does't match";
+
+                    }                   
+                    else if (usertype == "83d203c2-1f32-41bd-808e-ca740ae4a33a")//Admin
+                    {
+                        return RedirectToAction("Index", "Home");
+
+                    }
+                   else if (usertype == "869a04cc-5406-4acc-8f43-36f84b48758f")
+                    {
+                        return RedirectToAction("Index", "Home");
+
+                    }
+                }
+                else
+                {
+                    ViewBag.message = "Either Email or Password does't match";
+                }
+
+                if (result == false)
+                {
+                    ViewBag.message = "Either Email or Password does't match";
+                }
             }
 
             return View();

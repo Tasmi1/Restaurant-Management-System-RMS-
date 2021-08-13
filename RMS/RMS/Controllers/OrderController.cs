@@ -19,11 +19,19 @@ namespace RMS.Controllers
         public readonly OrderItemsService orderItemsService = new OrderItemsService();
         public ActionResult Index()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             var orders = orderItemsService.GetAll();
             return View(orders);
         }
         public ActionResult Create()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             ViewBag.VendorID = new SelectList(db.Vendors.ToList(), "VendorID","VendorName" );
             var products = db.InventoryProducts.ToList().Select(m => new DropDownOrder { Id = m.InventoryProductID, Name = m.ProductsName }).ToList();
 
@@ -43,6 +51,10 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Create(OrderDTOs model)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             ViewBag.VendorID = new SelectList(db.Vendors.ToList(), "VendorID", "VendorName", model.VendorID);
             var order = db.InventoryProducts.ToList().Select(m => new DropDownOrder { Id = m.InventoryProductID, Name = m.ProductsName }).ToList();
             model.DDItems = order;
@@ -105,6 +117,10 @@ namespace RMS.Controllers
 
         public ActionResult Edit(Guid id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             OrderDTOs model = orderService.GetById(id);
             orderService.CreateSelectList(model);
             return View(model);
@@ -112,6 +128,10 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Edit(OrderDTOs model)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
                 bool result = orderService.Update(model);
@@ -132,6 +152,10 @@ namespace RMS.Controllers
 
         public ActionResult Details(Guid? orderCartID)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
             {
                 IEnumerable<OrderViews> orders = (  from o in db.Orders

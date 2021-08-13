@@ -61,7 +61,10 @@ namespace RMS.Controllers
         //GET: OrderCart
         public ActionResult Index()
         {
-
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             ViewBag.CustomerID = new SelectList(DB.Customers.ToList(), "CustomerID", "CustomerName");
             ViewBag.TableID = new SelectList(DB.Tables.ToList(), "TableID", "TableName");
             IEnumerable<OrderCartDTOs> ListofOrderCarts = (from DBMenu in DB.Menus
@@ -123,6 +126,10 @@ namespace RMS.Controllers
 
         public ActionResult OrderCart()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             ListofCart = Session["CartItem"] as List<CartDTOs>;
             OrderCartsDTOs ordercart = new OrderCartsDTOs();
             ordercart.Carts = ListofCart;
@@ -135,7 +142,10 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult AddOrder(OrderCartsDTOs model)
         {
-
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             ///int OrderCartId = 10;
 
             ListofCart = model.Carts;

@@ -14,12 +14,21 @@ namespace RMS.Controllers
         private readonly BookingService bookingService = new BookingService();
         public ActionResult Index()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
+
             var bookings = bookingService.GetAll();
             return View(bookings);
         }
 
         public ActionResult Create()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             BookingDTOs model = new BookingDTOs();
             bookingService.CreateSelectList(model);           
             bookingService.CreateSelectListTable(model);           
@@ -29,6 +38,10 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Create(BookingDTOs model)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
                 bool result = bookingService.Create(model);
@@ -46,6 +59,10 @@ namespace RMS.Controllers
 
         public ActionResult Edit(Guid id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             BookingDTOs model = bookingService.GetById(id);
             bookingService.CreateSelectList(model);
             bookingService.CreateSelectListTable(model);
@@ -55,6 +72,10 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Edit(BookingDTOs model)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
                 bool result = bookingService.Update(model);
@@ -71,12 +92,17 @@ namespace RMS.Controllers
 
         public ActionResult Details(Guid Id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             BookingDTOs model = bookingService.GetById(Id);
             return View(model);
         }
 
         public ActionResult Delete(Guid Id)
         {
+
             using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
             {
                 var model = db.Bookings.Find(Id);

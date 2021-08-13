@@ -16,13 +16,20 @@ namespace RMS.Controllers
        //GET:InventoryProduct
         public ActionResult Index()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             var inventoryProduct = inventoryProductService.GetAll();
             return View(inventoryProduct);
         }
 
         public ActionResult Create()
         {
-
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             InventoryProductDTOs model = new InventoryProductDTOs();
             inventoryProductService.CreateSelectList(model);
             return View(model);
@@ -31,7 +38,10 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Create(InventoryProductDTOs Model, ProductQuantity quantityModel)
         {
-
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
                 if (!inventoryProductService.ProductsNameValidation(Model.ProductsName))
@@ -54,6 +64,10 @@ namespace RMS.Controllers
 
         public ActionResult Edit(Guid id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             InventoryProductDTOs model = inventoryProductService.GetById(id);
             inventoryProductService.CreateSelectList(model);
             return View(model);
@@ -62,6 +76,10 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Edit(InventoryProductDTOs model)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
                 bool result = inventoryProductService.Update(model);
@@ -76,6 +94,10 @@ namespace RMS.Controllers
         }
         public ActionResult Details(Guid id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             InventoryProductDTOs model = inventoryProductService.GetById(id);
             return View(model);
         }

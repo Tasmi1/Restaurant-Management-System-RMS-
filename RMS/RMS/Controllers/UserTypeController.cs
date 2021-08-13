@@ -14,17 +14,29 @@ namespace RMS.Controllers
         private readonly UserTypeService userTypeService = new UserTypeService();
         public ActionResult Index()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             var userType = userTypeService.GetAll();
             return View(userType);
         }
         public ActionResult Create()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             UserTypeDTOs model = new UserTypeDTOs();
             return View(model);
         }
         [HttpPost]
         public ActionResult Create(UserTypeDTOs model)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
                 if (!userTypeService.UserTypeValidation(model.Type))
@@ -44,12 +56,20 @@ namespace RMS.Controllers
         }
         public ActionResult Edit(Guid id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             UserTypeDTOs model = userTypeService.GetById(id);
             return View(model);
         }
         [HttpPost]
         public ActionResult Edit(UserTypeDTOs model)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
                 bool result = userTypeService.Update(model);
@@ -64,6 +84,10 @@ namespace RMS.Controllers
 
         public ActionResult Details(Guid id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             UserTypeDTOs model = userTypeService.GetById(id);
             return View(model);
         }
@@ -71,6 +95,10 @@ namespace RMS.Controllers
        
         public ActionResult Delete(Guid id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
 
             ResturantManagementDBEntities db = new ResturantManagementDBEntities();
             {

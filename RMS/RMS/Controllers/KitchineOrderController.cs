@@ -15,6 +15,10 @@ namespace RMS.Controllers
         // GET: KitchineOrder
         public ActionResult Index()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             var order = orderService.GetAll();
             return View(order);
         }
@@ -27,6 +31,10 @@ namespace RMS.Controllers
         }
         public ActionResult OrderDetails(int? orderCartID)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
             {
                 IEnumerable<OrderDetailsDTOs> orderItems = (from o in db.OrderCarts
@@ -53,6 +61,10 @@ namespace RMS.Controllers
 
         public ActionResult Edit(int orderId)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             KitchineOrderDTOs model = orderService.GetById(orderId);
             return View(model);
         }
@@ -60,6 +72,10 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Edit(KitchineOrderDTOs model)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
                 bool result = orderService.Update(model);

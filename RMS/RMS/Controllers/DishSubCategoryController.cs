@@ -16,11 +16,19 @@ namespace RMS.Controllers
         // GET: DishSubCategory
         public ActionResult Index()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             var dishSubCategories = dishSubCategoryService.GetAll();
             return View(dishSubCategories);
         }
         public ActionResult Create()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             DishSubCategoryDTOs model = new DishSubCategoryDTOs();
             dishSubCategoryService.CreateSelectList(model);
             return View(model);
@@ -29,6 +37,10 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Create(DishSubCategoryDTOs dishsub)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
                 bool result = dishSubCategoryService.Create(dishsub);
@@ -43,6 +55,10 @@ namespace RMS.Controllers
 
         public ActionResult Edit(Guid id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             DishSubCategoryDTOs model = dishSubCategoryService.GetById(id);
             dishSubCategoryService.CreateSelectList(model);
             return View(model);
@@ -50,6 +66,10 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Edit(DishSubCategoryDTOs model)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
                 bool result = dishSubCategoryService.Update(model);
@@ -66,6 +86,10 @@ namespace RMS.Controllers
 
         public ActionResult Details(Guid id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             DishSubCategoryDTOs model = dishSubCategoryService.GetById(id);
             return View(model);
         }

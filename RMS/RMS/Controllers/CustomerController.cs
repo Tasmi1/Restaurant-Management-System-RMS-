@@ -14,12 +14,20 @@ namespace RMS.Controllers
        private readonly CustomerService customerService = new CustomerService();
         public ActionResult Index()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             var customers = customerService.GetAll();
             return View(customers);
         }
 
         public ActionResult Create()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             CustomerDTOs model = new CustomerDTOs();
             return View(model);
         }
@@ -27,6 +35,10 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Create(CustomerDTOs model)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
               bool result =  customerService.Create(model);
@@ -41,6 +53,10 @@ namespace RMS.Controllers
 
         public ActionResult Edit(Guid id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             CustomerDTOs model = customerService.GetById(id);
             return View(model);
         }
@@ -48,6 +64,10 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Edit(CustomerDTOs model)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
                 bool result = customerService.Update(model);
@@ -62,6 +82,10 @@ namespace RMS.Controllers
 
         public ActionResult Details(Guid Id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             CustomerDTOs model = customerService.GetById(Id);
             return View(model);
         }

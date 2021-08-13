@@ -14,12 +14,20 @@ namespace RMS.Controllers
         private readonly TableService tableServie = new TableService();
         public ActionResult Index()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             var tables = tableServie.GetAll();
             return View(tables);
         }
 
         public ActionResult Create()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             TableDTOs model = new TableDTOs();
             return View(model);
         }
@@ -27,6 +35,10 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Create(TableDTOs model)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
 
             if (ModelState.IsValid)
             {
@@ -50,6 +62,10 @@ namespace RMS.Controllers
 
         public ActionResult Edit(Guid id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             TableDTOs model = tableServie.GetById(id);
             return View(model);
         }
@@ -71,6 +87,10 @@ namespace RMS.Controllers
 
         public ActionResult Details(Guid id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             TableDTOs model = tableServie.GetById(id);
             return View(model);
         }

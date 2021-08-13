@@ -14,13 +14,20 @@ namespace RMS.Controllers
         private readonly MenuService menuService = new MenuService();
         public ActionResult Index()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             var menus = menuService.GetAll();
             return View(menus);
         }
 
         public ActionResult Create()
         {
-
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             MenuDTOs model = new MenuDTOs();
             menuService.CreateSelectList(model);
             return View(model);
@@ -29,7 +36,10 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Create(MenuDTOs model)
         {
-
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
                 if (!menuService.MenuNameValidation(model.MenuName))
@@ -52,6 +62,10 @@ namespace RMS.Controllers
 
         public ActionResult Edit(Guid id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             MenuDTOs model = menuService.GetById(id);
             menuService.CreateSelectList(model);
             return View(model);
@@ -60,6 +74,10 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Edit(MenuDTOs model)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
                 bool result = menuService.Update(model);
@@ -74,6 +92,10 @@ namespace RMS.Controllers
         }
         public ActionResult Details(Guid id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             MenuDTOs model = menuService.GetById(id);
             return View(model);
         }

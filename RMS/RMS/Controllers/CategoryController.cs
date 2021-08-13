@@ -14,12 +14,20 @@ namespace RMS.Controllers
         private readonly CategoryService categoryServie = new CategoryService();
         public ActionResult Index()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             var categories = categoryServie.GetAll();
             return View(categories);
         }
 
         public ActionResult Create()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             CategoryDTOs model = new CategoryDTOs();
             return View(model);
         }
@@ -27,6 +35,10 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Create(CategoryDTOs model)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
 
             if (ModelState.IsValid)
             {
@@ -50,6 +62,10 @@ namespace RMS.Controllers
 
         public ActionResult Edit(Guid id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             CategoryDTOs model = categoryServie.GetById(id);
             return View(model);
         }
@@ -57,6 +73,10 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Edit(CategoryDTOs model)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
                 bool result = categoryServie.Update(model);
@@ -71,6 +91,10 @@ namespace RMS.Controllers
 
         public ActionResult Details(Guid id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             CategoryDTOs model = categoryServie.GetById(id);
             return View(model);
         }

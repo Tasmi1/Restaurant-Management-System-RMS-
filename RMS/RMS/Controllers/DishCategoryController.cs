@@ -15,17 +15,29 @@ namespace RMS.Controllers
         private readonly DishCategoryService dishCategoryService = new DishCategoryService();
         public ActionResult Index()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             var dishCategories = dishCategoryService.GetAll();
             return View(dishCategories);
         }
         public ActionResult Create()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             DishCategoryDTOs model = new DishCategoryDTOs();
             return View(model);
         }
         [HttpPost]
         public ActionResult Create(DishCategoryDTOs model)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
                 bool result = dishCategoryService.Create(model);
@@ -38,12 +50,20 @@ namespace RMS.Controllers
         }
         public ActionResult Edit(Guid id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             DishCategoryDTOs model = dishCategoryService.GetById(id);
             return View(model);
         }
         [HttpPost]
         public ActionResult Edit(DishCategoryDTOs model)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
                 bool result = dishCategoryService.Update(model);
@@ -58,6 +78,10 @@ namespace RMS.Controllers
 
         public ActionResult Details(Guid id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "User");
+            }
             DishCategoryDTOs model = dishCategoryService.GetById(id);
             return View(model);
         }
