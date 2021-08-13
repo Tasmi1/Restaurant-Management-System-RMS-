@@ -11,22 +11,32 @@ namespace RMS.Model.viewModes
     {
         public InvoiceDTOs()
         {
-            CartDetails = new List<BaseIdSelect>();
+            OrderCarts = new List<BaseIdSelect>();
         }
 
-        public Guid InvoiceID { get; set; }
-        [Required(ErrorMessage = "VAT is required")]
-        public decimal VAT { get; set; }
-        [Required(ErrorMessage = "Service Tax is required")]
-        public decimal ServiceTax { get; set; }
-        [Required(ErrorMessage = "Total is required")]
-        public decimal ITotal { get; set; }
-        [Required(ErrorMessage = "Status is required")]
+
+        public System.Guid InvoiceID { get; set; }
         public bool Status { get; set; }
-        public int CartDetailID { get; set; }
+        public int OrderCartID { get; set; }
+        public List<BaseIdSelect> OrderCarts { get; set; }
+        public string OrderCart { get; set; }
+    }
 
-        public List<BaseIdSelect> CartDetails { get; set; }
 
-        public string CartDetail { get; set; }
+    public class InvoiceIndexDTOs
+    {
+        public string OrderID { get; set; }
+        public int OrderCartID { get; set; }
+        public DateTime OrderDate { get; set; }
+        public decimal Total { get; set; }
+        public Guid ItemID { get; set; }
+        public decimal? Quantity { get; set; }
+        public string Price { get; set; }
+        public decimal mon { get; set; }
+        public Guid InventoryProductID { get; set; }
+        public string CustomerName { get; set; }
+        public string Dish { get; set; }
+        public int SubTotal { get; set; }
+        public string TableName { get; set; }
     }
 }

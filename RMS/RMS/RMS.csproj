@@ -684,6 +684,8 @@
     <Content Include="Views\Table\Create.cshtml" />
     <Content Include="Views\Table\Details.cshtml" />
     <Content Include="Views\Table\Edit.cshtml" />
+    <Content Include="Views\Invoice\Details.cshtml" />
+    <Content Include="Views\Invoice\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

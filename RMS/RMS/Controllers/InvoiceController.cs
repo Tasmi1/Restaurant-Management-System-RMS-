@@ -12,86 +12,54 @@ namespace RMS.Controllers
     public class InvoiceController : Controller
     {
         private readonly InvoiceService invoiceService = new InvoiceService();
-        private ResturantManagementDBEntities DB = new ResturantManagementDBEntities();
+        private ResturantManagementDBEntities db = new ResturantManagementDBEntities();
 
         public ActionResult Index()
         {
             //var invoice = invoiceService.GetAll();
-            IEnumerable<OrderCartsDTOs> ListOfCartDetails = (IEnumerable<OrderCartsDTOs>)(from DBInvoice in DB.Invoices
-                                                                                          join DBCartDetail in DB.CartDetails
-                                                                                           on DBInvoice.CartDetailID equals DBCartDetail.CartDetailID
-                                                                                          select new InvoiceDTOs()
-                                                                                          {
-                                                                                              CartDetailID = (int)Convert.ToDecimal(DBInvoice.InvoiceID),
-                                                                                              ITotal = Convert.ToDecimal(DBInvoice.ITotal),
-                                                                                              VAT = Convert.ToDecimal(DBInvoice.VAT),
-                                                                                              ServiceTax = Convert.ToDecimal(DBInvoice.ServiceTax),
-                                                                                              CartDetail =/* (int)*/Convert.ToString(DBCartDetail.Total),
-
-
-
-
-
-                                                                                          }).ToList();
+            IEnumerable<InvoiceIndexDTOs> ListOfCartDetails = (from o in db.OrderCarts
+                                                                                            join oI in db.CartDetails on o.OrderCartID equals oI.OrderCartID
+                                                                                            join t in db.Tables on oI.TableID equals t.TableID
+                                                                                            join me in db.Menus on oI.MenuID equals me.MenuID
+                                                                                            join c in db.Customers on oI.CustomerID equals c.CustomerID
+                                                                                            join i in db.Invoices on oI.OrderCartID equals i.OrderCartID
+                                                                                            where o.OrderStatus == true && o.OrderDate == DateTime.Today && i.Status== false
+                                                                                            select new InvoiceIndexDTOs()
+                                                                                            {
+                                                                                                TableName = t.TableName,
+                                                                                                OrderCartID = o.OrderCartID,
+                                                                                            }).ToList();
 
             return View(ListOfCartDetails);
         }
 
-        //public ActionResult InvoiceDetail(int? cartDetailID)
-        //{
-        //    using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
-        //    {
-        //        IEnumerable<OrderCartsDTOs> cartDetails = (from i in db.Invoices
-        //                                                  join cd in db.CartDetails on i.InvoiceID equals cd.CartDetailID
-        //                                                  where i.InvoiceID == cartDetailID
-        //                                                  select new OrderCartsDTOs()
-        //                                                  {
-        //                                                      CartDetailID = (int)Convert.ToDecimal(DBInvoice.InvoiceID),
-        //                                                      ITotal = Convert.ToDecimal(DBInvoice.ITotal),
-        //                                                      VAT = Convert.ToDecimal(DBInvoice.VAT),
-        //                                                      ServiceTax = Convert.ToDecimal(DBInvoice.ServiceTax),
-        //                                                      CartDetail =/* (int)*/Convert.ToString(DBCartDetail.Total),
 
-        //                                                  }).ToList();
-
-
-
-
-
-
-
-
-        //    }).ToList();
-
-
-
-
-        //    return View(cartDetailID);
-        //    }
-
-            public ActionResult Create()
+        public ActionResult Details(int? orderCartID)
         {
-            InvoiceDTOs model = new InvoiceDTOs();
-            invoiceService.CreateSelectList(model);
-            return View(model);
-        }
-        [HttpPost]
-        public ActionResult Create(InvoiceDTOs model)
-        {
-            if (ModelState.IsValid)
-            {
-                bool result = invoiceService.Create(model);
-                if (result == true)
-                {
-                    return RedirectToAction("Index");
-                }
-            }
-            return View(model);
+            IEnumerable<InvoiceIndexDTOs> ListOfCartDetails = (from o in db.OrderCarts
+                                                               join oI in db.CartDetails on o.OrderCartID equals oI.OrderCartID
+                                                               join t in db.Tables on oI.TableID equals t.TableID
+                                                               join me in db.Menus on oI.MenuID equals me.MenuID
+                                                               join c in db.Customers on oI.CustomerID equals c.CustomerID
+                                                               where o.OrderStatus == false && o.OrderDate == DateTime.Today &&  o.OrderCartID == orderCartID
+                                                               select new InvoiceIndexDTOs()
+                                                               {
+                                                                   OrderID = o.OrderNumber,
+                                                                   OrderCartID = o.OrderCartID,
+                                                                   OrderDate = o.OrderDate,
+                                                                   TableName = t.TableName,
+                                                                   CustomerName = c.CustomerName,
+                                                                   Price = me.MenuPrice,
+                                                                   Quantity =  oI.Quantity,
+                                                                   Total = oI.Total,
+                                                                   Dish = me.MenuPrice
+                                                               }).ToList();
+
+            return View(ListOfCartDetails);
         }
         public ActionResult Edit(Guid id)
         {
             InvoiceDTOs model = invoiceService.GetById(id);
-            invoiceService.CreateSelectList(model);
             return View(model);
         }
         [HttpPost]
@@ -106,26 +74,8 @@ namespace RMS.Controllers
                 }
 
             }
-            invoiceService.CreateSelectList(model);
             return View(model);
         }
-        public ActionResult Details(Guid id)
-        {
-            InvoiceDTOs model = invoiceService.GetById(id);
-            return View(model);
-        }
-
-
-        public ActionResult Delete(Guid id)
-        {
-
-            ResturantManagementDBEntities db = new ResturantManagementDBEntities();
-            {
-                var model = db.Invoices.Find(id);
-                db.Invoices.Remove(model);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-        }
+      
     }
 }

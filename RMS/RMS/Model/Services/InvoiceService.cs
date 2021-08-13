@@ -12,24 +12,7 @@ namespace RMS.Model.Services
     public class InvoiceService
     {
         private readonly InvoiceConverter converter = new InvoiceConverter();
-        public InvoiceDTOs CreateSelectList(InvoiceDTOs model)
-        {
-            model.CartDetails = GetCartDetails();
-            return model;
-        }
-        public List<BaseIdSelect> GetCartDetails()
-        {
-            using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
-            {
-                return db.CartDetails.Select(cd =>
-                new BaseIdSelect
-                {
-                    Id = cd.CartDetailID,
-                    //Name = cd.Total
-                }).ToList();
-
-            }
-        }
+      
 
         public bool Create(InvoiceDTOs model)
         {

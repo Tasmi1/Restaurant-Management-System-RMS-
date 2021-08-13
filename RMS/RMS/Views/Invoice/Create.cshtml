@@ -37,12 +37,7 @@
                         </div>
 
 
-                        <div class="mb-3">
-                            <label style="font-weight: bold;font-size: 1.3em;">Cart Detail</label>   <br />
-                            @Html.ValidationMessageFor(model => model.CartDetailID, "", new { @class = "text-danger" })
-                            @Html.DropDownListFor(x => x.CartDetailID, new SelectList(Model.CartDetails, "Id", "Name"), new { @class = "form-control form-control-lg ", required = "required" })
-
-                        </div>
+                      
 
                         <div class="mb-3">
                             <label style="font-weight: bold; font-size: 1.3em;">Status</label>   <br />

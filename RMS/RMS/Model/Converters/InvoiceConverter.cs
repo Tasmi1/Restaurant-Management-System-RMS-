@@ -10,27 +10,17 @@ namespace RMS.Model.Converters
     public class InvoiceConverter
     {
         public DatabaseLayer.Invoice ConverToEntity(InvoiceDTOs model, Invoice invoice)
-        {
-            invoice.VAT = model.VAT;
-            invoice.ServiceTax = model.ServiceTax;
-            invoice.ITotal = model.ITotal;
-            invoice.Status = model.Status;
-            invoice.CartDetailID = model.CartDetailID;
-
+        {          
+            invoice.Status = model.Status;         
             return invoice;
         }
 
         public InvoiceDTOs ConvertToModel(DatabaseLayer.Invoice model)
         {
             InvoiceDTOs invoice = new InvoiceDTOs();
-            invoice.InvoiceID = model.InvoiceID;
-            invoice.VAT = (decimal)model.VAT;
-            invoice.ServiceTax = (decimal)model.ServiceTax;
-            invoice.ITotal = model.ITotal;
+            invoice.InvoiceID = model.InvoiceID;            
             invoice.Status = (bool)model.Status;
-            invoice.CartDetailID = model.CartDetailID;
-            
-
+            invoice.OrderCartID = model.OrderCartID;          
             return invoice;
         }
     }
