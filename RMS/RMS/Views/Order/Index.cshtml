@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<RMS.Model.viewModes.OrderItemsDTOs>
 
-@{
-    ViewBag.Title = "Index";
-}
+
+
+@{ ViewBag.Title = "Index"; }
+
+
 
 <style>
     .box-shadow {
@@ -17,12 +19,18 @@
     <div class="card mb-4">
         <div class="card-header pb-0">
 
+
+
             <h6 class="text-center"> STOCK ORDER</h6>
             <a type="button" class="btn btn-primary" href="/Order/Create">
+
+
 
                 Create
             </a>
         </div>
+
+
 
 
         <div class="card-body px-0 pt-0 pb-2">
@@ -38,8 +46,9 @@
                         </tr>
                     </thead>
 
-                    <tbody>
 
+
+                    <tbody>
                         @foreach (var item in Model)
                         {
                             <tr>
@@ -77,11 +86,15 @@
                             </tr>
 
 
-                        }
+
                     </tbody>
+
+
 
                 </table>
             </div>
         </div>
     </div>
 </div>
+
+

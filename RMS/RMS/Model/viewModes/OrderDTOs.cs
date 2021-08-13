@@ -14,19 +14,23 @@ namespace RMS.Model.viewModes
            Vendors = new List<BaseGuidSelect>();
 
             ProductsName = new List<BaseGuidSelect>();
+           
 
         }
         public Guid OrderID { get; set; }
         [Required(ErrorMessage = "Order Time is required")]
         public TimeSpan ? OrderTime { get; set; }
         [Required(ErrorMessage = "Order Date is required")]
-        public DateTime OrderDate { get; set; } 
+        public DateTime OrderDate { get; set; }
         public Guid VendorID { get; set; }
         public List<BaseGuidSelect> ProductsName { get; set; } 
         public string OrderName { get; set; }
         public string ProductName { get; set; }
         public List<BaseGuidSelect> Vendors { get; set; }
+
+
         public string Vendor { get; set; }
+       
         public List<DropDownOrder> DDItems { get; set; }
         public List<OrderItems> OrderItems { get; set; }
         public List<OrderVM> OrderVMs { get; set; }

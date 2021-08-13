@@ -56,10 +56,12 @@ namespace RMS.Controllers
                     OrderTime = model.OrderTime,
                     OrderDate = model.OrderDate,
                     VendorID = model.VendorID,
-                    OrderName = model.OrderName
+                    OrderName = model.OrderName,
+                    Total = model.OrderItems.Sum(x => x.SubTotal).ToString()
+                   
                     //InventoryProductID = model.InventoryProductID
                 };
-                ord.Total = "abc";
+                
                 ord.OrderID = Guid.NewGuid();
                 db.Orders.Add(ord);
                 db.SaveChanges();
@@ -75,52 +77,21 @@ namespace RMS.Controllers
                         Quantity = item.Quantity,
                         InventoryProductID = item.InventoryProductID
                     };
+
                     ord.Total = total.ToString();
                    orderItems1.OrderID = ord.OrderID;
                     
                     orderItems1.ItemID = Guid.NewGuid();
                     db.OrderItems.Add(orderItems1);
                     db.SaveChanges();
+                    ProductQuantity objStock = db.ProductQuantities.FirstOrDefault(m => m.InventoryProductID == item.InventoryProductID);
+                    objStock.Quantity += item.Quantity;
+                    db.SaveChanges();
 
                 }
-
-               /* ord.OrderItems = orderItems;
-                foreach(var orderItem in orderItems)
-                {
-                    orderItem.OrderID = ord.OrderID;
-                    orderItem.ItemID = Guid.NewGuid();
-                    db.OrderItems.Add(orderItem);
-                }
-                db.SaveChanges();*/
-
-
-//                Vendor vendor = db.Vendors.FirstOrDefault(m => m.VendorID == model.VendorID);
-//                db.SaveChanges();
-
-//                foreach(var items in model.OrderItems)
-//                {
-//                    OrderItem orderItem = new OrderItem
-//                    {
-//                        OrderID = order2.OrderID,
-//                        Price = items.Price,
-//                        Quantity = items.Quantity
-//                       /* SubTotal = items.SubTotal*/
-//                    };
-//                    db.OrderItems.Add(orderItem);
-//                    db.SaveChanges();
-
-
-//                    InventoryProduct inventory = db.InventoryProducts.FirstOrDefault(m => m.InventoryProductID == items.InventoryProductID);
-///*
-//                    InventoryProduct inventoryProduct = db.InventoryProducts.FirstOrDefault(m => m.InventoryProductID == items.Id);*/
-
-//                    db.SaveChanges();
-               // }
 
                 orderService.CreateSelectList(model);
                 return RedirectToAction("Index");
-
-                               
 
             }
             else
