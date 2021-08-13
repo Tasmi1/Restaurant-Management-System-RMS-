@@ -16,7 +16,7 @@ namespace RMS.Model.viewModes
 
 
         public System.Guid InvoiceID { get; set; }
-        public bool Status { get; set; }
+        public bool ? Status { get; set; }
         public int OrderCartID { get; set; }
         public List<BaseIdSelect> OrderCarts { get; set; }
         public string OrderCart { get; set; }
@@ -38,5 +38,6 @@ namespace RMS.Model.viewModes
         public string Dish { get; set; }
         public int SubTotal { get; set; }
         public string TableName { get; set; }
+        public Guid InvoiceID { get; set; }
     }
 }

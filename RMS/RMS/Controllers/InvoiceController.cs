@@ -18,17 +18,15 @@ namespace RMS.Controllers
         {
             //var invoice = invoiceService.GetAll();
             IEnumerable<InvoiceIndexDTOs> ListOfCartDetails = (from o in db.OrderCarts
-                                                                                            join oI in db.CartDetails on o.OrderCartID equals oI.OrderCartID
-                                                                                            join t in db.Tables on oI.TableID equals t.TableID
-                                                                                            join me in db.Menus on oI.MenuID equals me.MenuID
-                                                                                            join c in db.Customers on oI.CustomerID equals c.CustomerID
-                                                                                            join i in db.Invoices on oI.OrderCartID equals i.OrderCartID
-                                                                                            where o.OrderStatus == true && o.OrderDate == DateTime.Today && i.Status== false
-                                                                                            select new InvoiceIndexDTOs()
+                                                                join oI in db.CartDetails on o.OrderCartID equals oI.OrderCartID
+                                                                join t in db.Tables on oI.TableID equals t.TableID
+                                                                join i in db.Invoices on oI.OrderCartID equals i.OrderCartID
+                                                                where o.OrderStatus == true && o.OrderDate == DateTime.Today && i.Status== false && o.OrderCartID == oI.OrderCartID
+                                                               select new InvoiceIndexDTOs()
                                                                                             {
                                                                                                 TableName = t.TableName,
                                                                                                 OrderCartID = o.OrderCartID,
-                                                                                            }).ToList();
+                                                               }).ToList();
 
             return View(ListOfCartDetails);
         }
@@ -41,7 +39,8 @@ namespace RMS.Controllers
                                                                join t in db.Tables on oI.TableID equals t.TableID
                                                                join me in db.Menus on oI.MenuID equals me.MenuID
                                                                join c in db.Customers on oI.CustomerID equals c.CustomerID
-                                                               where o.OrderStatus == false && o.OrderDate == DateTime.Today &&  o.OrderCartID == orderCartID
+                                                               join i in db.Invoices on oI.OrderCartID equals i.OrderCartID
+                                                               where   o.OrderCartID == orderCartID
                                                                select new InvoiceIndexDTOs()
                                                                {
                                                                    OrderID = o.OrderNumber,
@@ -52,14 +51,16 @@ namespace RMS.Controllers
                                                                    Price = me.MenuPrice,
                                                                    Quantity =  oI.Quantity,
                                                                    Total = oI.Total,
-                                                                   Dish = me.MenuPrice
+                                                                   Dish = me.MenuPrice,
+                                                                   InvoiceID = i.InvoiceID
+
                                                                }).ToList();
 
             return View(ListOfCartDetails);
         }
-        public ActionResult Edit(Guid id)
+        public ActionResult Edit(Guid invoice)
         {
-            InvoiceDTOs model = invoiceService.GetById(id);
+            InvoiceDTOs model = invoiceService.GetById(invoice);
             return View(model);
         }
         [HttpPost]

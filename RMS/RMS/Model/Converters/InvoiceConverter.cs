@@ -19,7 +19,7 @@ namespace RMS.Model.Converters
         {
             InvoiceDTOs invoice = new InvoiceDTOs();
             invoice.InvoiceID = model.InvoiceID;            
-            invoice.Status = (bool)model.Status;
+            invoice.Status = model.Status;
             invoice.OrderCartID = model.OrderCartID;          
             return invoice;
         }
