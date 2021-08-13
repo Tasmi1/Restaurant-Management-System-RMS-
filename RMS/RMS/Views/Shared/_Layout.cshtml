@@ -35,8 +35,8 @@
 
             @{ if (Session["UserTypeID"] != null)
                 {
-                    var usertype = Convert.ToString(Session["UserTypeID"]);
-                    if (usertype == "79e6e845-edfb-4061-acce-155e2ab5780a")//waiter
+                    var usertype = Convert.ToString(Session["UserTypeID"]).ToUpper();
+                    if (usertype == "AE8FEB36-7DC4-4F2A-B33D-BF64A79AEFBD")//waiter
                     {
                         <ul class="navbar-nav">
                             <li class="nav-item">
@@ -106,7 +106,7 @@
                             </li>
                         </ul>
                     }
-                    else if (usertype == "869a04cc-5406-4acc-8f43-36f84b48758f")//admin
+                    else if (usertype == "E12E865E-9855-45D9-805F-783255F2DF8F")//admin
                     {
                         <ul class="navbar-nav">
                             <li class="nav-item">
@@ -225,7 +225,7 @@
                             </li>
                         </ul>
                     }
-                    else if (usertype == "83d203c2-1f32-41bd-808e-ca740ae4a33a")//kitchinstaff
+                    else if (usertype == "5D0F0072-14DE-4DD6-B67E-9D61465AFE11")//kitchinstaff
                     {
 
                         <ul class="navbar-nav">

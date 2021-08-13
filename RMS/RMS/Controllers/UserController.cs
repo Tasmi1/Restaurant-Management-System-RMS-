@@ -211,20 +211,20 @@ namespace RMS.Controllers
                 bool result = userService.Login(password, email);
                 if (result)
                 {
-                   var usertype = user.UserTypeID.ToString();//Waiter
-                    if (usertype == "79e6e845-edfb-4061-acce-155e2ab5780a") 
+                   var usertype = user.UserTypeID.ToString().ToUpper();//Waiter
+                    if (usertype == "AE8FEB36-7DC4-4F2A-B33D-BF64A79AEFBD") 
                     {
 
                     return RedirectToAction("Index", "Home");
 
 
                     }                   
-                    else if (usertype == "83d203c2-1f32-41bd-808e-ca740ae4a33a")//Admin
+                    else if (usertype == "E12E865E-9855-45D9-805F-783255F2DF8F")//Admin
                     {
                         return RedirectToAction("Index", "Home");
 
                     }
-                   else if (usertype == "869a04cc-5406-4acc-8f43-36f84b48758f")
+                   else if (usertype == "5D0F0072-14DE-4DD6-B67E-9D61465AFE11")
                     {
                         return RedirectToAction("Index", "Home");
 
