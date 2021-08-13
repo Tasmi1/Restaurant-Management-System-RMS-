@@ -20,28 +20,15 @@ namespace RMS.Model.viewModes
         [Required(ErrorMessage = "Order Time is required")]
         public TimeSpan ? OrderTime { get; set; }
         [Required(ErrorMessage = "Order Date is required")]
-        public DateTime OrderDate { get; set; }
-
-  
-
+        public DateTime OrderDate { get; set; } 
         public Guid VendorID { get; set; }
-       
         public List<BaseGuidSelect> ProductsName { get; set; } 
-
         public string OrderName { get; set; }
-
         public string ProductName { get; set; }
-
-
-
         public List<BaseGuidSelect> Vendors { get; set; }
-
-
         public string Vendor { get; set; }
-       
         public List<DropDownOrder> DDItems { get; set; }
         public List<OrderItems> OrderItems { get; set; }
-
         public List<OrderVM> OrderVMs { get; set; }
     }
     public class CustomerOrder
@@ -92,6 +79,26 @@ namespace RMS.Model.viewModes
         public string Price { get; set; }
 
         public string Total { get; set; }
+    }
+
+    public class OrderViews
+    {
+        public Guid OrderID { get; set; }
+        public DateTime OrderDate { get; set; }
+        public string Total { get; set; }
+        public Guid VendorID { get; set; }
+        public string VenderName { get; set; }
+        public string OrderName { get; set; }
+        public Guid ItemID { get; set; }
+        public int? Quantity { get; set; }
+        public string Price { get; set; }
+        public Guid InventoryProductID { get; set; }
+        public string ProductsName { get; set; }
+        public Guid CategoryID { get; set; }
+        public string CategoryName { get; set; }
+
+        public int SubTotal { get; set; }
+
     }
 
 

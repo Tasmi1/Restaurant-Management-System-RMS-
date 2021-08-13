@@ -162,6 +162,7 @@
     <Compile Include="Model\Converters\KitchineOrderConverter.cs" />
     <Compile Include="Model\Converters\OrderConverter.cs" />
     <Compile Include="Model\Converters\OrderDetailsConverter.cs" />
+    <Compile Include="Model\Converters\OrderItemsController.cs" />
     <Compile Include="Model\Converters\ProductQuantityConverter.cs" />
     <Compile Include="Model\Converters\TableConverter.cs" />
     <Compile Include="Model\Converters\UserConverter.cs" />
@@ -176,6 +177,7 @@
     <Compile Include="Model\Services\InventoryProductService.cs" />
     <Compile Include="Model\Services\InvoiceService.cs" />
     <Compile Include="Model\Services\KitchineOrderService.cs" />
+    <Compile Include="Model\Services\OrderItemsService.cs" />
     <Compile Include="Model\Services\OrderService.cs" />
     <Compile Include="Model\Services\TableService.cs" />
     <Compile Include="Model\Services\UserService.cs" />
@@ -195,6 +197,7 @@
     <Compile Include="Model\viewModes\KitchineOrderDTOs.cs" />
     <Compile Include="Model\viewModes\OrderCartDTOs.cs" />
     <Compile Include="Model\viewModes\OrderDTOs.cs" />
+    <Compile Include="Model\viewModes\OrderItemsDTOs.cs" />
     <Compile Include="Model\viewModes\OrderModel.cs" />
     <Compile Include="Model\viewModes\ProductQuantityDTOs.cs" />
     <Compile Include="Model\viewModes\TableDTOs.cs" />
@@ -252,7 +255,6 @@
     <Content Include="Content\dashboard\js\core\bootstrap.min.js" />
     <Content Include="Content\dashboard\js\core\popper.min.js" />
     <Content Include="Content\dashboard\js\plugins\bootstrap-notify.js" />
-    <Content Include="Content\dashboard\js\plugins\Chart.extension.js" />
     <Content Include="Content\dashboard\js\plugins\perfect-scrollbar.min.js" />
     <Content Include="Content\dashboard\js\plugins\smooth-scrollbar.min.js" />
     <Content Include="Content\dashboard\js\soft-ui-dashboard.js" />

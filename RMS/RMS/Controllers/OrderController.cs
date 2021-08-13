@@ -16,9 +16,10 @@ namespace RMS.Controllers
         private ResturantManagementDBEntities db = new ResturantManagementDBEntities();
 
         public readonly OrderService orderService = new OrderService();
+        public readonly OrderItemsService orderItemsService = new OrderItemsService();
         public ActionResult Index()
         {
-            var orders = orderService.GetAll();
+            var orders = orderItemsService.GetAll();
             return View(orders);
         }
         public ActionResult Create()
@@ -158,7 +159,34 @@ namespace RMS.Controllers
         }
 */
 
-      
+        public ActionResult Details(Guid? orderCartID)
+        {
+            using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+            {
+                IEnumerable<OrderViews> orders = (  from o in db.Orders
+                                                    join oI in db.OrderItems on o.OrderID equals oI.OrderID
+                                                    join v in db.Vendors on o.VendorID equals v.VendorID
+                                                    join i in db.InventoryProducts on oI.InventoryProductID equals i.InventoryProductID
+                                                    where o.OrderID == orderCartID
+                                                      select new OrderViews()
+                                                      {
+                                                          OrderID = o.OrderID,
+                                                          OrderDate = o.OrderDate,
+                                                          OrderName = o.OrderName,
+                                                          Total = o.Total,
+                                                          VenderName = v.VendorName,
+                                                          ProductsName = i.ProductsName,
+                                                          Quantity = oI.Quantity,
+                                                          Price = oI.Price,
+                                                          //SubTotal = (int)(Convert.ToInt32(oI.Price) * oI.Quantity),
+                                                      }
+                                                        ).ToList();
+
+
+
+                return View(orders);
+            }
+        }
         public ActionResult Delete(Guid id)
         {
 
