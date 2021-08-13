@@ -12,13 +12,64 @@ namespace RMS.Controllers
     public class InvoiceController : Controller
     {
         private readonly InvoiceService invoiceService = new InvoiceService();
-       
+        private ResturantManagementDBEntities DB = new ResturantManagementDBEntities();
+
         public ActionResult Index()
         {
-            var invoice = invoiceService.GetAll();
-            return View(invoice);
+            //var invoice = invoiceService.GetAll();
+            IEnumerable<OrderCartsDTOs> ListOfCartDetails = (IEnumerable<OrderCartsDTOs>)(from DBInvoice in DB.Invoices
+                                                                                          join DBCartDetail in DB.CartDetails
+                                                                                           on DBInvoice.CartDetailID equals DBCartDetail.CartDetailID
+                                                                                          select new InvoiceDTOs()
+                                                                                          {
+                                                                                              CartDetailID = (int)Convert.ToDecimal(DBInvoice.InvoiceID),
+                                                                                              ITotal = Convert.ToDecimal(DBInvoice.ITotal),
+                                                                                              VAT = Convert.ToDecimal(DBInvoice.VAT),
+                                                                                              ServiceTax = Convert.ToDecimal(DBInvoice.ServiceTax),
+                                                                                              CartDetail =/* (int)*/Convert.ToString(DBCartDetail.Total),
+
+
+
+
+
+                                                                                          }).ToList();
+
+            return View(ListOfCartDetails);
         }
-        public ActionResult Create()
+
+        //public ActionResult InvoiceDetail(int? cartDetailID)
+        //{
+        //    using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+        //    {
+        //        IEnumerable<OrderCartsDTOs> cartDetails = (from i in db.Invoices
+        //                                                  join cd in db.CartDetails on i.InvoiceID equals cd.CartDetailID
+        //                                                  where i.InvoiceID == cartDetailID
+        //                                                  select new OrderCartsDTOs()
+        //                                                  {
+        //                                                      CartDetailID = (int)Convert.ToDecimal(DBInvoice.InvoiceID),
+        //                                                      ITotal = Convert.ToDecimal(DBInvoice.ITotal),
+        //                                                      VAT = Convert.ToDecimal(DBInvoice.VAT),
+        //                                                      ServiceTax = Convert.ToDecimal(DBInvoice.ServiceTax),
+        //                                                      CartDetail =/* (int)*/Convert.ToString(DBCartDetail.Total),
+
+        //                                                  }).ToList();
+
+
+
+
+
+
+
+
+        //    }).ToList();
+
+
+
+
+        //    return View(cartDetailID);
+        //    }
+
+            public ActionResult Create()
         {
             InvoiceDTOs model = new InvoiceDTOs();
             invoiceService.CreateSelectList(model);
