@@ -18,6 +18,7 @@ namespace DatabaseLayer
         public OrderCart()
         {
             this.CartDetails = new HashSet<CartDetail>();
+            this.Invoices = new HashSet<Invoice>();
         }
     
         public System.DateTime OrderDate { get; set; }
@@ -27,5 +28,7 @@ namespace DatabaseLayer
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CartDetail> CartDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Invoice> Invoices { get; set; }
     }
 }

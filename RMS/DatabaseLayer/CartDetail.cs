@@ -14,12 +14,6 @@ namespace DatabaseLayer
     
     public partial class CartDetail
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CartDetail()
-        {
-            this.Invoices = new HashSet<Invoice>();
-        }
-    
         public decimal Quantity { get; set; }
         public decimal Price { get; set; }
         public decimal Total { get; set; }
@@ -33,7 +27,5 @@ namespace DatabaseLayer
         public virtual Menu Menu { get; set; }
         public virtual OrderCart OrderCart { get; set; }
         public virtual Table Table { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Invoice> Invoices { get; set; }
     }
 }

@@ -16,11 +16,8 @@ namespace DatabaseLayer
     {
         public System.Guid InvoiceID { get; set; }
         public Nullable<bool> Status { get; set; }
-        public Nullable<decimal> VAT { get; set; }
-        public Nullable<decimal> ServiceTax { get; set; }
-        public decimal ITotal { get; set; }
-        public int CartDetailID { get; set; }
+        public int OrderCartID { get; set; }
     
-        public virtual CartDetail CartDetail { get; set; }
+        public virtual OrderCart OrderCart { get; set; }
     }
 }
