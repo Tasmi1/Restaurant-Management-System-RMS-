@@ -25,6 +25,7 @@ namespace RMS.Controllers
         public OrderCartsDTOs CreateSelectList(OrderCartsDTOs model)
         {
             model.CustomerNames = GetCustomers();
+            model.TableNames = GetTables();
 
             return model;
         }
@@ -38,6 +39,20 @@ namespace RMS.Controllers
                 {
                     Id = u.CustomerID,
                     Name = u.CustomerName
+                }).ToList();
+            }
+        }
+
+
+        public List<BaseGuidSelect> GetTables()
+        {
+            using (ResturantManagementDBEntities db = new ResturantManagementDBEntities())
+            {
+                return db.Tables.Select(u =>
+                new BaseGuidSelect
+                {
+                    Id = u.TableID,
+                    Name = u.TableName
                 }).ToList();
             }
         }
@@ -111,6 +126,8 @@ namespace RMS.Controllers
             ListofCart = Session["CartItem"] as List<CartDTOs>;
             OrderCartsDTOs ordercart = new OrderCartsDTOs();
             ordercart.Carts = ListofCart;
+            ordercart.CustomerNames = GetCustomers();
+            ordercart.TableNames = GetTables();
             ordercart.Total = ListofCart.Sum(x => x.Total);
             return View(ordercart);
         }
@@ -119,40 +136,47 @@ namespace RMS.Controllers
         public ActionResult AddOrder(OrderCartsDTOs model)
         {
 
-            int OrderCartId = 10;
+            ///int OrderCartId = 10;
 
             ListofCart = model.Carts;
             OrderCart orderCart = new OrderCart()
             {
                 OrderDate = DateTime.Now,
                 OrderNumber = String.Format("(0:ddmmyyyyhhmmss)", DateTime.Now),
-                OrderStatus = false,
-                OrderCartID = OrderCartId + 1, 
+                OrderStatus = false
+                //OrderCartID = OrderCartId + 1, 
+            };
+            Invoice invoice = new Invoice()
+            {
+                InvoiceID = Guid.NewGuid(),
+                Status = false,
+               // OrderCartID = orderCart.OrderCartID
 
 
-        };
-           
-                DB.OrderCarts.Add(orderCart);
-            DB.SaveChanges();
+            };
+            orderCart.Invoices.Add(invoice);
 
-            OrderCartId = orderCart.OrderCartID;
+            //OrderCartId = orderCart.OrderCartID;
             foreach (var item in ListofCart)
             {
                 CartDetail cartModel = new CartDetail();
                 cartModel.Total = item.Total;
-                
-                cartModel.MenuID = item.MenuId;               
+
+                cartModel.MenuID = item.MenuId;
                 cartModel.Quantity = item.Quantity;
                 cartModel.Price = item.UnitPrice;
+                cartModel.CustomerID = model.CustomerID;
+                cartModel.TableID = model.TableID;  
+                
+               
 
 
-
-
-                    DB.CartDetails.Add(cartModel);
-                DB.SaveChanges();
-
+                orderCart.CartDetails.Add(cartModel);
+               
 
             }
+            DB.OrderCarts.Add(orderCart);
+            DB.SaveChanges();
             Session["CartItem"] = null;
             Session["CartCounter"] = null;
             return RedirectToAction("Index");
