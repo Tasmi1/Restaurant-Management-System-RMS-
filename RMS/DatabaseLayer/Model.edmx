@@ -872,11 +872,11 @@
           </ReferentialConstraint>
         </Association>
       </Schema>
-    </edmx:ConceptualModels>
-    <!-- C-S mapping content -->
-    <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ResturantManagementDBModelStoreContainer" CdmEntityContainer="ResturantManagementDBEntities">
+          <EntitySet Name="Bookings" EntityType="Self.Booking" />
+          <EntitySet Name="CartDetails" EntityType="Self.CartDetail" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="DishCategories" EntityType="Self.DishCategory" />
           <EntitySetMapping Name="OrderCarts">
             <EntityTypeMapping TypeName="ResturantManagementDBModel.OrderCart">
               <MappingFragment StoreEntitySet="OrderCart">
@@ -884,6 +884,89 @@
                 <ScalarProperty Name="OrderCartID" ColumnName="OrderCartID" />
                 <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
                 <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <EntitySet Name="Tables" EntityType="Self.Table" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserTypes" EntityType="Self.UserType" />
+          <EntitySet Name="Vendors" EntityType="Self.Vendor" />
+          <AssociationSet Name="FK_Booking_Customer" Association="Self.FK_Booking_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_Table" Association="Self.FK_Booking_Table">
+            <End Role="Table" EntitySet="Tables" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CartDetails_Customer" Association="Self.FK_CartDetails_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bookings">
+            <EntityTypeMapping TypeName="ResturantManagementDBModel.Booking">
+              <MappingFragment StoreEntitySet="Booking">
+                <ScalarProperty Name="TableID" ColumnName="TableID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+            <End Role="OrderCart" EntitySet="OrderCarts" />
+            <End Role="CartDetails" EntitySet="CartDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CartDetails_Table" Association="Self.FK_CartDetails_Table">
+            <End Role="Table" EntitySet="Tables" />
+            <End Role="CartDetails" EntitySet="CartDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_CartDetails" Association="Self.FK_Invoice_CartDetails">
+            <End Role="CartDetails" EntitySet="CartDetails" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryProduct_Category" Association="Self.FK_InventoryProduct_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="InventoryProduct" EntitySet="InventoryProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DishSubCategory_DishCategory" Association="Self.FK_DishSubCategory_DishCategory">
+            <End Role="DishCategory" EntitySet="DishCategories" />
+            <End Role="DishSubCategory" EntitySet="DishSubCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Menu_DishSubCategory" Association="Self.FK_Menu_DishSubCategory">
+            <End Role="DishSubCategory" EntitySet="DishSubCategories" />
+            <End Role="Menu" EntitySet="Menus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItem_InventoryProduct" Association="Self.FK_OrderItem_InventoryProduct">
+            <End Role="InventoryProduct" EntitySet="InventoryProducts" />
+            <End Role="OrderItems" EntitySet="OrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductQuantity_InventoryProduct" Association="Self.FK_ProductQuantity_InventoryProduct">
+            <End Role="InventoryProduct" EntitySet="InventoryProducts" />
+            <End Role="ProductQuantity" EntitySet="ProductQuantities" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_Order_VendorID" Association="Self.Fk_Order_VendorID">
+            <End Role="Vendor" EntitySet="Vendors" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItems_Order" Association="Self.FK_OrderItems_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderItems" EntitySet="OrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_UserType" Association="Self.FK_User_UserType">
+            <End Role="UserType" EntitySet="UserTypes" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ResturantManagementDBModelStoreContainer" CdmEntityContainer="ResturantManagementDBEntities">
+          <EntitySetMapping Name="Bookings">
+            <EntityTypeMapping TypeName="ResturantManagementDBModel.Booking">
+              <MappingFragment StoreEntitySet="Booking">
+                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="TableID" ColumnName="TableID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -898,25 +981,13 @@
                 <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Bookings">
-            <EntityTypeMapping TypeName="ResturantManagementDBModel.Booking">
-              <MappingFragment StoreEntitySet="Booking">
-                <ScalarProperty Name="TableID" ColumnName="TableID" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="ResturantManagementDBModel.Category">
-              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="OrderName" ColumnName="OrderName" />
+                <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -982,12 +1053,22 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="ResturantManagementDBModel.Order">
               <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="OrderName" ColumnName="OrderName" />
-                <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
-                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
-                <ScalarProperty Name="Total" ColumnName="Total" />
-                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
+                <ScalarProperty Name="OrderName" ColumnName="OrderName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderCarts">
+            <EntityTypeMapping TypeName="ResturantManagementDBModel.OrderCart">
+              <MappingFragment StoreEntitySet="OrderCart">
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="OrderCartID" ColumnName="OrderCartID" />
+                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
