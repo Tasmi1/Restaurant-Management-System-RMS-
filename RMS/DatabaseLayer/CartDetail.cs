@@ -23,9 +23,9 @@ namespace DatabaseLayer
         public System.Guid TableID { get; set; }
         public Nullable<System.Guid> CustomerID { get; set; }
     
-        public virtual OrderCart OrderCart { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual Menu Menu { get; set; }
+        public virtual OrderCart OrderCart { get; set; }
         public virtual Table Table { get; set; }
     }
 }

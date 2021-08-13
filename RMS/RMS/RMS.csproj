@@ -708,7 +708,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DatabaseLayer\DatabaseLayer.csproj">
-      <Project>{c2f17f22-b100-44c1-88ae-bbff54486fa8}</Project>
+      <Project>{dc8eb872-8bc7-47ff-a2d4-793cefadc3e5}</Project>
       <Name>DatabaseLayer</Name>
     </ProjectReference>
   </ItemGroup>

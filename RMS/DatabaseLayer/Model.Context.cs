@@ -25,9 +25,8 @@ namespace DatabaseLayer
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<OrderCart> OrderCarts { get; set; }
-        public virtual DbSet<CartDetail> CartDetails { get; set; }
         public virtual DbSet<Booking> Bookings { get; set; }
+        public virtual DbSet<CartDetail> CartDetails { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<DishCategory> DishCategories { get; set; }
@@ -36,6 +35,7 @@ namespace DatabaseLayer
         public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<Menu> Menus { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderCart> OrderCarts { get; set; }
         public virtual DbSet<OrderItem> OrderItems { get; set; }
         public virtual DbSet<ProductQuantity> ProductQuantities { get; set; }
         public virtual DbSet<Table> Tables { get; set; }
