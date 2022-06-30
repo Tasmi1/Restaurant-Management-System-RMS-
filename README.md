@@ -1,5 +1,5 @@
 # Restaurant-Management-System-RMS-
-
+It contain billing, Inventory product, order management, and kitchen order ticket
 
 ![Product CRUD](https://user-images.githubusercontent.com/46495296/133377451-aad3844b-c1cf-434e-b71c-c7b74f1353b1.png)
 ![Inventory Project](https://user-images.githubusercontent.com/46495296/133377453-db493ab3-8238-4898-90ba-afc1cd29eb4a.png)
